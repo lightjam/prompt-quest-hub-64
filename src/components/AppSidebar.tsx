@@ -1,24 +1,27 @@
 import { Search, BarChart3, BookOpen, Upload, Users, Settings, ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 interface SidebarItem {
   icon: React.ElementType;
   label: string;
-  active?: boolean;
+  path: string;
 }
 
 const items: SidebarItem[] = [
-  { icon: Search, label: "Search", active: true },
-  { icon: BarChart3, label: "Comparison" },
-  { icon: BookOpen, label: "Browse Knowledge" },
-  { icon: Upload, label: "Upload Knowledge" },
-  { icon: Users, label: "Tenants" },
-  { icon: Settings, label: "Settings" },
+  { icon: Search, label: "Search", path: "/" },
+  { icon: BarChart3, label: "Comparison", path: "/comparison" },
+  { icon: BookOpen, label: "Browse Knowledge", path: "#" },
+  { icon: Upload, label: "Upload Knowledge", path: "#" },
+  { icon: Users, label: "Tenants", path: "#" },
+  { icon: Settings, label: "Settings", path: "#" },
 ];
 
 export function AppSidebar() {
   const [collapsed, setCollapsed] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   return (
     <aside
@@ -42,20 +45,24 @@ export function AppSidebar() {
       </div>
 
       <nav className="flex-1 py-3 px-2 space-y-1">
-        {items.map((item) => (
-          <button
-            key={item.label}
-            className={cn(
-              "flex items-center gap-3 w-full rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200",
-              item.active
-                ? "bg-sidebar-accent text-sidebar-accent-foreground"
-                : "text-sidebar-foreground hover:bg-sidebar-accent/50 hover:text-sidebar-accent-foreground"
-            )}
-          >
-            <item.icon size={18} className="shrink-0" />
-            {!collapsed && <span>{item.label}</span>}
-          </button>
-        ))}
+        {items.map((item) => {
+          const isActive = location.pathname === item.path;
+          return (
+            <button
+              key={item.label}
+              onClick={() => item.path !== "#" && navigate(item.path)}
+              className={cn(
+                "flex items-center gap-3 w-full rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200",
+                isActive
+                  ? "bg-sidebar-accent text-sidebar-accent-foreground"
+                  : "text-sidebar-foreground hover:bg-sidebar-accent/50 hover:text-sidebar-accent-foreground"
+              )}
+            >
+              <item.icon size={18} className="shrink-0" />
+              {!collapsed && <span>{item.label}</span>}
+            </button>
+          );
+        })}
       </nav>
     </aside>
   );
