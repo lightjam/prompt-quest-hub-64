@@ -179,12 +179,28 @@ function ContextStringTab() {
 }
 
 // ─── Direct Relations Tab ───
+const directGraphNodes = [
+  { id: "cortex", label: "Cortex AI", type: "primary" as const },
+  { id: "search", label: "Semantic Search", type: "secondary" as const },
+  { id: "accuracy", label: "94.7% Accuracy", type: "secondary" as const },
+  { id: "transformer", label: "Transformer Architecture", type: "secondary" as const },
+  { id: "vectors", label: "Vector Embeddings", type: "secondary" as const },
+];
+
+const directGraphEdges = [
+  { source: "cortex", target: "search", label: "HAS_FEATURE" },
+  { source: "cortex", target: "accuracy", label: "ACHIEVES" },
+  { source: "cortex", target: "transformer", label: "USES" },
+  { source: "search", target: "vectors", label: "DEPENDS_ON" },
+];
+
 function DirectRelationsTab() {
   return (
-    <div className="space-y-2">
-      <p className="text-xs text-muted-foreground mb-3">
+    <div className="space-y-4">
+      <p className="text-xs text-muted-foreground">
         Entities and relationships directly matching the query
       </p>
+      <RelationGraph nodes={directGraphNodes} edges={directGraphEdges} />
       {mockDirectRelations.map((rel) => (
         <ExpandableCard key={rel.id} defaultOpen={false}>
           {({ isOpen, toggle }) => (
