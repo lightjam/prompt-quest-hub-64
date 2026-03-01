@@ -238,12 +238,34 @@ function DirectRelationsTab() {
 }
 
 // ─── Graph Relations Tab ───
+const graphGraphNodes = [
+  { id: "cortex", label: "Cortex AI", type: "primary" as const },
+  { id: "transformer", label: "Transformer Architecture", type: "secondary" as const },
+  { id: "attention", label: "Self-Attention", type: "secondary" as const },
+  { id: "shazeer", label: "Noam Shazeer", type: "secondary" as const },
+  { id: "kg", label: "Knowledge Graph", type: "secondary" as const },
+  { id: "ner", label: "NER Models", type: "secondary" as const },
+  { id: "hybrid", label: "Hybrid Retrieval", type: "secondary" as const },
+  { id: "bm25", label: "BM25", type: "secondary" as const },
+];
+
+const graphGraphEdges = [
+  { source: "cortex", target: "transformer", label: "USES" },
+  { source: "transformer", target: "attention", label: "RELIES_ON" },
+  { source: "attention", target: "shazeer", label: "DEVELOPED_BY" },
+  { source: "cortex", target: "kg", label: "BUILDS" },
+  { source: "kg", target: "ner", label: "POWERED_BY" },
+  { source: "cortex", target: "hybrid", label: "USES" },
+  { source: "hybrid", target: "bm25", label: "INCLUDES" },
+];
+
 function GraphRelationsTab() {
   return (
-    <div className="space-y-2">
-      <p className="text-xs text-muted-foreground mb-3">
+    <div className="space-y-4">
+      <p className="text-xs text-muted-foreground">
         Multi-hop relationships discovered through graph traversal
       </p>
+      <RelationGraph nodes={graphGraphNodes} edges={graphGraphEdges} />
       {mockGraphRelations.map((rel) => (
         <ExpandableCard key={rel.id} defaultOpen={false}>
           {({ isOpen, toggle }) => (
