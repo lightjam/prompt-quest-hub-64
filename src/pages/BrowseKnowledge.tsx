@@ -72,11 +72,11 @@ const mockItems: KnowledgeItem[] = [
 ];
 
 const graphNodes = [
-  { id: "doc", label: "Document", type: "entity" as const },
-  { id: "topic1", label: "Knowledge Graphs", type: "entity" as const },
-  { id: "topic2", label: "RAG", type: "concept" as const },
-  { id: "topic3", label: "LLM Context", type: "concept" as const },
-  { id: "topic4", label: "Vector Search", type: "concept" as const },
+  { id: "doc", label: "Document", type: "primary" as const },
+  { id: "topic1", label: "Knowledge Graphs", type: "secondary" as const },
+  { id: "topic2", label: "RAG", type: "secondary" as const },
+  { id: "topic3", label: "LLM Context", type: "secondary" as const },
+  { id: "topic4", label: "Vector Search", type: "secondary" as const },
 ];
 
 const graphEdges = [
