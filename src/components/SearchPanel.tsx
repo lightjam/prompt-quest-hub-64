@@ -2,28 +2,46 @@ import { useState } from "react";
 import { Search, Send, ArrowUp } from "lucide-react";
 import { SearchFilters } from "./SearchFilters";
 import { ExamplePrompts } from "./ExamplePrompts";
+import { SearchResults } from "./SearchResults";
 
 export function SearchPanel() {
   const [query, setQuery] = useState("");
   const [tenantId, setTenantId] = useState("cortexai-workbench");
   const [subTenantId, setSubTenantId] = useState("workbench-st-1");
+  const [hasSearched, setHasSearched] = useState(false);
 
   const handleExampleClick = (prompt: string) => {
     setQuery(prompt);
+    setHasSearched(true);
+  };
+
+  const handleSearch = () => {
+    if (query.trim()) {
+      setHasSearched(true);
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      handleSearch();
+    }
   };
 
   return (
-    <div className="flex-1 flex flex-col items-center justify-center px-6 py-12 min-h-screen">
-      <div className="w-full max-w-3xl space-y-8 animate-fade-in">
+    <div className="flex-1 flex flex-col items-center px-6 py-12 min-h-screen">
+      <div className={`w-full max-w-3xl space-y-8 animate-fade-in transition-all duration-500 ${hasSearched ? "pt-4" : "pt-[15vh]"}`}>
         {/* Header */}
-        <div className="text-center space-y-2">
-          <h1 className="font-display text-4xl font-bold tracking-tight text-foreground">
-            Search your knowledge
-          </h1>
-          <p className="text-muted-foreground text-lg">
-            Give your AI the best context, high quality structure, and the complete picture it needs
-          </p>
-        </div>
+        {!hasSearched && (
+          <div className="text-center space-y-2">
+            <h1 className="font-display text-4xl font-bold tracking-tight text-foreground">
+              Search your knowledge
+            </h1>
+            <p className="text-muted-foreground text-lg">
+              Give your AI the best context, high quality structure, and the complete picture it needs
+            </p>
+          </div>
+        )}
 
         {/* Tenant IDs - compact row */}
         <div className="flex gap-3">
@@ -57,13 +75,15 @@ export function SearchPanel() {
           <textarea
             value={query}
             onChange={(e) => setQuery(e.target.value)}
+            onKeyDown={handleKeyDown}
             placeholder="Search your knowledge base..."
-            rows={3}
+            rows={hasSearched ? 2 : 3}
             className="w-full resize-none bg-transparent px-5 pt-5 pb-2 text-foreground placeholder:text-search-placeholder focus:outline-none text-base"
           />
           <div className="flex items-center justify-between px-4 pb-3">
             <SearchFilters />
             <button
+              onClick={handleSearch}
               className="flex items-center justify-center w-9 h-9 rounded-xl bg-primary text-primary-foreground hover:opacity-90 transition-opacity disabled:opacity-40"
               disabled={!query.trim()}
             >
@@ -72,8 +92,12 @@ export function SearchPanel() {
           </div>
         </div>
 
-        {/* Example Prompts */}
-        <ExamplePrompts onSelect={handleExampleClick} />
+        {/* Example Prompts or Results */}
+        {hasSearched ? (
+          <SearchResults />
+        ) : (
+          <ExamplePrompts onSelect={handleExampleClick} />
+        )}
       </div>
     </div>
   );
