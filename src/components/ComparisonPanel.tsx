@@ -178,9 +178,9 @@ export function ComparisonPanel() {
             <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Source / Memory Scope</h3>
             <div className="space-y-2">
               <div className="space-y-1">
-                <label className="text-[11px] text-muted-foreground">Search type</label>
+                <label className="text-[11px] text-muted-foreground">Scope type</label>
                 <div className="flex gap-1.5">
-                  {["Knowledge", "Semantic", "Hybrid"].map((t) => (
+                  {["Knowledge", "Memories"].map((t) => (
                     <button key={t} onClick={() => setSearchType(t)} className={cn("px-2.5 py-1 rounded-lg text-[11px] font-medium border transition-all", t === searchType ? "bg-accent text-accent-foreground border-primary/30" : "bg-chip text-muted-foreground border-chip-border hover:bg-chip-hover")}>
                       {t}
                     </button>
@@ -189,7 +189,7 @@ export function ComparisonPanel() {
               </div>
               <div className="space-y-1">
                 <label className="text-[11px] text-muted-foreground">Scope</label>
-                <ChipSelect value={scope} options={["All knowledge", "Selected tenant", "Recent uploads"]} onChange={setScope} />
+                <ScopeDropdown value={scope} onChange={setScope} />
               </div>
             </div>
           </div>
