@@ -244,6 +244,7 @@ const BrowseKnowledge = () => {
               </div>
             </>
           )}
+          </div>
         </div>
       </div>
     </div>

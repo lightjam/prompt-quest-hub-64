@@ -34,7 +34,8 @@ const Tenants = () => {
           </a>
         </div>
 
-        <div className="p-8 pt-6 max-w-5xl">
+        <div className="flex-1 flex flex-col items-center px-6 py-8 min-h-screen">
+          <div className="w-full max-w-5xl space-y-6 animate-fade-in">
           <h1 className="text-2xl font-display font-bold text-foreground">Tenants</h1>
           <p className="text-sm text-muted-foreground mt-1 mb-8">Manage isolated knowledge base infrastructure for your tenants.</p>
 
