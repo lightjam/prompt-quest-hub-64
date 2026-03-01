@@ -106,7 +106,7 @@ const Tenants = () => {
               </div>
               {status && (
                 <div className="flex items-center gap-2 text-sm bg-emerald-500/5 border border-emerald-500/20 rounded-lg px-4 py-2.5 text-emerald-400">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                  <span className="w-2 h-2 rounded-full bg-primary" />
                   Tenant "<span className="font-medium">{verifyTenantId}</span>" is <span className="font-semibold">active</span>. All infrastructure components are operational.
                 </div>
               )}

@@ -12,10 +12,10 @@ interface SidebarItem {
 const items: SidebarItem[] = [
   { icon: Search, label: "Search", path: "/" },
   { icon: BarChart3, label: "Comparison", path: "/comparison" },
-  { icon: BookOpen, label: "Browse Knowledge", path: "#" },
-  { icon: Upload, label: "Upload Knowledge", path: "#" },
-  { icon: Users, label: "Tenants", path: "#" },
-  { icon: Settings, label: "Settings", path: "#" },
+  { icon: BookOpen, label: "Browse Knowledge", path: "/browse" },
+  { icon: Upload, label: "Upload Knowledge", path: "/upload" },
+  { icon: Users, label: "Tenants", path: "/tenants" },
+  { icon: Settings, label: "API Settings", path: "/settings" },
 ];
 
 export function AppSidebar() {

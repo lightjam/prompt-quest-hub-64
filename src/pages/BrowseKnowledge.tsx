@@ -80,10 +80,10 @@ const graphNodes = [
 ];
 
 const graphEdges = [
-  { source: "doc", target: "topic1", label: "COVERS", weight: 0.95 },
-  { source: "doc", target: "topic2", label: "REFERENCES", weight: 0.88 },
-  { source: "topic1", target: "topic3", label: "IMPROVES", weight: 0.82 },
-  { source: "topic2", target: "topic4", label: "USES", weight: 0.76 },
+  { source: "doc", target: "topic1", label: "COVERS" },
+  { source: "doc", target: "topic2", label: "REFERENCES" },
+  { source: "topic1", target: "topic3", label: "IMPROVES" },
+  { source: "topic2", target: "topic4", label: "USES" },
 ];
 
 const BrowseKnowledge = () => {
