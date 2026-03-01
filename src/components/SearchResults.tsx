@@ -2,6 +2,7 @@ import { useState } from "react";
 import { ChevronDown, FileText, GitBranch, Network, Layers, Copy, Check, Hash } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { RelationGraph } from "./RelationGraph";
 
 // Mock data for demonstration
 const mockContextString = `Cortex is an advanced AI system designed for knowledge management and retrieval. It leverages transformer-based architectures to process and understand complex documents. The system achieves an overall accuracy of 94.7% on standard benchmarks.
@@ -178,12 +179,28 @@ function ContextStringTab() {
 }
 
 // ─── Direct Relations Tab ───
+const directGraphNodes = [
+  { id: "cortex", label: "Cortex AI", type: "primary" as const },
+  { id: "search", label: "Semantic Search", type: "secondary" as const },
+  { id: "accuracy", label: "94.7% Accuracy", type: "secondary" as const },
+  { id: "transformer", label: "Transformer Architecture", type: "secondary" as const },
+  { id: "vectors", label: "Vector Embeddings", type: "secondary" as const },
+];
+
+const directGraphEdges = [
+  { source: "cortex", target: "search", label: "HAS_FEATURE" },
+  { source: "cortex", target: "accuracy", label: "ACHIEVES" },
+  { source: "cortex", target: "transformer", label: "USES" },
+  { source: "search", target: "vectors", label: "DEPENDS_ON" },
+];
+
 function DirectRelationsTab() {
   return (
-    <div className="space-y-2">
-      <p className="text-xs text-muted-foreground mb-3">
+    <div className="space-y-4">
+      <p className="text-xs text-muted-foreground">
         Entities and relationships directly matching the query
       </p>
+      <RelationGraph nodes={directGraphNodes} edges={directGraphEdges} />
       {mockDirectRelations.map((rel) => (
         <ExpandableCard key={rel.id} defaultOpen={false}>
           {({ isOpen, toggle }) => (
@@ -221,12 +238,34 @@ function DirectRelationsTab() {
 }
 
 // ─── Graph Relations Tab ───
+const graphGraphNodes = [
+  { id: "cortex", label: "Cortex AI", type: "primary" as const },
+  { id: "transformer", label: "Transformer Architecture", type: "secondary" as const },
+  { id: "attention", label: "Self-Attention", type: "secondary" as const },
+  { id: "shazeer", label: "Noam Shazeer", type: "secondary" as const },
+  { id: "kg", label: "Knowledge Graph", type: "secondary" as const },
+  { id: "ner", label: "NER Models", type: "secondary" as const },
+  { id: "hybrid", label: "Hybrid Retrieval", type: "secondary" as const },
+  { id: "bm25", label: "BM25", type: "secondary" as const },
+];
+
+const graphGraphEdges = [
+  { source: "cortex", target: "transformer", label: "USES" },
+  { source: "transformer", target: "attention", label: "RELIES_ON" },
+  { source: "attention", target: "shazeer", label: "DEVELOPED_BY" },
+  { source: "cortex", target: "kg", label: "BUILDS" },
+  { source: "kg", target: "ner", label: "POWERED_BY" },
+  { source: "cortex", target: "hybrid", label: "USES" },
+  { source: "hybrid", target: "bm25", label: "INCLUDES" },
+];
+
 function GraphRelationsTab() {
   return (
-    <div className="space-y-2">
-      <p className="text-xs text-muted-foreground mb-3">
+    <div className="space-y-4">
+      <p className="text-xs text-muted-foreground">
         Multi-hop relationships discovered through graph traversal
       </p>
+      <RelationGraph nodes={graphGraphNodes} edges={graphGraphEdges} />
       {mockGraphRelations.map((rel) => (
         <ExpandableCard key={rel.id} defaultOpen={false}>
           {({ isOpen, toggle }) => (
