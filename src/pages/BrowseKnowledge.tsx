@@ -234,7 +234,7 @@ const BrowseKnowledge = () => {
                       {showGraph && (
                         <div className="border-t border-border px-5 py-4">
                           <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-3">Knowledge Graph</p>
-                          <RelationGraph nodes={graphNodes} edges={graphEdges} height={280} />
+                          <RelationGraph nodes={graphNodes} edges={graphEdges} />
                         </div>
                       )}
                     </div>
