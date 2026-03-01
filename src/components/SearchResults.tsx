@@ -2,6 +2,7 @@ import { useState } from "react";
 import { ChevronDown, FileText, GitBranch, Network, Layers, Copy, Check, Hash } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { RelationGraph } from "./RelationGraph";
 
 // Mock data for demonstration
 const mockContextString = `Cortex is an advanced AI system designed for knowledge management and retrieval. It leverages transformer-based architectures to process and understand complex documents. The system achieves an overall accuracy of 94.7% on standard benchmarks.
