@@ -113,6 +113,7 @@ const Tenants = () => {
               )}
             </div>
           </div>
+          </div>
         </div>
       </div>
     </div>

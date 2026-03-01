@@ -157,6 +157,7 @@ const UploadKnowledge = () => {
               </Button>
             </TabsContent>
           </Tabs>
+          </div>
         </div>
       </div>
     </div>
