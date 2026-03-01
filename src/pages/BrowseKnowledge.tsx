@@ -129,7 +129,8 @@ const BrowseKnowledge = () => {
           </a>
         </div>
 
-        <div className="p-8 pt-6 max-w-5xl">
+        <div className="flex-1 flex flex-col items-center px-6 py-8 min-h-screen">
+          <div className="w-full max-w-5xl space-y-6 animate-fade-in">
           <h1 className="text-2xl font-display font-bold text-foreground mb-6">Browse Knowledge Base</h1>
 
           {/* Filters */}
@@ -243,6 +244,7 @@ const BrowseKnowledge = () => {
               </div>
             </>
           )}
+          </div>
         </div>
       </div>
     </div>

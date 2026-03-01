@@ -29,7 +29,8 @@ const ApiSettings = () => {
           </button>
         </div>
 
-        <div className="p-8 pt-6 max-w-3xl">
+        <div className="flex-1 flex flex-col items-center px-6 py-8 min-h-screen">
+          <div className="w-full max-w-3xl space-y-6 animate-fade-in">
           <h1 className="text-2xl font-display font-bold text-foreground mb-6">API Settings</h1>
 
           <div className="rounded-xl border border-border bg-card p-6 space-y-5">
@@ -103,6 +104,7 @@ const ApiSettings = () => {
                 <ExternalLink size={13} /> Usage & Billing
               </a>
             </div>
+          </div>
           </div>
         </div>
       </div>

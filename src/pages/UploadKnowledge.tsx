@@ -51,7 +51,8 @@ const UploadKnowledge = () => {
           </a>
         </div>
 
-        <div className="p-8 pt-6 max-w-4xl">
+        <div className="flex-1 flex flex-col items-center px-6 py-8 min-h-screen">
+          <div className="w-full max-w-4xl space-y-6 animate-fade-in">
           <h1 className="text-2xl font-display font-bold text-foreground mb-6">Upload Knowledge</h1>
 
           {/* Tenant fields */}
@@ -156,6 +157,7 @@ const UploadKnowledge = () => {
               </Button>
             </TabsContent>
           </Tabs>
+          </div>
         </div>
       </div>
     </div>
