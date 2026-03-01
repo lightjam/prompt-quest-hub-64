@@ -562,15 +562,36 @@ function CortexRetrievedChunks() {
   );
 }
 
-// ─── Shared ───
-function StatCard({ label, value, sub, variant }: { label: string; value: string; sub: string; variant: "muted" | "primary" | "success" }) {
+// Scope dropdown with document-like items
+const scopeItems = [
+  "All knowledge",
+  "foundationcapital.com_context-graphs-ais-trillion-dollar-opportunity_.2026-02-26T01_48_37.859Z.md",
+  "www.ibm.com_think_topics_knowledge-graph.2026-02-26T01_34_53.127Z.md",
+  "cortex.pdf",
+  "lost-in-middle-how-llms-use-long-context.pdf",
+  "1706.03762v7.pdf",
+  "research.trychroma.com_context-rot.2026-02-24T06_00_11.160Z.md",
+];
+
+function ScopeDropdown({ value, onChange }: { value: string; onChange: (v: string) => void }) {
+  const [open, setOpen] = useState(false);
   return (
-    <div className="rounded-xl border border-border bg-card p-4 space-y-1">
-      <p className="text-[11px] text-muted-foreground font-medium">{label}</p>
-      <p className={cn("text-2xl font-display font-bold tracking-tight", variant === "primary" ? "text-primary" : variant === "success" ? "text-green-500 dark:text-green-400" : "text-foreground")}>
-        {value}
-      </p>
-      <p className="text-[11px] text-muted-foreground">{sub}</p>
+    <div className="relative">
+      <button onClick={() => setOpen(!open)} className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-chip text-foreground border border-chip-border hover:bg-chip-hover transition-all w-full justify-between">
+        <span className="truncate">{value}</span>
+        <ChevronDown size={12} className={cn("transition-transform shrink-0", open && "rotate-180")} />
+      </button>
+      {open && (
+        <div className="absolute top-full left-0 mt-1 bg-surface-elevated border border-border rounded-lg shadow-lg py-1 z-50 w-[420px] max-h-64 overflow-y-auto animate-fade-in">
+          <p className="px-3 py-1.5 text-[10px] text-muted-foreground uppercase tracking-wider font-medium">Talk to specific item</p>
+          {scopeItems.map((opt) => (
+            <button key={opt} onClick={() => { onChange(opt); setOpen(false); }} className={cn("flex items-center justify-between w-full text-left px-3 py-2 text-xs transition-colors", opt === value ? "text-primary font-medium bg-accent" : "text-foreground hover:bg-muted")}>
+              <span className="truncate">{opt}</span>
+              {opt === value && <Check size={14} className="text-primary shrink-0 ml-2" />}
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
