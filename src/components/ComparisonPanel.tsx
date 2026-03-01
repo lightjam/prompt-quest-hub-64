@@ -286,12 +286,61 @@ export function ComparisonPanel() {
 function ComparisonResults() {
   return (
     <div className="space-y-6 animate-fade-in">
-      {/* Stats Cards */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-        <StatCard label="Baseline Tokens" value={mockStats.baseline.tokens.toLocaleString()} sub={`$${mockStats.baseline.cost.toFixed(4)}`} variant="muted" />
-        <StatCard label="With Cortex" value={mockStats.cortex.tokens.toLocaleString()} sub={`$${mockStats.cortex.cost.toFixed(4)}`} variant="primary" />
-        <StatCard label="Estimated Savings" value={`${mockStats.savings}%`} sub={`$${(mockStats.baseline.cost - mockStats.cortex.cost).toFixed(4)} saved`} variant="success" />
-        <StatCard label="Full Context Size" value={`${(mockStats.fullContextChars / 1000).toFixed(0)}K chars`} sub={`Scope: 3 items`} variant="muted" />
+      {/* Unified Comparison Stats */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+        {/* Token Comparison - merged */}
+        <div className="rounded-xl border border-border bg-card p-5 space-y-3 md:col-span-2">
+          <h4 className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">Token Comparison</h4>
+          <div className="flex items-end gap-6">
+            {/* Baseline */}
+            <div className="flex-1 space-y-1.5">
+              <p className="text-[11px] text-muted-foreground">Baseline</p>
+              <div className="flex items-baseline gap-2">
+                <p className="text-xl font-display font-bold text-destructive/80 line-through decoration-destructive/40">{mockStats.baseline.tokens.toLocaleString()}</p>
+                <span className="text-[10px] text-muted-foreground">tokens</span>
+              </div>
+              <p className="text-[11px] text-muted-foreground">${mockStats.baseline.cost.toFixed(4)}</p>
+              {/* Bar */}
+              <div className="h-2 rounded-full bg-destructive/20 w-full">
+                <div className="h-full rounded-full bg-destructive/60 w-full" />
+              </div>
+            </div>
+            {/* Arrow */}
+            <div className="flex flex-col items-center pb-6">
+              <ChevronRight size={20} className="text-primary" />
+            </div>
+            {/* Cortex */}
+            <div className="flex-1 space-y-1.5">
+              <div className="flex items-center gap-1.5">
+                <Zap size={10} className="text-primary" />
+                <p className="text-[11px] text-primary font-semibold">Cortex</p>
+              </div>
+              <div className="flex items-baseline gap-2">
+                <p className="text-2xl font-display font-bold text-primary">{mockStats.cortex.tokens.toLocaleString()}</p>
+                <span className="text-[10px] text-muted-foreground">tokens</span>
+              </div>
+              <p className="text-[11px] text-primary/80">${mockStats.cortex.cost.toFixed(4)}</p>
+              {/* Bar */}
+              <div className="h-2 rounded-full bg-primary/20 w-full">
+                <div className="h-full rounded-full bg-primary" style={{ width: `${100 - mockStats.savings}%` }} />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Savings + Context */}
+        <div className="space-y-3">
+          <div className="rounded-xl border border-primary/30 bg-primary/5 p-4 space-y-1">
+            <p className="text-[11px] text-primary font-semibold uppercase tracking-wider flex items-center gap-1"><Zap size={10} /> Savings</p>
+            <p className="text-3xl font-display font-bold text-primary tracking-tight">{mockStats.savings}%</p>
+            <p className="text-[11px] text-primary/70">${(mockStats.baseline.cost - mockStats.cortex.cost).toFixed(4)} saved per query</p>
+          </div>
+          <div className="rounded-xl border border-border bg-card p-4 space-y-1">
+            <p className="text-[11px] text-muted-foreground font-medium">Full Context Size</p>
+            <p className="text-lg font-display font-bold text-foreground">{(mockStats.fullContextChars / 1000).toFixed(0)}K chars</p>
+            <p className="text-[11px] text-muted-foreground">Scope: 3 items</p>
+          </div>
+        </div>
       </div>
 
       {/* Generate button */}
