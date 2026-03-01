@@ -178,9 +178,9 @@ export function ComparisonPanel() {
             <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Source / Memory Scope</h3>
             <div className="space-y-2">
               <div className="space-y-1">
-                <label className="text-[11px] text-muted-foreground">Search type</label>
+                <label className="text-[11px] text-muted-foreground">Scope type</label>
                 <div className="flex gap-1.5">
-                  {["Knowledge", "Semantic", "Hybrid"].map((t) => (
+                  {["Knowledge", "Memories"].map((t) => (
                     <button key={t} onClick={() => setSearchType(t)} className={cn("px-2.5 py-1 rounded-lg text-[11px] font-medium border transition-all", t === searchType ? "bg-accent text-accent-foreground border-primary/30" : "bg-chip text-muted-foreground border-chip-border hover:bg-chip-hover")}>
                       {t}
                     </button>
@@ -189,7 +189,7 @@ export function ComparisonPanel() {
               </div>
               <div className="space-y-1">
                 <label className="text-[11px] text-muted-foreground">Scope</label>
-                <ChipSelect value={scope} options={["All knowledge", "Selected tenant", "Recent uploads"]} onChange={setScope} />
+                <ScopeDropdown value={scope} onChange={setScope} />
               </div>
             </div>
           </div>
@@ -286,12 +286,61 @@ export function ComparisonPanel() {
 function ComparisonResults() {
   return (
     <div className="space-y-6 animate-fade-in">
-      {/* Stats Cards */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-        <StatCard label="Baseline Tokens" value={mockStats.baseline.tokens.toLocaleString()} sub={`$${mockStats.baseline.cost.toFixed(4)}`} variant="muted" />
-        <StatCard label="With Cortex" value={mockStats.cortex.tokens.toLocaleString()} sub={`$${mockStats.cortex.cost.toFixed(4)}`} variant="primary" />
-        <StatCard label="Estimated Savings" value={`${mockStats.savings}%`} sub={`$${(mockStats.baseline.cost - mockStats.cortex.cost).toFixed(4)} saved`} variant="success" />
-        <StatCard label="Full Context Size" value={`${(mockStats.fullContextChars / 1000).toFixed(0)}K chars`} sub={`Scope: 3 items`} variant="muted" />
+      {/* Unified Comparison Stats */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+        {/* Token Comparison - merged */}
+        <div className="rounded-xl border border-border bg-card p-5 space-y-3 md:col-span-2">
+          <h4 className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">Token Comparison</h4>
+          <div className="flex items-end gap-6">
+            {/* Baseline */}
+            <div className="flex-1 space-y-1.5">
+              <p className="text-[11px] text-muted-foreground">Baseline</p>
+              <div className="flex items-baseline gap-2">
+                <p className="text-xl font-display font-bold text-destructive/80 line-through decoration-destructive/40">{mockStats.baseline.tokens.toLocaleString()}</p>
+                <span className="text-[10px] text-muted-foreground">tokens</span>
+              </div>
+              <p className="text-[11px] text-muted-foreground">${mockStats.baseline.cost.toFixed(4)}</p>
+              {/* Bar */}
+              <div className="h-2 rounded-full bg-destructive/20 w-full">
+                <div className="h-full rounded-full bg-destructive/60 w-full" />
+              </div>
+            </div>
+            {/* Arrow */}
+            <div className="flex flex-col items-center pb-6">
+              <ChevronRight size={20} className="text-primary" />
+            </div>
+            {/* Cortex */}
+            <div className="flex-1 space-y-1.5">
+              <div className="flex items-center gap-1.5">
+                <Zap size={10} className="text-primary" />
+                <p className="text-[11px] text-primary font-semibold">Cortex</p>
+              </div>
+              <div className="flex items-baseline gap-2">
+                <p className="text-2xl font-display font-bold text-primary">{mockStats.cortex.tokens.toLocaleString()}</p>
+                <span className="text-[10px] text-muted-foreground">tokens</span>
+              </div>
+              <p className="text-[11px] text-primary/80">${mockStats.cortex.cost.toFixed(4)}</p>
+              {/* Bar */}
+              <div className="h-2 rounded-full bg-primary/20 w-full">
+                <div className="h-full rounded-full bg-primary" style={{ width: `${100 - mockStats.savings}%` }} />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Savings + Context */}
+        <div className="space-y-3">
+          <div className="rounded-xl border border-primary/30 bg-primary/5 p-4 space-y-1">
+            <p className="text-[11px] text-primary font-semibold uppercase tracking-wider flex items-center gap-1"><Zap size={10} /> Savings</p>
+            <p className="text-3xl font-display font-bold text-primary tracking-tight">{mockStats.savings}%</p>
+            <p className="text-[11px] text-primary/70">${(mockStats.baseline.cost - mockStats.cortex.cost).toFixed(4)} saved per query</p>
+          </div>
+          <div className="rounded-xl border border-border bg-card p-4 space-y-1">
+            <p className="text-[11px] text-muted-foreground font-medium">Full Context Size</p>
+            <p className="text-lg font-display font-bold text-foreground">{(mockStats.fullContextChars / 1000).toFixed(0)}K chars</p>
+            <p className="text-[11px] text-muted-foreground">Scope: 3 items</p>
+          </div>
+        </div>
       </div>
 
       {/* Generate button */}
@@ -377,11 +426,16 @@ function ComparisonResults() {
           </div>
         </div>
 
-        {/* Cortex Column */}
-        <div className="space-y-4">
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-primary" />
-            <h3 className="font-display font-semibold text-foreground text-sm">Cortex (Top-N: 5, Graph: ON)</h3>
+        {/* Cortex Column - highlighted */}
+        <div className="space-y-4 rounded-2xl border-2 border-primary/40 bg-primary/[0.03] p-4 relative overflow-hidden">
+          {/* Glow accent */}
+          <div className="absolute -top-20 -right-20 w-40 h-40 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="flex items-center gap-2 relative">
+            <span className="flex items-center justify-center w-5 h-5 rounded-md bg-primary/20">
+              <Zap size={12} className="text-primary" />
+            </span>
+            <h3 className="font-display font-semibold text-primary text-sm">Cortex</h3>
+            <span className="ml-auto text-[10px] font-mono px-2 py-0.5 rounded-full bg-primary/15 text-primary border border-primary/20">Top-{5} · Graph ON</span>
           </div>
 
           {/* Cortex Answer */}
@@ -508,15 +562,36 @@ function CortexRetrievedChunks() {
   );
 }
 
-// ─── Shared ───
-function StatCard({ label, value, sub, variant }: { label: string; value: string; sub: string; variant: "muted" | "primary" | "success" }) {
+// Scope dropdown with document-like items
+const scopeItems = [
+  "All knowledge",
+  "foundationcapital.com_context-graphs-ais-trillion-dollar-opportunity_.2026-02-26T01_48_37.859Z.md",
+  "www.ibm.com_think_topics_knowledge-graph.2026-02-26T01_34_53.127Z.md",
+  "cortex.pdf",
+  "lost-in-middle-how-llms-use-long-context.pdf",
+  "1706.03762v7.pdf",
+  "research.trychroma.com_context-rot.2026-02-24T06_00_11.160Z.md",
+];
+
+function ScopeDropdown({ value, onChange }: { value: string; onChange: (v: string) => void }) {
+  const [open, setOpen] = useState(false);
   return (
-    <div className="rounded-xl border border-border bg-card p-4 space-y-1">
-      <p className="text-[11px] text-muted-foreground font-medium">{label}</p>
-      <p className={cn("text-2xl font-display font-bold tracking-tight", variant === "primary" ? "text-primary" : variant === "success" ? "text-green-500 dark:text-green-400" : "text-foreground")}>
-        {value}
-      </p>
-      <p className="text-[11px] text-muted-foreground">{sub}</p>
+    <div className="relative">
+      <button onClick={() => setOpen(!open)} className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-chip text-foreground border border-chip-border hover:bg-chip-hover transition-all w-full justify-between">
+        <span className="truncate">{value}</span>
+        <ChevronDown size={12} className={cn("transition-transform shrink-0", open && "rotate-180")} />
+      </button>
+      {open && (
+        <div className="absolute top-full left-0 mt-1 bg-surface-elevated border border-border rounded-lg shadow-lg py-1 z-50 w-[420px] max-h-64 overflow-y-auto animate-fade-in">
+          <p className="px-3 py-1.5 text-[10px] text-muted-foreground uppercase tracking-wider font-medium">Talk to specific item</p>
+          {scopeItems.map((opt) => (
+            <button key={opt} onClick={() => { onChange(opt); setOpen(false); }} className={cn("flex items-center justify-between w-full text-left px-3 py-2 text-xs transition-colors", opt === value ? "text-primary font-medium bg-accent" : "text-foreground hover:bg-muted")}>
+              <span className="truncate">{opt}</span>
+              {opt === value && <Check size={14} className="text-primary shrink-0 ml-2" />}
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
