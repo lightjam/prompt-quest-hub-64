@@ -105,22 +105,22 @@ const mockContextChunks = [
 export function SearchResults() {
   return (
     <div className="w-full max-w-4xl mx-auto animate-fade-in">
-      <Tabs defaultValue="context" className="w-full">
+      <Tabs defaultValue="direct" className="w-full">
         <TabsList className="w-full justify-start bg-transparent border-b border-border rounded-none p-0 h-auto gap-0">
-          <TabTab value="context" icon={<FileText size={14} />} label="Context String" count={1} />
           <TabTab value="direct" icon={<GitBranch size={14} />} label="Direct Relations" count={mockDirectRelations.length} />
           <TabTab value="graph" icon={<Network size={14} />} label="Graph Relations" count={mockGraphRelations.length} />
+          <TabTab value="context" icon={<FileText size={14} />} label="Context String" count={1} />
           <TabTab value="chunks" icon={<Layers size={14} />} label="Context Chunks" count={mockContextChunks.length} />
         </TabsList>
 
-        <TabsContent value="context" className="mt-4">
-          <ContextStringTab />
-        </TabsContent>
         <TabsContent value="direct" className="mt-4">
           <DirectRelationsTab />
         </TabsContent>
         <TabsContent value="graph" className="mt-4">
           <GraphRelationsTab />
+        </TabsContent>
+        <TabsContent value="context" className="mt-4">
+          <ContextStringTab />
         </TabsContent>
         <TabsContent value="chunks" className="mt-4">
           <ContextChunksTab />

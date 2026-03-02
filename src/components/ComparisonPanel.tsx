@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowUp, ArrowUpRight, Zap, Network, ChevronDown, Copy, Check, FileText, GitBranch, Layers, Hash, ChevronRight } from "lucide-react";
+import { ArrowUp, Zap, Network, ChevronDown, Copy, Check, FileText, GitBranch, Layers, Hash, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { RelationGraph } from "./RelationGraph";
 
@@ -269,7 +269,6 @@ export function ComparisonPanel() {
             {examplePrompts.map((p) => (
               <button key={p} onClick={() => handleExampleClick(p)} className="group flex items-center gap-1.5 px-4 py-2 rounded-xl border border-chip-border bg-chip text-sm text-muted-foreground hover:bg-chip-hover hover:text-foreground hover:border-primary/30 transition-all duration-200">
                 {p}
-                <ArrowUpRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity text-primary" />
               </button>
             ))}
           </div>
@@ -296,13 +295,13 @@ function ComparisonResults() {
             <div className="flex-1 space-y-1.5">
               <p className="text-[11px] text-muted-foreground">Baseline</p>
               <div className="flex items-baseline gap-2">
-                <p className="text-xl font-display font-bold text-destructive/80 line-through decoration-destructive/40">{mockStats.baseline.tokens.toLocaleString()}</p>
+                <p className="text-xl font-display font-bold text-red-500 line-through decoration-red-500/40">{mockStats.baseline.tokens.toLocaleString()}</p>
                 <span className="text-[10px] text-muted-foreground">tokens</span>
               </div>
               <p className="text-[11px] text-muted-foreground">${mockStats.baseline.cost.toFixed(4)}</p>
               {/* Bar */}
-              <div className="h-2 rounded-full bg-destructive/20 w-full">
-                <div className="h-full rounded-full bg-destructive/60 w-full" />
+              <div className="h-2 rounded-full bg-red-500/20 w-full">
+                <div className="h-full rounded-full bg-red-500 w-full" />
               </div>
             </div>
             {/* Arrow */}
@@ -332,24 +331,18 @@ function ComparisonResults() {
         <div className="space-y-3">
           <div className="rounded-xl border border-primary/30 bg-primary/5 p-4 space-y-1">
             <p className="text-[11px] text-primary font-semibold uppercase tracking-wider flex items-center gap-1"><Zap size={10} /> Savings</p>
-            <p className="text-3xl font-display font-bold text-primary tracking-tight">{mockStats.savings}%</p>
+            <p className="text-3xl font-display font-bold text-primary tracking-tight">{mockStats.savings}% tokens</p>
             <p className="text-[11px] text-primary/70">${(mockStats.baseline.cost - mockStats.cortex.cost).toFixed(4)} saved per query</p>
           </div>
           <div className="rounded-xl border border-border bg-card p-4 space-y-1">
-            <p className="text-[11px] text-muted-foreground font-medium">Full Context Size</p>
-            <p className="text-lg font-display font-bold text-foreground">{(mockStats.fullContextChars / 1000).toFixed(0)}K chars</p>
-            <p className="text-[11px] text-muted-foreground">Scope: 3 items</p>
+            <p className="text-[11px] text-muted-foreground font-medium">Time Saved</p>
+            <p className="text-lg font-display font-bold text-foreground">~3.2s</p>
+            <p className="text-[11px] text-muted-foreground">vs baseline latency of ~4.1s</p>
           </div>
         </div>
       </div>
 
-      {/* Generate button */}
-      <div className="flex justify-center">
-        <button className="flex items-center gap-2 px-6 py-3 rounded-xl bg-primary text-primary-foreground font-medium text-sm hover:opacity-90 transition-opacity">
-          <Zap size={16} />
-          Generate & Compare Answers
-        </button>
-      </div>
+
 
       {/* Request Economics */}
       <div className="rounded-xl border border-border bg-card p-5">
@@ -402,9 +395,6 @@ function ComparisonResults() {
               <FileText size={12} /> Full Context Answer
             </h4>
             <p className="text-sm text-muted-foreground italic">
-              Click "Generate & Compare Answers" to see the LLM response.
-            </p>
-            <p className="text-[11px] text-muted-foreground/70">
               Full context baseline sends the entire selected corpus in the system prompt.
             </p>
           </div>
@@ -444,7 +434,7 @@ function ComparisonResults() {
               <Zap size={12} /> Cortex Answer
             </h4>
             <p className="text-sm text-muted-foreground italic">
-              Click "Generate & Compare Answers" to see the LLM response.
+              Graph-augmented retrieval with knowledge graph traversal for enriched context.
             </p>
           </div>
 

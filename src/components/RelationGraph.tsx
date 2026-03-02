@@ -1,5 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from "react";
+import { Maximize2 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 
 interface GraphNode {
   id: string;
@@ -197,7 +199,10 @@ export function RelationGraph({ nodes, edges, className }: RelationGraphProps) {
     setPositions({ ...reset });
   };
 
+  const [expandedOpen, setExpandedOpen] = useState(false);
+
   return (
+    <>
     <div className={cn("rounded-xl border border-border bg-card overflow-hidden", className)}>
       <div className="flex items-center justify-end gap-2 px-4 py-2 border-b border-border/50">
         <button
@@ -205,6 +210,13 @@ export function RelationGraph({ nodes, edges, className }: RelationGraphProps) {
           className="px-3 py-1.5 text-xs font-medium rounded-lg border border-border text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
         >
           Reset View
+        </button>
+        <button
+          onClick={() => setExpandedOpen(true)}
+          className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg border border-border text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+        >
+          <Maximize2 size={12} />
+          Expanded View
         </button>
       </div>
       <svg
@@ -376,5 +388,13 @@ export function RelationGraph({ nodes, edges, className }: RelationGraphProps) {
         })}
       </svg>
     </div>
+
+    <Dialog open={expandedOpen} onOpenChange={setExpandedOpen}>
+      <DialogContent className="max-w-[90vw] w-[90vw] max-h-[90vh] p-0 overflow-hidden">
+        <DialogTitle className="sr-only">Expanded Graph View</DialogTitle>
+        <RelationGraph nodes={nodes} edges={edges} className="border-0 rounded-none" />
+      </DialogContent>
+    </Dialog>
+    </>
   );
 }
