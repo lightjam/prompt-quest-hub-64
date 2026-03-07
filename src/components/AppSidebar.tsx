@@ -1,23 +1,20 @@
-import { Search, BarChart3, BookOpen, Upload, Users, Settings, ChevronLeft, ChevronRight, Lock } from "lucide-react";
+import { Search, BarChart3, BookOpen, Upload, Users, Settings, ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useApiKey } from "@/context/ApiKeyContext";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
 interface SidebarItem {
   icon: React.ElementType;
   label: string;
   path: string;
-  requiresApiKey?: boolean;
 }
 
 const items: SidebarItem[] = [
   { icon: Search, label: "Search", path: "/" },
   { icon: BarChart3, label: "Comparison", path: "/comparison" },
   { icon: BookOpen, label: "Browse Knowledge", path: "/browse" },
-  { icon: Upload, label: "Upload Knowledge", path: "/upload", requiresApiKey: true },
-  { icon: Users, label: "Tenants", path: "/tenants", requiresApiKey: true },
+  { icon: Upload, label: "Upload Knowledge", path: "/upload" },
+  { icon: Users, label: "Tenants", path: "/tenants" },
   { icon: Settings, label: "API Settings", path: "/settings" },
 ];
 
@@ -25,7 +22,7 @@ export function AppSidebar() {
   const [collapsed, setCollapsed] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  const { hasApiKey } = useApiKey();
+  
 
   return (
     <aside
@@ -51,32 +48,6 @@ export function AppSidebar() {
       <nav className="flex-1 py-3 px-2 space-y-1">
         {items.map((item) => {
           const isActive = location.pathname === item.path;
-          const isDisabled = item.requiresApiKey && !hasApiKey;
-
-          if (isDisabled) {
-            return (
-              <Tooltip key={item.label}>
-                <TooltipTrigger asChild>
-                  <button
-                    className={cn(
-                      "flex items-center gap-3 w-full rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200 opacity-40 cursor-not-allowed",
-                      "text-sidebar-foreground"
-                    )}
-                    disabled
-                  >
-                    <item.icon size={18} className="shrink-0" />
-                    {!collapsed && (
-                      <span className="flex-1 text-left">{item.label}</span>
-                    )}
-                    {!collapsed && <Lock size={12} className="shrink-0" />}
-                  </button>
-                </TooltipTrigger>
-                <TooltipContent side="right">
-                  <p>Add your API key in API Settings first</p>
-                </TooltipContent>
-              </Tooltip>
-            );
-          }
 
           return (
             <button
