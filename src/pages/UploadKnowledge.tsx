@@ -180,6 +180,7 @@ const UploadKnowledge = () => {
                 </TabsContent>
               </Tabs>
             </div>
+          </div>
         </div>
       </div>
     </div>
