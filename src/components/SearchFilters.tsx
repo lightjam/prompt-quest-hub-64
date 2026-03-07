@@ -8,7 +8,6 @@ export function SearchFilters() {
   const [alpha, setAlpha] = useState(0.8);
   const [topN, setTopN] = useState(10);
   const [graphContext, setGraphContext] = useState(true);
-  const [showAdvanced, setShowAdvanced] = useState(false);
 
   return (
     <div className="flex items-center gap-2 flex-wrap">
@@ -43,44 +42,32 @@ export function SearchFilters() {
         </span>
       </button>
 
-      {/* Advanced toggle */}
-      <button
-        onClick={() => setShowAdvanced(!showAdvanced)}
-        className="text-xs text-muted-foreground hover:text-foreground transition-colors px-2 py-1.5"
-      >
-        {showAdvanced ? "Less" : "More"} options
-      </button>
-
-      {/* Advanced filters row */}
-      {showAdvanced && (
-        <div className="flex items-center gap-4 w-full pt-1 animate-fade-in">
-          <div className="flex items-center gap-2">
-            <span className="text-xs text-muted-foreground">Alpha</span>
-            <input
-              type="range"
-              min={0}
-              max={1}
-              step={0.1}
-              value={alpha}
-              onChange={(e) => setAlpha(parseFloat(e.target.value))}
-              className="w-20 h-1 accent-primary"
-            />
-            <span className="text-xs font-mono text-foreground w-6">{alpha}</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="text-xs text-muted-foreground">Top N</span>
-            <input
-              type="range"
-              min={1}
-              max={50}
-              value={topN}
-              onChange={(e) => setTopN(parseInt(e.target.value))}
-              className="w-20 h-1 accent-primary"
-            />
-            <span className="text-xs font-mono text-foreground w-6">{topN}</span>
-          </div>
-        </div>
-      )}
+      {/* Alpha */}
+      <div className="flex items-center gap-2">
+        <span className="text-xs text-muted-foreground">Alpha</span>
+        <input
+          type="range"
+          min={0}
+          max={1}
+          step={0.1}
+          value={alpha}
+          onChange={(e) => setAlpha(parseFloat(e.target.value))}
+          className="w-20 h-1 accent-primary"
+        />
+        <span className="text-xs font-mono text-foreground w-6">{alpha}</span>
+      </div>
+      <div className="flex items-center gap-2">
+        <span className="text-xs text-muted-foreground">Top N</span>
+        <input
+          type="range"
+          min={1}
+          max={50}
+          value={topN}
+          onChange={(e) => setTopN(parseInt(e.target.value))}
+          className="w-20 h-1 accent-primary"
+        />
+        <span className="text-xs font-mono text-foreground w-6">{topN}</span>
+      </div>
     </div>
   );
 }

@@ -3,10 +3,12 @@ import { Moon, Sun, Eye, EyeOff, Save, RotateCcw, Key, ExternalLink } from "luci
 import { AppSidebar } from "@/components/AppSidebar";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useApiKey } from "@/context/ApiKeyContext";
 
 const ApiSettings = () => {
   const [isDark, setIsDark] = useState(true);
-  const [apiKey, setApiKey] = useState("sk-cortex-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+  const { apiKey, setApiKey } = useApiKey();
+  const [localKey, setLocalKey] = useState(apiKey);
   const [showKey, setShowKey] = useState(false);
   const [saved, setSaved] = useState(false);
 
@@ -18,6 +20,18 @@ const ApiSettings = () => {
   useState(() => {
     document.documentElement.classList.add("dark");
   });
+
+  const handleSave = () => {
+    setApiKey(localKey);
+    setSaved(true);
+    setTimeout(() => setSaved(false), 3000);
+  };
+
+  const handleReset = () => {
+    setLocalKey("");
+    setApiKey("");
+    setSaved(false);
+  };
 
   return (
     <div className="flex min-h-screen bg-background">
@@ -52,8 +66,9 @@ const ApiSettings = () => {
               <div className="relative">
                 <Input
                   type={showKey ? "text" : "password"}
-                  value={apiKey}
-                  onChange={(e) => { setApiKey(e.target.value); setSaved(false); }}
+                  value={localKey}
+                  onChange={(e) => { setLocalKey(e.target.value); setSaved(false); }}
+                  placeholder="sk-cortex-..."
                   className="bg-muted/50 border-border pr-10 font-mono text-sm"
                 />
                 <button
@@ -68,7 +83,8 @@ const ApiSettings = () => {
             <div className="flex items-center gap-3">
               <Button
                 className="gap-1.5"
-                onClick={() => setSaved(true)}
+                onClick={handleSave}
+                disabled={!localKey.trim()}
               >
                 <Save size={14} />
                 Save
@@ -76,7 +92,7 @@ const ApiSettings = () => {
               <Button
                 variant="destructive"
                 className="gap-1.5"
-                onClick={() => { setApiKey(""); setSaved(false); }}
+                onClick={handleReset}
               >
                 <RotateCcw size={14} />
                 Reset
@@ -85,7 +101,7 @@ const ApiSettings = () => {
 
             {saved && (
               <div className="text-sm text-primary bg-primary/5 border border-primary/20 rounded-lg px-4 py-2.5">
-                ✓ API key saved successfully.
+                ✓ API key saved successfully. Tenants and Upload Knowledge are now unlocked.
               </div>
             )}
           </div>

@@ -362,17 +362,17 @@ function ComparisonResults() {
             <tbody className="font-mono text-xs">
               <tr className="border-b border-border/50">
                 <td className="py-2.5 text-foreground">Input tokens</td>
-                <td className="py-2.5 text-right text-destructive">{mockEconomics.baseline.input.toLocaleString()}</td>
+                <td className="py-2.5 text-right text-red-500">{mockEconomics.baseline.input.toLocaleString()}</td>
                 <td className="py-2.5 text-right text-primary">{mockEconomics.cortex.input.toLocaleString()}</td>
               </tr>
               <tr className="border-b border-border/50">
                 <td className="py-2.5 text-foreground">Total tokens</td>
-                <td className="py-2.5 text-right text-destructive">{mockEconomics.baseline.total.toLocaleString()}</td>
+                <td className="py-2.5 text-right text-red-500">{mockEconomics.baseline.total.toLocaleString()}</td>
                 <td className="py-2.5 text-right text-primary">{mockEconomics.cortex.total.toLocaleString()}</td>
               </tr>
               <tr>
                 <td className="py-2.5 text-foreground font-medium">Estimated cost</td>
-                <td className="py-2.5 text-right text-destructive font-medium">{mockEconomics.baseline.cost}</td>
+                <td className="py-2.5 text-right text-red-500 font-medium">{mockEconomics.baseline.cost}</td>
                 <td className="py-2.5 text-right text-primary font-medium">{mockEconomics.cortex.cost}</td>
               </tr>
             </tbody>
@@ -385,7 +385,7 @@ function ComparisonResults() {
         {/* Baseline Column */}
         <div className="space-y-4">
           <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-destructive" />
+            <span className="w-2 h-2 rounded-full bg-red-500" />
             <h3 className="font-display font-semibold text-foreground text-sm">Baseline: Full Context LLM</h3>
           </div>
 

@@ -102,6 +102,27 @@ const mockContextChunks = [
   },
 ];
 
+// Words that should get a green bubble badge
+const techTerms = [
+  "Cortex AI", "Cortex", "Semantic Search", "Transformer Architecture", "Vector Embeddings",
+  "Self-Attention", "Noam Shazeer", "Knowledge Graph", "Entity Extraction", "NER Models",
+  "Hybrid Retrieval", "BM25", "Sparse Vectors", "HNSW", "Graph Context",
+  "94.7% Accuracy",
+];
+
+function TechBadge({ text }: { text: string }) {
+  const lowerText = text.toLowerCase();
+  const isTech = techTerms.some(t => t.toLowerCase() === lowerText);
+  if (isTech) {
+    return (
+      <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 text-sm font-medium">
+        {text}
+      </span>
+    );
+  }
+  return <span className="text-sm font-medium text-foreground">{text}</span>;
+}
+
 export function SearchResults() {
   return (
     <div className="w-full max-w-4xl mx-auto animate-fade-in">
@@ -202,36 +223,23 @@ function DirectRelationsTab() {
       </p>
       <RelationGraph nodes={directGraphNodes} edges={directGraphEdges} />
       {mockDirectRelations.map((rel) => (
-        <ExpandableCard key={rel.id} defaultOpen={false}>
-          {({ isOpen, toggle }) => (
-            <div className="rounded-xl border border-border bg-card overflow-hidden transition-colors hover:border-primary/20">
-              <button
-                onClick={toggle}
-                className="w-full flex items-center gap-3 px-4 py-3 text-left"
-              >
-                <ChevronDown
-                  size={14}
-                  className={cn("text-muted-foreground transition-transform shrink-0", isOpen && "rotate-180")}
-                />
-                <div className="flex items-center gap-2 flex-1 min-w-0">
-                  <span className="text-sm font-medium text-foreground truncate">{rel.source}</span>
-                  <span className="shrink-0 px-2 py-0.5 rounded-md bg-accent text-accent-foreground text-[10px] font-mono font-semibold uppercase tracking-wide">
-                    {rel.relation}
-                  </span>
-                  <span className="text-sm font-medium text-foreground truncate">{rel.target}</span>
-                </div>
-                <ScoreBadge score={rel.weight} />
-              </button>
-              {isOpen && (
-                <div className="px-4 pb-4 pt-0 border-t border-border/50 animate-fade-in">
-                  <p className="text-sm text-muted-foreground leading-relaxed pt-3">
-                    {rel.metadata}
-                  </p>
-                </div>
-              )}
+        <div key={rel.id} className="rounded-xl border border-border bg-card overflow-hidden">
+          <div className="w-full flex items-center gap-3 px-4 py-3 text-left">
+            <div className="flex items-center gap-2 flex-1 min-w-0">
+              <TechBadge text={rel.source} />
+              <span className="shrink-0 px-2 py-0.5 rounded-md bg-accent text-accent-foreground text-[10px] font-mono font-semibold uppercase tracking-wide">
+                {rel.relation}
+              </span>
+              <TechBadge text={rel.target} />
             </div>
-          )}
-        </ExpandableCard>
+            <ScoreBadge score={rel.weight} />
+          </div>
+          <div className="px-4 pb-4 pt-0 border-t border-border/50">
+            <p className="text-sm text-muted-foreground leading-relaxed pt-3">
+              {rel.metadata}
+            </p>
+          </div>
+        </div>
       ))}
     </div>
   );
@@ -267,42 +275,29 @@ function GraphRelationsTab() {
       </p>
       <RelationGraph nodes={graphGraphNodes} edges={graphGraphEdges} />
       {mockGraphRelations.map((rel) => (
-        <ExpandableCard key={rel.id} defaultOpen={false}>
-          {({ isOpen, toggle }) => (
-            <div className="rounded-xl border border-border bg-card overflow-hidden transition-colors hover:border-primary/20">
-              <button
-                onClick={toggle}
-                className="w-full flex items-center gap-3 px-4 py-3 text-left"
-              >
-                <ChevronDown
-                  size={14}
-                  className={cn("text-muted-foreground transition-transform shrink-0", isOpen && "rotate-180")}
-                />
-                <div className="flex items-center gap-2 flex-1 min-w-0 overflow-x-auto">
-                  {rel.path.map((node, i) => (
-                    <span key={i} className="flex items-center gap-2 shrink-0">
-                      <span className="text-sm font-medium text-foreground">{node}</span>
-                      {i < rel.path.length - 1 && (
-                        <span className="text-muted-foreground/40">→</span>
-                      )}
-                    </span>
-                  ))}
-                </div>
-                <span className="shrink-0 flex items-center gap-1 text-[10px] font-mono text-muted-foreground px-2 py-0.5 rounded-md bg-muted">
-                  <Hash size={10} />
-                  depth {rel.depth}
+        <div key={rel.id} className="rounded-xl border border-border bg-card overflow-hidden">
+          <div className="w-full flex items-center gap-3 px-4 py-3 text-left">
+            <div className="flex items-center gap-2 flex-1 min-w-0 overflow-x-auto">
+              {rel.path.map((node, i) => (
+                <span key={i} className="flex items-center gap-2 shrink-0">
+                  <TechBadge text={node} />
+                  {i < rel.path.length - 1 && (
+                    <span className="text-muted-foreground/40">→</span>
+                  )}
                 </span>
-              </button>
-              {isOpen && (
-                <div className="px-4 pb-4 pt-0 border-t border-border/50 animate-fade-in">
-                  <p className="text-sm text-muted-foreground leading-relaxed pt-3">
-                    {rel.description}
-                  </p>
-                </div>
-              )}
+              ))}
             </div>
-          )}
-        </ExpandableCard>
+            <span className="shrink-0 flex items-center gap-1 text-[10px] font-mono text-muted-foreground px-2 py-0.5 rounded-md bg-muted">
+              <Hash size={10} />
+              depth {rel.depth}
+            </span>
+          </div>
+          <div className="px-4 pb-4 pt-0 border-t border-border/50">
+            <p className="text-sm text-muted-foreground leading-relaxed pt-3">
+              {rel.description}
+            </p>
+          </div>
+        </div>
       ))}
     </div>
   );
