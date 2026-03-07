@@ -39,24 +39,28 @@ const Tenants = () => {
         </div>
 
         <div className="flex-1 flex flex-col items-center px-6 py-8 min-h-screen">
-          <div className="w-full max-w-5xl space-y-6 animate-fade-in">
+          <div className="w-full max-w-5xl space-y-6 animate-fade-in relative">
             <h1 className="text-2xl font-display font-bold text-foreground">Tenants</h1>
             <p className="text-sm text-muted-foreground mt-1 mb-8">Manage isolated knowledge base infrastructure for your tenants.</p>
 
-            {!hasApiKey ? (
-              <div className="rounded-xl border border-border bg-card p-8 flex flex-col items-center gap-4 text-center">
-                <div className="w-12 h-12 rounded-full bg-muted flex items-center justify-center">
-                  <Lock size={20} className="text-muted-foreground" />
+            {!hasApiKey && (
+              <div className="absolute inset-0 z-20 bg-background/70 backdrop-blur-sm flex items-center justify-center rounded-xl">
+                <div className="flex flex-col items-center gap-4 text-center p-8">
+                  <div className="w-12 h-12 rounded-full bg-muted flex items-center justify-center">
+                    <Lock size={20} className="text-muted-foreground" />
+                  </div>
+                  <h2 className="text-lg font-display font-semibold text-foreground">API Key Required</h2>
+                  <p className="text-sm text-muted-foreground max-w-md">
+                    You need to add your API key in API Settings to manage tenants.
+                  </p>
+                  <Button onClick={() => navigate("/settings")} className="gap-1.5">
+                    Go to API Settings
+                  </Button>
                 </div>
-                <h2 className="text-lg font-display font-semibold text-foreground">API Key Required</h2>
-                <p className="text-sm text-muted-foreground max-w-md">
-                  You need to add your API key in API Settings to manage tenants.
-                </p>
-                <Button onClick={() => navigate("/settings")} className="gap-1.5">
-                  Go to API Settings
-                </Button>
               </div>
-            ) : (
+            )}
+
+            <div className={!hasApiKey ? "pointer-events-none select-none" : ""}>
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 {/* Create Tenant */}
                 <div className="rounded-xl border border-border bg-card p-6 space-y-4">
@@ -131,7 +135,7 @@ const Tenants = () => {
                   )}
                 </div>
               </div>
-            )}
+            </div>
           </div>
         </div>
       </div>
