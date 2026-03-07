@@ -203,7 +203,7 @@ export function RelationGraph({ nodes, edges, className }: RelationGraphProps) {
 
   return (
     <>
-    <div className={cn("rounded-xl border border-border bg-card overflow-hidden", className)}>
+    <div className={cn("rounded-xl border-2 border-primary/30 bg-gradient-to-br from-card via-card to-primary/5 overflow-hidden shadow-lg shadow-primary/5 ring-1 ring-primary/10", className)}>
       <div className="flex items-center justify-end gap-2 px-4 py-2 border-b border-border/50">
         <button
           onClick={handleReset}
