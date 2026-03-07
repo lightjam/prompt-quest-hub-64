@@ -1,9 +1,7 @@
-import { Search, BarChart3, BookOpen, Upload, Users, Settings, ChevronLeft, ChevronRight, Lock } from "lucide-react";
+import { Search, BarChart3, BookOpen, Upload, Users, Settings, ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useApiKey } from "@/context/ApiKeyContext";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
 interface SidebarItem {
   icon: React.ElementType;
