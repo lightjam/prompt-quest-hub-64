@@ -7,15 +7,14 @@ interface SidebarItem {
   icon: React.ElementType;
   label: string;
   path: string;
-  requiresApiKey?: boolean;
 }
 
 const items: SidebarItem[] = [
   { icon: Search, label: "Search", path: "/" },
   { icon: BarChart3, label: "Comparison", path: "/comparison" },
   { icon: BookOpen, label: "Browse Knowledge", path: "/browse" },
-  { icon: Upload, label: "Upload Knowledge", path: "/upload", requiresApiKey: true },
-  { icon: Users, label: "Tenants", path: "/tenants", requiresApiKey: true },
+  { icon: Upload, label: "Upload Knowledge", path: "/upload" },
+  { icon: Users, label: "Tenants", path: "/tenants" },
   { icon: Settings, label: "API Settings", path: "/settings" },
 ];
 
@@ -23,7 +22,7 @@ export function AppSidebar() {
   const [collapsed, setCollapsed] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  const { hasApiKey } = useApiKey();
+  
 
   return (
     <aside
