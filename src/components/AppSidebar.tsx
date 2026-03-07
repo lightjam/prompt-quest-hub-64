@@ -51,32 +51,6 @@ export function AppSidebar() {
       <nav className="flex-1 py-3 px-2 space-y-1">
         {items.map((item) => {
           const isActive = location.pathname === item.path;
-          const isDisabled = item.requiresApiKey && !hasApiKey;
-
-          if (isDisabled) {
-            return (
-              <Tooltip key={item.label}>
-                <TooltipTrigger asChild>
-                  <button
-                    className={cn(
-                      "flex items-center gap-3 w-full rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200 opacity-40 cursor-not-allowed",
-                      "text-sidebar-foreground"
-                    )}
-                    disabled
-                  >
-                    <item.icon size={18} className="shrink-0" />
-                    {!collapsed && (
-                      <span className="flex-1 text-left">{item.label}</span>
-                    )}
-                    {!collapsed && <Lock size={12} className="shrink-0" />}
-                  </button>
-                </TooltipTrigger>
-                <TooltipContent side="right">
-                  <p>Add your API key in API Settings first</p>
-                </TooltipContent>
-              </Tooltip>
-            );
-          }
 
           return (
             <button
