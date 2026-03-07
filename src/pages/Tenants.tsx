@@ -44,13 +44,13 @@ const Tenants = () => {
             <p className="text-sm text-muted-foreground mt-1 mb-8">Manage isolated knowledge base infrastructure for your tenants.</p>
 
             {!hasApiKey && (
-              <div className="absolute inset-0 z-20 bg-background/70 backdrop-blur-sm flex items-center justify-center rounded-xl">
-                <div className="flex flex-col items-center gap-4 text-center p-8">
+              <div className="absolute inset-0 z-20 bg-background/60 backdrop-blur-md flex items-center justify-center rounded-xl">
+                <div className="flex flex-col items-center gap-4 text-center p-10 rounded-2xl border border-border bg-card/80 backdrop-blur-xl shadow-2xl max-w-sm">
                   <div className="w-12 h-12 rounded-full bg-muted flex items-center justify-center">
                     <Lock size={20} className="text-muted-foreground" />
                   </div>
                   <h2 className="text-lg font-display font-semibold text-foreground">API Key Required</h2>
-                  <p className="text-sm text-muted-foreground max-w-md">
+                  <p className="text-sm text-muted-foreground">
                     You need to add your API key in API Settings to manage tenants.
                   </p>
                   <Button onClick={() => navigate("/settings")} className="gap-1.5">
