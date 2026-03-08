@@ -200,12 +200,17 @@ export function ComparisonPanel() {
             <div className="space-y-2">
               <div className="space-y-1">
                 <label className="text-[11px] text-muted-foreground">Top-N chunks</label>
-                <input
-                  type="number"
-                  value={topN}
-                  onChange={(e) => setTopN(Number(e.target.value))}
-                  className="w-full rounded-lg border border-border bg-surface-elevated px-3 py-1.5 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring/30"
-                />
+                <div className="flex items-center gap-3">
+                  <input
+                    type="range"
+                    min={1}
+                    max={50}
+                    value={topN}
+                    onChange={(e) => setTopN(parseInt(e.target.value))}
+                    className="flex-1 h-1.5 accent-primary rounded-full"
+                  />
+                  <span className="text-sm font-mono text-foreground w-6 text-right">{topN}</span>
+                </div>
               </div>
               <button
                 onClick={() => setGraphContext(!graphContext)}
