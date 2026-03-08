@@ -12,12 +12,12 @@ export function SearchFilters() {
   return (
     <div className="flex items-center gap-2 flex-wrap">
       {/* Search Type Chip */}
-      <FilterChip label={searchType} options={["Knowledge", "Semantic", "Hybrid"]} onChange={setSearchType} />
+      <FilterChip label={searchType} options={["Knowledge", "Memories"]} onChange={setSearchType} />
 
       {/* Mode Chip */}
       <FilterChip
         label={mode}
-        options={["Fast", "Balanced", "Precise"]}
+        options={["Fast", "Thinking"]}
         onChange={setMode}
         icon={<Zap size={12} />}
       />
