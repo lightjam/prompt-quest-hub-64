@@ -17,7 +17,7 @@ export function SearchFilters() {
       {/* Mode Chip */}
       <FilterChip
         label={mode}
-        options={["Fast", "Balanced", "Precise"]}
+        options={["Fast", "Thinking"]}
         onChange={setMode}
         icon={<Zap size={12} />}
       />
