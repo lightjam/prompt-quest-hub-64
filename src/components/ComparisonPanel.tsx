@@ -204,7 +204,7 @@ export function ComparisonPanel() {
                   <input
                     type="range"
                     min={1}
-                    max={50}
+                    max={20}
                     value={topN}
                     onChange={(e) => setTopN(parseInt(e.target.value))}
                     className="flex-1 h-1.5 accent-primary rounded-full"
