@@ -71,7 +71,7 @@ export function SearchPanel() {
         </div>
 
         {/* Main Search Area */}
-        <div className="search-glow rounded-2xl bg-search-bg overflow-hidden">
+        <div className="search-glow rounded-2xl bg-search-bg">
           <textarea
             value={query}
             onChange={(e) => setQuery(e.target.value)}
