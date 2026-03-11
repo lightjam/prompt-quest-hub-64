@@ -46,11 +46,11 @@ const mockBaselineChunks = [
   },
 ];
 
-const mockCortexContext = `>>> ENTITY PATHS >>>
-[cortex] → RELATED_TO → [knowledge management tasks]. Cortex achieves 97.4% accuracy, demonstrating robust handling of contradictory or evolving user information.
-[cortex] → RELATED_TO → [knowledge source tasks]. On knowledge update tasks, Cortex achieves 97.4% accuracy, demonstrating robust handling of contradictory or evolving user information.
->>> MAINTAINS → [evaluation area]: Cortex maintains consistently high accuracy across all evaluation benchmarks.
->>> USES_TOOL → [multi-stage pipeline]: Cortex employs a Multi-Stage Pipeline that combines retrieval with graph traversal.`;
+const mockHydraDBContext = `>>> ENTITY PATHS >>>
+[hydradb] → RELATED_TO → [knowledge management tasks]. HydraDB achieves 97.4% accuracy, demonstrating robust handling of contradictory or evolving user information.
+[hydradb] → RELATED_TO → [knowledge source tasks]. On knowledge update tasks, HydraDB achieves 97.4% accuracy, demonstrating robust handling of contradictory or evolving user information.
+>>> MAINTAINS → [evaluation area]: HydraDB maintains consistently high accuracy across all evaluation benchmarks.
+>>> USES_TOOL → [multi-stage pipeline]: HydraDB employs a Multi-Stage Pipeline that combines retrieval with graph traversal.`;
 
 const mockGraphEvidence = {
   nodes: [
