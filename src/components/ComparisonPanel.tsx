@@ -153,7 +153,7 @@ export function ComparisonPanel() {
   };
 
   return (
-    <div className="flex-1 flex flex-col min-h-screen">
+    <div className="flex-1 flex flex-col h-screen overflow-hidden">
       {/* Collapsed config bar - shows when config is collapsed after compare */}
       {hasCompared && !configExpanded && (
         <div className="border-b border-border bg-card/80 backdrop-blur-sm sticky top-0 z-20 animate-fade-in">
