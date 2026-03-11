@@ -373,7 +373,7 @@ function ComparisonResults() {
               <tr>
                 <td className="py-2.5 text-foreground font-medium">Estimated cost</td>
                 <td className="py-2.5 text-right text-red-500 font-medium">{mockEconomics.baseline.cost}</td>
-                <td className="py-2.5 text-right text-primary font-medium">{mockEconomics.cortex.cost}</td>
+                <td className="py-2.5 text-right text-primary font-medium">{mockEconomics.hydradb.cost}</td>
               </tr>
             </tbody>
           </table>
