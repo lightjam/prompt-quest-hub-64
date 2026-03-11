@@ -103,7 +103,7 @@ const UploadKnowledge = () => {
                     <p className="text-sm text-foreground/80">
                       You need to add your own API key to upload new knowledge. Please visit{" "}
                       <a href="https://usecortex.ai" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
-                        usecortex.ai
+                        usehydradb.ai
                       </a>{" "}
                       to get your API keys.
                     </p>
