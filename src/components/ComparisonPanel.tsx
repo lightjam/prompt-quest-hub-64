@@ -207,9 +207,9 @@ export function ComparisonPanel() {
         {configExpanded && (
           <div className={cn(
             "w-full",
-            !hasCompared ? "min-h-screen flex items-center" : ""
+            !hasCompared ? "h-full flex items-center" : ""
           )}>
-            <div className="w-full max-w-7xl mx-auto px-6 py-8">
+            <div className="w-full max-w-7xl mx-auto px-6 py-4">
               {/* Header */}
               {!hasCompared && (
                 <div className="text-center space-y-2 mb-8">
