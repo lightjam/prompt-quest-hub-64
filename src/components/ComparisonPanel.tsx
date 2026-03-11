@@ -19,7 +19,7 @@ const mockStats = {
 
 const mockEconomics = {
   baseline: { input: 64809, total: 64855, cost: "$0.0325" },
-  cortex: { input: 6861, total: 6907, cost: "$0.0036" },
+  hydradb: { input: 6861, total: 6907, cost: "$0.0036" },
 };
 
 const mockBaselineChunks = [
