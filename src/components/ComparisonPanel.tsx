@@ -363,7 +363,7 @@ function ComparisonResults() {
               <tr className="border-b border-border/50">
                 <td className="py-2.5 text-foreground">Input tokens</td>
                 <td className="py-2.5 text-right text-red-500">{mockEconomics.baseline.input.toLocaleString()}</td>
-                <td className="py-2.5 text-right text-primary">{mockEconomics.cortex.input.toLocaleString()}</td>
+                <td className="py-2.5 text-right text-primary">{mockEconomics.hydradb.input.toLocaleString()}</td>
               </tr>
               <tr className="border-b border-border/50">
                 <td className="py-2.5 text-foreground">Total tokens</td>
