@@ -439,7 +439,7 @@ function ComparisonResults() {
           </div>
 
           {/* Generated Context String */}
-          <CortexContextSection />
+          <HydraDBContextSection />
 
           {/* Graph Evidence */}
           <CortexGraphEvidence />
