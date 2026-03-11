@@ -72,10 +72,10 @@ const mockGraphEvidence = {
 };
 
 const mockDirectRelations = [
-  { source: "cortex", relation: "RELATED_TO", target: "knowledge update tasks" },
-  { source: "cortex", relation: "RELATED_TO", target: "knowledge update tasks" },
-  { source: "cortex", relation: "MAINTAINS", target: "evaluation area" },
-  { source: "cortex", relation: "USES_TOOL", target: "multi-stage pipeline" },
+  { source: "hydradb", relation: "RELATED_TO", target: "knowledge update tasks" },
+  { source: "hydradb", relation: "RELATED_TO", target: "knowledge update tasks" },
+  { source: "hydradb", relation: "MAINTAINS", target: "evaluation area" },
+  { source: "hydradb", relation: "USES_TOOL", target: "multi-stage pipeline" },
 ];
 
 const mockChainNodes = [
