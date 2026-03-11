@@ -12,7 +12,7 @@ const UploadKnowledge = () => {
   const [isDark, setIsDark] = useState(true);
   const { hasApiKey } = useApiKey();
   const navigate = useNavigate();
-  const [tenantId, setTenantId] = useState("cortexai-workbench");
+  const [tenantId, setTenantId] = useState("hydradb-workbench");
   const [subTenantId, setSubTenantId] = useState("workbench-st-1");
   const [tab, setTab] = useState("upload");
   const [files, setFiles] = useState<File[]>([]);
