@@ -90,9 +90,9 @@ const mockChainNodes = [
 ];
 
 const mockChainEdges = [
-  { source: "cortex2", target: "accuracy", label: "RELATED_TO" },
-  { source: "cortex2", target: "evalarea", label: "MAINTAINS" },
-  { source: "cortex2", target: "benchground", label: "RELATED_TO" },
+  { source: "hydradb2", target: "accuracy", label: "RELATED_TO" },
+  { source: "hydradb2", target: "evalarea", label: "MAINTAINS" },
+  { source: "hydradb2", target: "benchground", label: "RELATED_TO" },
   { source: "accuracy", target: "longret", label: "RELATED_TO" },
   { source: "accuracy", target: "prefext", label: "RELATED_TO" },
   { source: "accuracy", target: "tempstate", label: "RELATED_TO" },
