@@ -200,7 +200,7 @@ export function ComparisonPanel() {
 
       {/* Main content area */}
       <div className={cn(
-        "flex-1 animate-fade-in transition-all duration-500",
+        "flex-1 animate-fade-in transition-all duration-500 overflow-auto",
         hasCompared && !configExpanded ? "pt-2" : ""
       )}>
         {/* Config + Prompt area (expandable) */}
