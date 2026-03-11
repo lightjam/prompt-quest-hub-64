@@ -149,10 +149,10 @@ export function ComparisonPanel() {
         {!hasCompared && (
           <div className="text-center space-y-2 mb-4">
             <h1 className="font-display text-3xl font-bold tracking-tight text-foreground">
-              Cortex vs Traditional Retrieval
+              HydraDB vs Traditional Retrieval
             </h1>
             <p className="text-muted-foreground text-base max-w-xl mx-auto">
-              Compare Cortex's graph-augmented smart retrieval against full-context baselines. See the difference in cost, tokens, and quality.
+              Compare HydraDB's graph-augmented smart retrieval against full-context baselines. See the difference in cost, tokens, and quality.
             </p>
           </div>
         )}
