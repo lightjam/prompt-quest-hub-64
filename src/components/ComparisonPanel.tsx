@@ -312,7 +312,7 @@ function ComparisonResults() {
             <div className="flex-1 space-y-1.5">
               <div className="flex items-center gap-1.5">
                 <Zap size={10} className="text-primary" />
-                <p className="text-[11px] text-primary font-semibold">Cortex</p>
+                <p className="text-[11px] text-primary font-semibold">HydraDB</p>
               </div>
               <div className="flex items-baseline gap-2">
                 <p className="text-2xl font-display font-bold text-primary">{mockStats.cortex.tokens.toLocaleString()}</p>
