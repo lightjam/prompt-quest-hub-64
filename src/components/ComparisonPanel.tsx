@@ -416,7 +416,7 @@ function ComparisonResults() {
           </div>
         </div>
 
-        {/* Cortex Column - highlighted */}
+        {/* HydraDB Column - highlighted */}
         <div className="space-y-4 rounded-2xl border-2 border-primary/40 bg-primary/[0.03] p-4 relative overflow-hidden">
           {/* Glow accent */}
           <div className="absolute -top-20 -right-20 w-40 h-40 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
