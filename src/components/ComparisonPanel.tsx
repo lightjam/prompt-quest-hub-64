@@ -333,10 +333,17 @@ export function ComparisonPanel() {
 
                 {/* Right: Prompt Area - 60% */}
                 <div className="w-full lg:w-[60%] flex flex-col">
-                  <div className="flex-1 flex flex-col justify-center">
-                    {/* Compare Box */}
-                    <div className="rounded-2xl border border-border bg-card p-5 space-y-4">
-                      <div className="rounded-xl border border-border bg-surface-elevated overflow-hidden">
+                  <div className="flex items-center justify-between mb-4">
+                    <h2 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-1.5">
+                      <Zap size={12} />
+                      Compare
+                    </h2>
+                  </div>
+
+                  <div className="rounded-2xl border border-border bg-card p-5 flex flex-col flex-1">
+                    <div className="flex-1 flex flex-col items-center justify-center space-y-4">
+                      {/* System Prompt Info */}
+                      <div className="w-full rounded-xl border border-border bg-surface-elevated overflow-hidden">
                         <div className="px-4 py-2.5 border-b border-border flex items-center justify-between">
                           <span className="text-xs font-medium text-muted-foreground">System Prompt</span>
                           <div className="flex items-center gap-2 text-xs text-muted-foreground">
@@ -350,7 +357,8 @@ export function ComparisonPanel() {
                         </div>
                       </div>
 
-                      <div className="rounded-xl border border-border bg-surface-elevated overflow-hidden">
+                      {/* User Query */}
+                      <div className="w-full rounded-xl border border-border bg-surface-elevated overflow-hidden">
                         <div className="px-4 py-2.5 border-b border-border">
                           <span className="text-xs font-medium text-muted-foreground">User Query</span>
                         </div>
@@ -364,7 +372,8 @@ export function ComparisonPanel() {
                         />
                       </div>
 
-                      <div className="flex items-center justify-between">
+                      {/* Compare Button */}
+                      <div className="w-full flex items-center justify-between">
                         <div className="flex items-center gap-2 text-[11px] text-muted-foreground">
                           <span>Press Enter to compare</span>
                         </div>
@@ -377,18 +386,21 @@ export function ComparisonPanel() {
                           <ArrowUp size={16} />
                         </button>
                       </div>
-                    </div>
 
-                    {/* Example Prompts */}
-                    {!hasCompared && (
-                      <div className="flex flex-wrap gap-2 mt-4">
-                        {examplePrompts.map((p) => (
-                          <button key={p} onClick={() => handleExampleClick(p)} className="group flex items-center gap-1.5 px-4 py-2 rounded-xl border border-chip-border bg-chip text-sm text-muted-foreground hover:bg-chip-hover hover:text-foreground hover:border-primary/30 transition-all duration-200">
-                            {p}
-                          </button>
-                        ))}
-                      </div>
-                    )}
+                      {/* Example Prompts inside box */}
+                      {!hasCompared && (
+                        <div className="w-full pt-2 border-t border-border">
+                          <p className="text-[11px] text-muted-foreground mb-2">Try an example</p>
+                          <div className="flex flex-wrap gap-2">
+                            {examplePrompts.map((p) => (
+                              <button key={p} onClick={() => handleExampleClick(p)} className="group flex items-center gap-1.5 px-4 py-2 rounded-xl border border-chip-border bg-chip text-sm text-muted-foreground hover:bg-chip-hover hover:text-foreground hover:border-primary/30 transition-all duration-200">
+                                {p}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
