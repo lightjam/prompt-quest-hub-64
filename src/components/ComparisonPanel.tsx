@@ -250,7 +250,7 @@ export function ComparisonPanel() {
             <div className="flex items-center gap-2 text-xs text-muted-foreground">
               <span className="px-2 py-1 rounded-md bg-muted font-mono">{baselineMethod}</span>
               <span>vs</span>
-              <span className="px-2 py-1 rounded-md bg-accent text-accent-foreground font-medium">Cortex (Top-{topN}, Graph: {graphContext ? "ON" : "OFF"})</span>
+              <span className="px-2 py-1 rounded-md bg-accent text-accent-foreground font-medium">HydraDB (Top-{topN}, Graph: {graphContext ? "ON" : "OFF"})</span>
             </div>
             <button
               onClick={handleCompare}
