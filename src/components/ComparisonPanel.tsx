@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowUp, Zap, Network, ChevronDown, Copy, Check, FileText, GitBranch, Layers, Hash, ChevronRight } from "lucide-react";
+import { ArrowUp, Zap, Network, ChevronDown, Copy, Check, FileText, GitBranch, Layers, Hash, ChevronRight, ChevronUp, Settings2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { RelationGraph } from "./RelationGraph";
 
@@ -130,9 +130,13 @@ export function ComparisonPanel() {
   const [scope, setScope] = useState("All knowledge");
   const [topN, setTopN] = useState(5);
   const [graphContext, setGraphContext] = useState(true);
+  const [configExpanded, setConfigExpanded] = useState(true);
 
   const handleCompare = () => {
-    if (query.trim()) setHasCompared(true);
+    if (query.trim()) {
+      setHasCompared(true);
+      setConfigExpanded(false);
+    }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -145,149 +149,239 @@ export function ComparisonPanel() {
   const handleExampleClick = (prompt: string) => {
     setQuery(prompt);
     setHasCompared(true);
+    setConfigExpanded(false);
   };
 
   return (
-    <div className="flex-1 flex flex-col items-center px-6 py-8 min-h-screen">
-      <div className={cn("w-full max-w-5xl space-y-6 animate-fade-in transition-all duration-500", hasCompared ? "pt-2" : "pt-[10vh]")}>
-        {/* Header */}
-        {!hasCompared && (
-          <div className="text-center space-y-2 mb-4">
-            <h1 className="font-display text-3xl font-bold tracking-tight text-foreground">
-              HydraDB vs Traditional Retrieval
-            </h1>
-            <p className="text-muted-foreground text-base max-w-xl mx-auto">
-              Compare HydraDB's graph-augmented smart retrieval against full-context baselines. See the difference in cost, tokens, and quality.
-            </p>
-          </div>
-        )}
-
-        {/* Configuration Row */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-          {/* Baseline Config */}
-          <div className="rounded-xl border border-border bg-card p-4 space-y-3">
-            <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Baseline Configuration</h3>
-            <div className="space-y-1.5">
-              <label className="text-[11px] text-muted-foreground">Baseline method</label>
-              <ChipSelect value={baselineMethod} options={["Full Context LLM", "Naive RAG", "Keyword Search"]} onChange={setBaselineMethod} />
-            </div>
-          </div>
-
-          {/* Source / Scope */}
-          <div className="rounded-xl border border-border bg-card p-4 space-y-3">
-            <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Source / Memory Scope</h3>
-            <div className="space-y-2">
-              <div className="space-y-1">
-                <label className="text-[11px] text-muted-foreground">Scope type</label>
-                <div className="flex gap-1.5">
-                  {["Knowledge", "Memories"].map((t) => (
-                    <button key={t} onClick={() => setSearchType(t)} className={cn("px-2.5 py-1 rounded-lg text-[11px] font-medium border transition-all", t === searchType ? "bg-accent text-accent-foreground border-primary/30" : "bg-chip text-muted-foreground border-chip-border hover:bg-chip-hover")}>
-                      {t}
-                    </button>
-                  ))}
-                </div>
-              </div>
-              <div className="space-y-1">
-                <label className="text-[11px] text-muted-foreground">Scope</label>
-                <ScopeDropdown value={scope} onChange={setScope} />
-              </div>
-            </div>
-          </div>
-
-          {/* Cortex Config */}
-          <div className="rounded-xl border border-border bg-card p-4 space-y-3">
-            <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">HydraDB Configuration</h3>
-            <div className="space-y-2">
-              <div className="space-y-1">
-                <label className="text-[11px] text-muted-foreground">Top-N chunks</label>
-                <div className="flex items-center gap-3">
-                  <input
-                    type="range"
-                    min={1}
-                    max={20}
-                    value={topN}
-                    onChange={(e) => setTopN(parseInt(e.target.value))}
-                    className="flex-1 h-1.5 accent-primary rounded-full"
-                  />
-                  <span className="text-sm font-mono text-foreground w-6 text-right">{topN}</span>
-                </div>
-              </div>
+    <div className="flex-1 flex flex-col min-h-screen">
+      {/* Collapsed config bar - shows when config is collapsed after compare */}
+      {hasCompared && !configExpanded && (
+        <div className="border-b border-border bg-card/80 backdrop-blur-sm sticky top-0 z-20 animate-fade-in">
+          <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between gap-4">
+            <div className="flex items-center gap-3 flex-1 min-w-0">
               <button
-                onClick={() => setGraphContext(!graphContext)}
-                className={cn(
-                  "flex items-center gap-2 w-full px-3 py-2 rounded-lg text-xs font-medium border transition-all",
-                  graphContext ? "bg-accent text-accent-foreground border-primary/30" : "bg-chip text-muted-foreground border-chip-border hover:bg-chip-hover"
-                )}
+                onClick={() => setConfigExpanded(true)}
+                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium border border-border bg-surface-elevated hover:bg-muted transition-colors shrink-0"
               >
-                <Network size={12} />
-                Graph Context
-                <span className={cn("ml-auto text-[10px] font-bold uppercase", graphContext ? "text-primary" : "text-muted-foreground/60")}>
-                  {graphContext ? "ON" : "OFF"}
-                </span>
+                <Settings2 size={12} />
+                Config
+                <ChevronDown size={10} />
               </button>
+              <div className="flex items-center gap-2 text-[11px] text-muted-foreground overflow-hidden">
+                <span className="px-2 py-0.5 rounded-md bg-muted font-mono shrink-0">{baselineMethod}</span>
+                <span className="shrink-0">vs</span>
+                <span className="px-2 py-0.5 rounded-md bg-accent text-accent-foreground font-medium shrink-0">HydraDB (Top-{topN}, Graph: {graphContext ? "ON" : "OFF"})</span>
+                <span className="text-border shrink-0">|</span>
+                <span className="truncate">{scope}</span>
+              </div>
+            </div>
+            <div className="flex items-center gap-2 shrink-0">
+              <div className="search-glow rounded-xl bg-search-bg flex items-center max-w-md">
+                <input
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                  placeholder="Enter query..."
+                  className="flex-1 bg-transparent px-3 py-2 text-sm text-foreground placeholder:text-search-placeholder focus:outline-none min-w-[200px]"
+                />
+                <button
+                  onClick={handleCompare}
+                  className="flex items-center gap-1.5 px-3 py-1.5 mr-1 rounded-lg bg-primary text-primary-foreground font-medium text-xs hover:opacity-90 transition-opacity disabled:opacity-40"
+                  disabled={!query.trim()}
+                >
+                  Compare
+                  <ArrowUp size={12} />
+                </button>
+              </div>
             </div>
           </div>
         </div>
+      )}
 
-        {/* Tenant IDs - compact */}
-        <div className="flex gap-3">
-          <div className="flex-1 space-y-1">
-            <label className="text-[11px] text-muted-foreground uppercase tracking-wider font-medium">Tenant ID</label>
-            <input type="text" value={tenantId} onChange={(e) => setTenantId(e.target.value)} className="w-full rounded-lg border border-border bg-surface-elevated px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring/30" />
-          </div>
-          <div className="flex-1 space-y-1">
-            <label className="text-[11px] text-muted-foreground uppercase tracking-wider font-medium">Sub-Tenant ID <span className="text-muted-foreground/60 normal-case">(Optional)</span></label>
-            <input type="text" value={subTenantId} onChange={(e) => setSubTenantId(e.target.value)} className="w-full rounded-lg border border-border bg-surface-elevated px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring/30" />
-          </div>
-        </div>
+      {/* Main content area */}
+      <div className={cn(
+        "flex-1 animate-fade-in transition-all duration-500",
+        hasCompared && !configExpanded ? "pt-2" : ""
+      )}>
+        {/* Config + Prompt area (expandable) */}
+        {configExpanded && (
+          <div className={cn(
+            "w-full",
+            !hasCompared ? "min-h-screen flex items-center" : ""
+          )}>
+            <div className="w-full max-w-7xl mx-auto px-6 py-8">
+              {/* Header */}
+              {!hasCompared && (
+                <div className="text-center space-y-2 mb-8">
+                  <h1 className="font-display text-3xl font-bold tracking-tight text-foreground">
+                    HydraDB vs Traditional Retrieval
+                  </h1>
+                  <p className="text-muted-foreground text-base max-w-xl mx-auto">
+                    Compare HydraDB's graph-augmented smart retrieval against full-context baselines. See the difference in cost, tokens, and quality.
+                  </p>
+                </div>
+              )}
 
-        {/* Compare Bar */}
-        <div className="search-glow rounded-2xl bg-search-bg overflow-hidden">
-          <textarea
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            onKeyDown={handleKeyDown}
-            placeholder="Enter a query to compare retrieval methods..."
-            rows={hasCompared ? 2 : 3}
-            className="w-full resize-none bg-transparent px-5 pt-4 pb-2 text-foreground placeholder:text-search-placeholder focus:outline-none text-base"
-          />
-          <div className="flex items-center justify-between px-4 pb-3">
-            <div className="flex items-center gap-2 text-xs text-muted-foreground">
-              <span className="px-2 py-1 rounded-md bg-muted font-mono">{baselineMethod}</span>
-              <span>vs</span>
-              <span className="px-2 py-1 rounded-md bg-accent text-accent-foreground font-medium">HydraDB (Top-{topN}, Graph: {graphContext ? "ON" : "OFF"})</span>
+              {/* Two-panel layout: Config left, Prompt right */}
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                {/* Left: Configuration Panel */}
+                <div className="lg:col-span-4 space-y-4">
+                  <div className="flex items-center justify-between">
+                    <h2 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-1.5">
+                      <Settings2 size={12} />
+                      Configuration
+                    </h2>
+                    {hasCompared && (
+                      <button
+                        onClick={() => setConfigExpanded(false)}
+                        className="flex items-center gap-1 px-2 py-1 rounded-md text-[10px] text-muted-foreground hover:text-foreground border border-border hover:bg-muted transition-colors"
+                      >
+                        Collapse
+                        <ChevronUp size={10} />
+                      </button>
+                    )}
+                  </div>
+
+                  {/* Baseline Config */}
+                  <div className="rounded-xl border border-border bg-card p-4 space-y-3">
+                    <h3 className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">Baseline Configuration</h3>
+                    <div className="space-y-1.5">
+                      <label className="text-[11px] text-muted-foreground">Baseline method</label>
+                      <ChipSelect value={baselineMethod} options={["Full Context LLM", "Naive RAG", "Keyword Search"]} onChange={setBaselineMethod} />
+                    </div>
+                  </div>
+
+                  {/* Source / Scope */}
+                  <div className="rounded-xl border border-border bg-card p-4 space-y-3">
+                    <h3 className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">Source / Memory Scope</h3>
+                    <div className="space-y-2">
+                      <div className="space-y-1">
+                        <label className="text-[11px] text-muted-foreground">Scope type</label>
+                        <div className="flex gap-1.5">
+                          {["Knowledge", "Memories"].map((t) => (
+                            <button key={t} onClick={() => setSearchType(t)} className={cn("px-2.5 py-1 rounded-lg text-[11px] font-medium border transition-all", t === searchType ? "bg-accent text-accent-foreground border-primary/30" : "bg-chip text-muted-foreground border-chip-border hover:bg-chip-hover")}>
+                              {t}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                      <div className="space-y-1">
+                        <label className="text-[11px] text-muted-foreground">Scope</label>
+                        <ScopeDropdown value={scope} onChange={setScope} />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* HydraDB Config */}
+                  <div className="rounded-xl border border-border bg-card p-4 space-y-3">
+                    <h3 className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">HydraDB Configuration</h3>
+                    <div className="space-y-2">
+                      <div className="space-y-1">
+                        <label className="text-[11px] text-muted-foreground">Top-N chunks</label>
+                        <div className="flex items-center gap-3">
+                          <input
+                            type="range"
+                            min={1}
+                            max={20}
+                            value={topN}
+                            onChange={(e) => setTopN(parseInt(e.target.value))}
+                            className="flex-1 h-1.5 accent-primary rounded-full"
+                          />
+                          <span className="text-sm font-mono text-foreground w-6 text-right">{topN}</span>
+                        </div>
+                      </div>
+                      <button
+                        onClick={() => setGraphContext(!graphContext)}
+                        className={cn(
+                          "flex items-center gap-2 w-full px-3 py-2 rounded-lg text-xs font-medium border transition-all",
+                          graphContext ? "bg-accent text-accent-foreground border-primary/30" : "bg-chip text-muted-foreground border-chip-border hover:bg-chip-hover"
+                        )}
+                      >
+                        <Network size={12} />
+                        Graph Context
+                        <span className={cn("ml-auto text-[10px] font-bold uppercase", graphContext ? "text-primary" : "text-muted-foreground/60")}>
+                          {graphContext ? "ON" : "OFF"}
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Tenant IDs */}
+                  <div className="rounded-xl border border-border bg-card p-4 space-y-3">
+                    <h3 className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">Tenant Settings</h3>
+                    <div className="space-y-2">
+                      <div className="space-y-1">
+                        <label className="text-[11px] text-muted-foreground">Tenant ID</label>
+                        <input type="text" value={tenantId} onChange={(e) => setTenantId(e.target.value)} className="w-full rounded-lg border border-border bg-surface-elevated px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring/30" />
+                      </div>
+                      <div className="space-y-1">
+                        <label className="text-[11px] text-muted-foreground">Sub-Tenant ID <span className="text-muted-foreground/60">(Optional)</span></label>
+                        <input type="text" value={subTenantId} onChange={(e) => setSubTenantId(e.target.value)} className="w-full rounded-lg border border-border bg-surface-elevated px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring/30" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Right: Prompt Area */}
+                <div className="lg:col-span-8 flex flex-col">
+                  <div className="flex-1 flex flex-col justify-center">
+                    {/* Compare Bar */}
+                    <div className="search-glow rounded-2xl bg-search-bg overflow-hidden">
+                      <textarea
+                        value={query}
+                        onChange={(e) => setQuery(e.target.value)}
+                        onKeyDown={handleKeyDown}
+                        placeholder="Enter a query to compare retrieval methods..."
+                        rows={4}
+                        className="w-full resize-none bg-transparent px-5 pt-5 pb-2 text-foreground placeholder:text-search-placeholder focus:outline-none text-base"
+                      />
+                      <div className="flex items-center justify-between px-4 pb-3">
+                        <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                          <span className="px-2 py-1 rounded-md bg-muted font-mono">{baselineMethod}</span>
+                          <span>vs</span>
+                          <span className="px-2 py-1 rounded-md bg-accent text-accent-foreground font-medium">HydraDB (Top-{topN}, Graph: {graphContext ? "ON" : "OFF"})</span>
+                        </div>
+                        <button
+                          onClick={handleCompare}
+                          className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-primary-foreground font-medium text-sm hover:opacity-90 transition-opacity disabled:opacity-40"
+                          disabled={!query.trim()}
+                        >
+                          Compare
+                          <ArrowUp size={16} />
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Example Prompts */}
+                    {!hasCompared && (
+                      <div className="flex flex-wrap gap-2 mt-4">
+                        {examplePrompts.map((p) => (
+                          <button key={p} onClick={() => handleExampleClick(p)} className="group flex items-center gap-1.5 px-4 py-2 rounded-xl border border-chip-border bg-chip text-sm text-muted-foreground hover:bg-chip-hover hover:text-foreground hover:border-primary/30 transition-all duration-200">
+                            {p}
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
             </div>
-            <button
-              onClick={handleCompare}
-              className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-primary-foreground font-medium text-sm hover:opacity-90 transition-opacity disabled:opacity-40"
-              disabled={!query.trim()}
-            >
-              Compare
-              <ArrowUp size={16} />
-            </button>
-          </div>
-        </div>
-
-        {/* Example Prompts */}
-        {!hasCompared && (
-          <div className="flex flex-wrap gap-2 justify-center">
-            {examplePrompts.map((p) => (
-              <button key={p} onClick={() => handleExampleClick(p)} className="group flex items-center gap-1.5 px-4 py-2 rounded-xl border border-chip-border bg-chip text-sm text-muted-foreground hover:bg-chip-hover hover:text-foreground hover:border-primary/30 transition-all duration-200">
-                {p}
-              </button>
-            ))}
           </div>
         )}
 
         {/* Results */}
-        {hasCompared && <ComparisonResults />}
+        {hasCompared && (
+          <div className="max-w-7xl mx-auto px-6 pb-8">
+            <ComparisonResults topN={topN} graphContext={graphContext} baselineMethod={baselineMethod} />
+          </div>
+        )}
       </div>
     </div>
   );
 }
 
 // ─── Results ───
-function ComparisonResults() {
+function ComparisonResults({ topN, graphContext, baselineMethod }: { topN: number; graphContext: boolean; baselineMethod: string }) {
   return (
     <div className="space-y-6 animate-fade-in">
       {/* Unified Comparison Stats */}
@@ -304,16 +398,14 @@ function ComparisonResults() {
                 <span className="text-[10px] text-muted-foreground">tokens</span>
               </div>
               <p className="text-[11px] text-muted-foreground">${mockStats.baseline.cost.toFixed(4)}</p>
-              {/* Bar */}
               <div className="h-2 rounded-full bg-red-500/20 w-full">
                 <div className="h-full rounded-full bg-red-500 w-full" />
               </div>
             </div>
-            {/* Arrow */}
             <div className="flex flex-col items-center pb-6">
               <ChevronRight size={20} className="text-primary" />
             </div>
-            {/* Cortex */}
+            {/* HydraDB */}
             <div className="flex-1 space-y-1.5">
               <div className="flex items-center gap-1.5">
                 <Zap size={10} className="text-primary" />
@@ -324,7 +416,6 @@ function ComparisonResults() {
                 <span className="text-[10px] text-muted-foreground">tokens</span>
               </div>
               <p className="text-[11px] text-primary/80">${mockStats.hydradb.cost.toFixed(4)}</p>
-              {/* Bar */}
               <div className="h-2 rounded-full bg-primary/20 w-full">
                 <div className="h-full rounded-full bg-primary" style={{ width: `${100 - mockStats.savings}%` }} />
               </div>
@@ -346,8 +437,6 @@ function ComparisonResults() {
           </div>
         </div>
       </div>
-
-
 
       {/* Request Economics */}
       <div className="rounded-xl border border-border bg-card p-5">
@@ -391,10 +480,9 @@ function ComparisonResults() {
         <div className="space-y-4">
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-red-500" />
-            <h3 className="font-display font-semibold text-foreground text-sm">Baseline: Full Context LLM</h3>
+            <h3 className="font-display font-semibold text-foreground text-sm">Baseline: {baselineMethod}</h3>
           </div>
 
-          {/* Baseline Answer */}
           <div className="rounded-xl border border-border bg-card p-4 space-y-2">
             <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-1.5">
               <FileText size={12} /> Full Context Answer
@@ -404,7 +492,6 @@ function ComparisonResults() {
             </p>
           </div>
 
-          {/* Baseline Chunks */}
           <div className="rounded-xl border border-border bg-card p-4 space-y-3">
             <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-1.5">
               <Layers size={12} /> Returned chunks / snippets
@@ -421,19 +508,17 @@ function ComparisonResults() {
           </div>
         </div>
 
-        {/* HydraDB Column - highlighted */}
+        {/* HydraDB Column */}
         <div className="space-y-4 rounded-2xl border-2 border-primary/40 bg-primary/[0.03] p-4 relative overflow-hidden">
-          {/* Glow accent */}
           <div className="absolute -top-20 -right-20 w-40 h-40 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
           <div className="flex items-center gap-2 relative">
             <span className="flex items-center justify-center w-5 h-5 rounded-md bg-primary/20">
               <Zap size={12} className="text-primary" />
             </span>
             <h3 className="font-display font-semibold text-primary text-sm">HydraDB</h3>
-            <span className="ml-auto text-[10px] font-mono px-2 py-0.5 rounded-full bg-primary/15 text-primary border border-primary/20">Top-{5} · Graph ON</span>
+            <span className="ml-auto text-[10px] font-mono px-2 py-0.5 rounded-full bg-primary/15 text-primary border border-primary/20">Top-{topN} · Graph {graphContext ? "ON" : "OFF"}</span>
           </div>
 
-          {/* HydraDB Answer */}
           <div className="rounded-xl border border-border bg-card p-4 space-y-2">
             <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-1.5">
               <Zap size={12} /> HydraDB Answer
@@ -443,16 +528,9 @@ function ComparisonResults() {
             </p>
           </div>
 
-          {/* Generated Context String */}
           <HydraDBContextSection />
-
-          {/* Graph Evidence */}
           <HydraDBGraphEvidence />
-
-          {/* Chain Relations */}
           <HydraDBChainRelations />
-
-          {/* Retrieved Chunks */}
           <HydraDBRetrievedChunks />
         </div>
       </div>
