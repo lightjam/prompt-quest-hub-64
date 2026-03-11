@@ -107,11 +107,11 @@ const mockChainRelations = [
   { source: "hydradb", relation: "RELATED_TO", target: "benchground" },
 ];
 
-const mockCortexChunks = [
+const mockHydraDBChunks = [
   {
     id: "cc1",
     score: 0.827,
-    content: "This analysis tests a central architectural hypothesis: that effective memory system design should reduce dependence on raw model capacity by ensuring the properly structured context and skill modules are available. We emphasize that it was crucial to show clearly if Cortex exceeds downstream models rather than a competitive model comparison. API Reference Configuration: Current 0.2 Pro, As mentioned in Section 3.2.1, Cortex achieves 0.9797 accuracy...",
+    content: "This analysis tests a central architectural hypothesis: that effective memory system design should reduce dependence on raw model capacity by ensuring the properly structured context and skill modules are available. We emphasize that it was crucial to show clearly if HydraDB exceeds downstream models rather than a competitive model comparison. API Reference Configuration: Current 0.2 Pro, As mentioned in Section 3.2.1, HydraDB achieves 0.9797 accuracy...",
   },
 ];
 
