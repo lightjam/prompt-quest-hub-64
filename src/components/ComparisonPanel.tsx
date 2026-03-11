@@ -212,12 +212,12 @@ export function ComparisonPanel() {
             <div className="w-full max-w-7xl mx-auto px-6 py-4">
               {/* Header */}
               {!hasCompared && (
-                <div className="text-center space-y-2 mb-8">
-                  <h1 className="font-display text-3xl font-bold tracking-tight text-foreground">
+                <div className="text-center space-y-1 mb-4">
+                  <h1 className="font-display text-2xl font-bold tracking-tight text-foreground">
                     HydraDB vs Traditional Retrieval
                   </h1>
-                  <p className="text-muted-foreground text-base max-w-xl mx-auto">
-                    Compare HydraDB's graph-augmented smart retrieval against full-context baselines. See the difference in cost, tokens, and quality.
+                  <p className="text-muted-foreground text-sm max-w-xl mx-auto">
+                    Compare HydraDB's graph-augmented smart retrieval against full-context baselines.
                   </p>
                 </div>
               )}
