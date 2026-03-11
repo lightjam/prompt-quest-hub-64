@@ -318,7 +318,7 @@ function ComparisonResults() {
                 <p className="text-2xl font-display font-bold text-primary">{mockStats.hydradb.tokens.toLocaleString()}</p>
                 <span className="text-[10px] text-muted-foreground">tokens</span>
               </div>
-              <p className="text-[11px] text-primary/80">${mockStats.cortex.cost.toFixed(4)}</p>
+              <p className="text-[11px] text-primary/80">${mockStats.hydradb.cost.toFixed(4)}</p>
               {/* Bar */}
               <div className="h-2 rounded-full bg-primary/20 w-full">
                 <div className="h-full rounded-full bg-primary" style={{ width: `${100 - mockStats.savings}%` }} />
