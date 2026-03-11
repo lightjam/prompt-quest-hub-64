@@ -537,7 +537,7 @@ function HydraDBRetrievedChunks() {
       <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-1.5">
         <Layers size={12} /> Retrieved Chunks (HydraDB)
       </h4>
-      {mockCortexChunks.map((chunk) => (
+      {mockHydraDBChunks.map((chunk) => (
         <div key={chunk.id} className="rounded-lg border border-border/60 bg-muted/30 p-3 space-y-1.5">
           <div className="flex items-center justify-between">
             <span className="text-[11px] text-muted-foreground">Chunk</span>
