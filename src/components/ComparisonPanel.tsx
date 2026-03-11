@@ -448,7 +448,7 @@ function ComparisonResults() {
           <HydraDBChainRelations />
 
           {/* Retrieved Chunks */}
-          <CortexRetrievedChunks />
+          <HydraDBRetrievedChunks />
         </div>
       </div>
     </div>
