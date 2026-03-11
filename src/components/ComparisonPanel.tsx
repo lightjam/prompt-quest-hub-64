@@ -117,7 +117,7 @@ const mockHydraDBChunks = [
 
 export function ComparisonPanel() {
   const [query, setQuery] = useState("");
-  const [tenantId, setTenantId] = useState("cortexai-workbench");
+  const [tenantId, setTenantId] = useState("hydradb-workbench");
   const [subTenantId, setSubTenantId] = useState("workbench-st-1");
   const [hasCompared, setHasCompared] = useState(false);
   const [baselineMethod, setBaselineMethod] = useState("Full Context LLM");
