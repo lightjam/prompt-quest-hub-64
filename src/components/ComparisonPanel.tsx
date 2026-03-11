@@ -458,7 +458,7 @@ function ComparisonResults() {
 function HydraDBContextSection() {
   const [copied, setCopied] = useState(false);
   const handleCopy = () => {
-    navigator.clipboard.writeText(mockCortexContext);
+    navigator.clipboard.writeText(mockHydraDBContext);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
