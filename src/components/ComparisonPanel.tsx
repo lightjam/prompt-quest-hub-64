@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { RelationGraph } from "./RelationGraph";
 
 const examplePrompts = [
-  "What is overall accuracy of cortex",
+  "What is overall accuracy of HydraDB",
   "What is context rot",
   "What is self-attention and how is it related to noam shazeer",
 ];
