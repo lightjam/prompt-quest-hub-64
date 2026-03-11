@@ -243,7 +243,7 @@ export function ComparisonPanel() {
                   </div>
 
                   {/* All config sections in one card */}
-                  <div className="rounded-2xl border border-border bg-card p-5 space-y-5">
+                  <div className="rounded-2xl border border-border p-5 space-y-5">
                     {/* Baseline Config */}
                     <div className="space-y-2">
                       <h3 className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">Baseline Configuration</h3>
