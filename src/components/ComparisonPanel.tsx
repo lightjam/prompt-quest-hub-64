@@ -356,7 +356,7 @@ function ComparisonResults() {
               <tr className="border-b border-border">
                 <th className="text-left py-2 text-muted-foreground font-medium text-xs">Metric</th>
                 <th className="text-right py-2 text-muted-foreground font-medium text-xs">Baseline</th>
-                <th className="text-right py-2 text-muted-foreground font-medium text-xs">With Cortex</th>
+                <th className="text-right py-2 text-muted-foreground font-medium text-xs">With HydraDB</th>
               </tr>
             </thead>
             <tbody className="font-mono text-xs">
