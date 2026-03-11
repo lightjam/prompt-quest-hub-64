@@ -509,7 +509,7 @@ function HydraDBGraphEvidence() {
   );
 }
 
-function CortexChainRelations() {
+function HydraDBChainRelations() {
   return (
     <div className="rounded-xl border border-border bg-card p-4 space-y-3">
       <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-1.5">
