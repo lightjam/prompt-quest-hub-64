@@ -26,7 +26,7 @@ const UploadDocs = () => {
 
         <div className="p-8 pt-6 max-w-3xl">
           <h1 className="text-2xl font-display font-bold text-foreground mb-2">Upload Knowledge — API Reference</h1>
-          <p className="text-sm text-muted-foreground mb-8">Learn how to programmatically upload documents and memories to your Cortex knowledge base.</p>
+          <p className="text-sm text-muted-foreground mb-8">Learn how to programmatically upload documents and memories to your HydraDB knowledge base.</p>
 
           <div className="space-y-8">
             {/* Endpoint */}
