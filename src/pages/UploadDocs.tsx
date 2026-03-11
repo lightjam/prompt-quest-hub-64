@@ -33,7 +33,7 @@ const UploadDocs = () => {
             <section className="space-y-3">
               <h2 className="text-lg font-display font-semibold text-foreground">Endpoint</h2>
               <code className="block bg-muted/50 border border-border rounded-lg px-4 py-3 text-sm font-mono text-foreground">
-                POST https://api.usecortex.ai/v1/knowledge/upload
+                POST https://api.usehydradb.ai/v1/knowledge/upload
               </code>
             </section>
 
