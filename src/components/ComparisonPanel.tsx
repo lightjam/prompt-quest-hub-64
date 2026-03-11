@@ -79,7 +79,7 @@ const mockDirectRelations = [
 ];
 
 const mockChainNodes = [
-  { id: "cortex2", label: "cortex", type: "primary" as const },
+  { id: "hydradb2", label: "hydradb", type: "primary" as const },
   { id: "accuracy", label: "overall accuracy", type: "secondary" as const },
   { id: "longret", label: "long-horizon retrieval", type: "secondary" as const },
   { id: "prefext", label: "preference extraction", type: "secondary" as const },
