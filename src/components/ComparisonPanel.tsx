@@ -12,7 +12,7 @@ const examplePrompts = [
 // Mock comparison data
 const mockStats = {
   baseline: { tokens: 64855, cost: 0.0325 },
-  cortex: { tokens: 6907, cost: 0.0036 },
+  hydradb: { tokens: 6907, cost: 0.0036 },
   savings: 89.4,
   fullContextChars: 259151,
 };
