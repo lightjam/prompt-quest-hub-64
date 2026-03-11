@@ -368,7 +368,7 @@ function ComparisonResults() {
               <tr className="border-b border-border/50">
                 <td className="py-2.5 text-foreground">Total tokens</td>
                 <td className="py-2.5 text-right text-red-500">{mockEconomics.baseline.total.toLocaleString()}</td>
-                <td className="py-2.5 text-right text-primary">{mockEconomics.cortex.total.toLocaleString()}</td>
+                <td className="py-2.5 text-right text-primary">{mockEconomics.hydradb.total.toLocaleString()}</td>
               </tr>
               <tr>
                 <td className="py-2.5 text-foreground font-medium">Estimated cost</td>
