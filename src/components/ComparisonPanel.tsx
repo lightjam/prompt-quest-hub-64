@@ -424,7 +424,7 @@ function ComparisonResults() {
             <span className="flex items-center justify-center w-5 h-5 rounded-md bg-primary/20">
               <Zap size={12} className="text-primary" />
             </span>
-            <h3 className="font-display font-semibold text-primary text-sm">Cortex</h3>
+            <h3 className="font-display font-semibold text-primary text-sm">HydraDB</h3>
             <span className="ml-auto text-[10px] font-mono px-2 py-0.5 rounded-full bg-primary/15 text-primary border border-primary/20">Top-{5} · Graph ON</span>
           </div>
 
