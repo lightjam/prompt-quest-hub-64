@@ -100,11 +100,11 @@ const mockChainEdges = [
 ];
 
 const mockChainRelations = [
-  { source: "cortex", relation: "RELATED_TO", target: "benchground" },
-  { source: "cross-model evaluations", relation: "RELATED_TO", target: "cortex" },
-  { source: "cortex", relation: "RELATED_TO", target: "benchground" },
-  { source: "cortex", relation: "MAINTAINS", target: "evaluation area" },
-  { source: "cortex", relation: "RELATED_TO", target: "benchground" },
+  { source: "hydradb", relation: "RELATED_TO", target: "benchground" },
+  { source: "cross-model evaluations", relation: "RELATED_TO", target: "hydradb" },
+  { source: "hydradb", relation: "RELATED_TO", target: "benchground" },
+  { source: "hydradb", relation: "MAINTAINS", target: "evaluation area" },
+  { source: "hydradb", relation: "RELATED_TO", target: "benchground" },
 ];
 
 const mockCortexChunks = [
