@@ -39,10 +39,10 @@ const mockBaselineChunks = [
   },
   {
     id: "b3",
-    source: "cortex.pdf",
+    source: "hydradb.pdf",
     title: "Beyond Context Windows: Long Term Agentic Memory",
     url: "#",
-    snippet: "Cortex extends beyond traditional context windows by implementing persistent agentic memory systems that maintain coherence across sessions...",
+    snippet: "HydraDB extends beyond traditional context windows by implementing persistent agentic memory systems that maintain coherence across sessions...",
   },
 ];
 
