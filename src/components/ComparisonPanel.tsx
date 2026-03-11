@@ -445,7 +445,7 @@ function ComparisonResults() {
           <HydraDBGraphEvidence />
 
           {/* Chain Relations */}
-          <CortexChainRelations />
+          <HydraDBChainRelations />
 
           {/* Retrieved Chunks */}
           <CortexRetrievedChunks />
