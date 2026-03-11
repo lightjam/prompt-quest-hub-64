@@ -191,7 +191,7 @@ export function ComparisonPanel() {
 
           {/* Cortex Config */}
           <div className="rounded-xl border border-border bg-card p-4 space-y-3">
-            <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Cortex Configuration</h3>
+            <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">HydraDB Configuration</h3>
             <div className="space-y-2">
               <div className="space-y-1">
                 <label className="text-[11px] text-muted-foreground">Top-N chunks</label>
