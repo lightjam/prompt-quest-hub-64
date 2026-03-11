@@ -431,7 +431,7 @@ function ComparisonResults() {
           {/* HydraDB Answer */}
           <div className="rounded-xl border border-border bg-card p-4 space-y-2">
             <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-1.5">
-              <Zap size={12} /> Cortex Answer
+              <Zap size={12} /> HydraDB Answer
             </h4>
             <p className="text-sm text-muted-foreground italic">
               Graph-augmented retrieval with knowledge graph traversal for enriched context.
