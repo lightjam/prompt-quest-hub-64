@@ -50,13 +50,13 @@ const ApiSettings = () => {
           <div className="rounded-xl border border-border bg-card p-6 space-y-5">
             <div className="flex items-center gap-2">
               <Key size={18} className="text-primary" />
-              <h2 className="text-base font-display font-semibold text-foreground">Cortex API Credentials</h2>
+              <h2 className="text-base font-display font-semibold text-foreground">HydraDB API Credentials</h2>
             </div>
 
             <p className="text-sm text-muted-foreground">
               To use your own custom knowledge base, you must log into{" "}
-              <a href="https://usecortex.ai" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
-                usecortex.ai
+              <a href="https://usehydradb.ai" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
+                usehydradb.ai
               </a>{" "}
               to get your API Key.
             </p>
@@ -68,7 +68,7 @@ const ApiSettings = () => {
                   type={showKey ? "text" : "password"}
                   value={localKey}
                   onChange={(e) => { setLocalKey(e.target.value); setSaved(false); }}
-                  placeholder="sk-cortex-..."
+                  placeholder="sk-hydradb-..."
                   className="bg-muted/50 border-border pr-10 font-mono text-sm"
                 />
                 <button
@@ -110,8 +110,8 @@ const ApiSettings = () => {
           <div className="mt-6 rounded-xl border border-border bg-card p-6 space-y-3">
             <h3 className="text-sm font-display font-semibold text-foreground">Quick Links</h3>
             <div className="space-y-2">
-              <a href="https://usecortex.ai" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
-                <ExternalLink size={13} /> Cortex Dashboard
+              <a href="https://usehydradb.ai" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
+                <ExternalLink size={13} /> HydraDB Dashboard
               </a>
               <a href="#" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
                 <ExternalLink size={13} /> API Documentation

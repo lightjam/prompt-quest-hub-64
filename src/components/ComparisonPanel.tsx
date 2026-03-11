@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { RelationGraph } from "./RelationGraph";
 
 const examplePrompts = [
-  "What is overall accuracy of cortex",
+  "What is overall accuracy of HydraDB",
   "What is context rot",
   "What is self-attention and how is it related to noam shazeer",
 ];
@@ -12,14 +12,14 @@ const examplePrompts = [
 // Mock comparison data
 const mockStats = {
   baseline: { tokens: 64855, cost: 0.0325 },
-  cortex: { tokens: 6907, cost: 0.0036 },
+  hydradb: { tokens: 6907, cost: 0.0036 },
   savings: 89.4,
   fullContextChars: 259151,
 };
 
 const mockEconomics = {
   baseline: { input: 64809, total: 64855, cost: "$0.0325" },
-  cortex: { input: 6861, total: 6907, cost: "$0.0036" },
+  hydradb: { input: 6861, total: 6907, cost: "$0.0036" },
 };
 
 const mockBaselineChunks = [
@@ -39,52 +39,52 @@ const mockBaselineChunks = [
   },
   {
     id: "b3",
-    source: "cortex.pdf",
+    source: "hydradb.pdf",
     title: "Beyond Context Windows: Long Term Agentic Memory",
     url: "#",
-    snippet: "Cortex extends beyond traditional context windows by implementing persistent agentic memory systems that maintain coherence across sessions...",
+    snippet: "HydraDB extends beyond traditional context windows by implementing persistent agentic memory systems that maintain coherence across sessions...",
   },
 ];
 
-const mockCortexContext = `>>> ENTITY PATHS >>>
-[cortex] → RELATED_TO → [knowledge management tasks]. Cortex achieves 97.4% accuracy, demonstrating robust handling of contradictory or evolving user information.
-[cortex] → RELATED_TO → [knowledge source tasks]. On knowledge update tasks, Cortex achieves 97.4% accuracy, demonstrating robust handling of contradictory or evolving user information.
->>> MAINTAINS → [evaluation area]: Cortex maintains consistently high accuracy across all evaluation benchmarks.
->>> USES_TOOL → [multi-stage pipeline]: Cortex employs a Multi-Stage Pipeline that combines retrieval with graph traversal.`;
+const mockHydraDBContext = `>>> ENTITY PATHS >>>
+[hydradb] → RELATED_TO → [knowledge management tasks]. HydraDB achieves 97.4% accuracy, demonstrating robust handling of contradictory or evolving user information.
+[hydradb] → RELATED_TO → [knowledge source tasks]. On knowledge update tasks, HydraDB achieves 97.4% accuracy, demonstrating robust handling of contradictory or evolving user information.
+>>> MAINTAINS → [evaluation area]: HydraDB maintains consistently high accuracy across all evaluation benchmarks.
+>>> USES_TOOL → [multi-stage pipeline]: HydraDB employs a Multi-Stage Pipeline that combines retrieval with graph traversal.`;
 
 const mockGraphEvidence = {
   nodes: [
-    { id: "cortex", label: "cortex", type: "primary" as const },
+    { id: "hydradb", label: "hydradb", type: "primary" as const },
     { id: "vectorstore", label: "vectorstore", type: "secondary" as const },
     { id: "eval", label: "evaluation area", type: "secondary" as const },
-    { id: "cross", label: "cross-model evaluations", type: "secondary" as const },
-    { id: "schema", label: "multi-field hybrid schema", type: "secondary" as const },
-    { id: "knowledge", label: "knowledge update tasks", type: "secondary" as const },
+    { id: "knowledge", label: "knowledge management", type: "secondary" as const },
     { id: "pipeline", label: "multi-stage pipeline", type: "secondary" as const },
-    { id: "snowflake", label: "snowflake", type: "secondary" as const },
+    { id: "cross", label: "cross-document reasoning", type: "secondary" as const },
     { id: "longretrieval", label: "long-horizon retrieval", type: "secondary" as const },
+    { id: "schema", label: "schema-driven query", type: "secondary" as const },
+    { id: "snowflake", label: "snowflake", type: "secondary" as const },
   ],
   edges: [
-    { source: "cortex", target: "knowledge", label: "RELATED_TO" },
-    { source: "cortex", target: "eval", label: "MAINTAINS" },
-    { source: "cortex", target: "pipeline", label: "USES_TOOL" },
-    { source: "cortex", target: "vectorstore", label: "RELATED_TO" },
-    { source: "cortex", target: "cross", label: "RELATED_TO" },
+    { source: "hydradb", target: "knowledge", label: "RELATED_TO" },
+    { source: "hydradb", target: "eval", label: "MAINTAINS" },
+    { source: "hydradb", target: "pipeline", label: "USES_TOOL" },
+    { source: "hydradb", target: "vectorstore", label: "RELATED_TO" },
+    { source: "hydradb", target: "cross", label: "RELATED_TO" },
     { source: "pipeline", target: "schema", label: "INCLUDES" },
     { source: "pipeline", target: "snowflake", label: "INCLUDES" },
-    { source: "cortex", target: "longretrieval", label: "RELATED_TO" },
+    { source: "hydradb", target: "longretrieval", label: "RELATED_TO" },
   ],
 };
 
 const mockDirectRelations = [
-  { source: "cortex", relation: "RELATED_TO", target: "knowledge update tasks" },
-  { source: "cortex", relation: "RELATED_TO", target: "knowledge update tasks" },
-  { source: "cortex", relation: "MAINTAINS", target: "evaluation area" },
-  { source: "cortex", relation: "USES_TOOL", target: "multi-stage pipeline" },
+  { source: "hydradb", relation: "RELATED_TO", target: "knowledge update tasks" },
+  { source: "hydradb", relation: "RELATED_TO", target: "knowledge update tasks" },
+  { source: "hydradb", relation: "MAINTAINS", target: "evaluation area" },
+  { source: "hydradb", relation: "USES_TOOL", target: "multi-stage pipeline" },
 ];
 
 const mockChainNodes = [
-  { id: "cortex2", label: "cortex", type: "primary" as const },
+  { id: "hydradb2", label: "hydradb", type: "primary" as const },
   { id: "accuracy", label: "overall accuracy", type: "secondary" as const },
   { id: "longret", label: "long-horizon retrieval", type: "secondary" as const },
   { id: "prefext", label: "preference extraction", type: "secondary" as const },
@@ -95,9 +95,9 @@ const mockChainNodes = [
 ];
 
 const mockChainEdges = [
-  { source: "cortex2", target: "accuracy", label: "RELATED_TO" },
-  { source: "cortex2", target: "evalarea", label: "MAINTAINS" },
-  { source: "cortex2", target: "benchground", label: "RELATED_TO" },
+  { source: "hydradb2", target: "accuracy", label: "RELATED_TO" },
+  { source: "hydradb2", target: "evalarea", label: "MAINTAINS" },
+  { source: "hydradb2", target: "benchground", label: "RELATED_TO" },
   { source: "accuracy", target: "longret", label: "RELATED_TO" },
   { source: "accuracy", target: "prefext", label: "RELATED_TO" },
   { source: "accuracy", target: "tempstate", label: "RELATED_TO" },
@@ -105,24 +105,24 @@ const mockChainEdges = [
 ];
 
 const mockChainRelations = [
-  { source: "cortex", relation: "RELATED_TO", target: "benchground" },
-  { source: "cross-model evaluations", relation: "RELATED_TO", target: "cortex" },
-  { source: "cortex", relation: "RELATED_TO", target: "benchground" },
-  { source: "cortex", relation: "MAINTAINS", target: "evaluation area" },
-  { source: "cortex", relation: "RELATED_TO", target: "benchground" },
+  { source: "hydradb", relation: "RELATED_TO", target: "benchground" },
+  { source: "cross-model evaluations", relation: "RELATED_TO", target: "hydradb" },
+  { source: "hydradb", relation: "RELATED_TO", target: "benchground" },
+  { source: "hydradb", relation: "MAINTAINS", target: "evaluation area" },
+  { source: "hydradb", relation: "RELATED_TO", target: "benchground" },
 ];
 
-const mockCortexChunks = [
+const mockHydraDBChunks = [
   {
     id: "cc1",
     score: 0.827,
-    content: "This analysis tests a central architectural hypothesis: that effective memory system design should reduce dependence on raw model capacity by ensuring the properly structured context and skill modules are available. We emphasize that it was crucial to show clearly if Cortex exceeds downstream models rather than a competitive model comparison. API Reference Configuration: Current 0.2 Pro, As mentioned in Section 3.2.1, Cortex achieves 0.9797 accuracy...",
+    content: "This analysis tests a central architectural hypothesis: that effective memory system design should reduce dependence on raw model capacity by ensuring the properly structured context and skill modules are available. We emphasize that it was crucial to show clearly if HydraDB exceeds downstream models rather than a competitive model comparison. API Reference Configuration: Current 0.2 Pro, As mentioned in Section 3.2.1, HydraDB achieves 0.9797 accuracy...",
   },
 ];
 
 export function ComparisonPanel() {
   const [query, setQuery] = useState("");
-  const [tenantId, setTenantId] = useState("cortexai-workbench");
+  const [tenantId, setTenantId] = useState("hydradb-workbench");
   const [subTenantId, setSubTenantId] = useState("workbench-st-1");
   const [hasCompared, setHasCompared] = useState(false);
   const [baselineMethod, setBaselineMethod] = useState("Full Context LLM");
@@ -154,10 +154,10 @@ export function ComparisonPanel() {
         {!hasCompared && (
           <div className="text-center space-y-2 mb-4">
             <h1 className="font-display text-3xl font-bold tracking-tight text-foreground">
-              Cortex vs Traditional Retrieval
+              HydraDB vs Traditional Retrieval
             </h1>
             <p className="text-muted-foreground text-base max-w-xl mx-auto">
-              Compare Cortex's graph-augmented smart retrieval against full-context baselines. See the difference in cost, tokens, and quality.
+              Compare HydraDB's graph-augmented smart retrieval against full-context baselines. See the difference in cost, tokens, and quality.
             </p>
           </div>
         )}
@@ -196,7 +196,7 @@ export function ComparisonPanel() {
 
           {/* Cortex Config */}
           <div className="rounded-xl border border-border bg-card p-4 space-y-3">
-            <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Cortex Configuration</h3>
+            <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">HydraDB Configuration</h3>
             <div className="space-y-2">
               <div className="space-y-1">
                 <label className="text-[11px] text-muted-foreground">Top-N chunks</label>
@@ -255,7 +255,7 @@ export function ComparisonPanel() {
             <div className="flex items-center gap-2 text-xs text-muted-foreground">
               <span className="px-2 py-1 rounded-md bg-muted font-mono">{baselineMethod}</span>
               <span>vs</span>
-              <span className="px-2 py-1 rounded-md bg-accent text-accent-foreground font-medium">Cortex (Top-{topN}, Graph: {graphContext ? "ON" : "OFF"})</span>
+              <span className="px-2 py-1 rounded-md bg-accent text-accent-foreground font-medium">HydraDB (Top-{topN}, Graph: {graphContext ? "ON" : "OFF"})</span>
             </div>
             <button
               onClick={handleCompare}
@@ -317,13 +317,13 @@ function ComparisonResults() {
             <div className="flex-1 space-y-1.5">
               <div className="flex items-center gap-1.5">
                 <Zap size={10} className="text-primary" />
-                <p className="text-[11px] text-primary font-semibold">Cortex</p>
+                <p className="text-[11px] text-primary font-semibold">HydraDB</p>
               </div>
               <div className="flex items-baseline gap-2">
-                <p className="text-2xl font-display font-bold text-primary">{mockStats.cortex.tokens.toLocaleString()}</p>
+                <p className="text-2xl font-display font-bold text-primary">{mockStats.hydradb.tokens.toLocaleString()}</p>
                 <span className="text-[10px] text-muted-foreground">tokens</span>
               </div>
-              <p className="text-[11px] text-primary/80">${mockStats.cortex.cost.toFixed(4)}</p>
+              <p className="text-[11px] text-primary/80">${mockStats.hydradb.cost.toFixed(4)}</p>
               {/* Bar */}
               <div className="h-2 rounded-full bg-primary/20 w-full">
                 <div className="h-full rounded-full bg-primary" style={{ width: `${100 - mockStats.savings}%` }} />
@@ -337,7 +337,7 @@ function ComparisonResults() {
           <div className="rounded-xl border border-primary/30 bg-primary/5 p-4 space-y-1">
             <p className="text-[11px] text-primary font-semibold uppercase tracking-wider flex items-center gap-1"><Zap size={10} /> Savings</p>
             <p className="text-3xl font-display font-bold text-primary tracking-tight">{mockStats.savings}% tokens</p>
-            <p className="text-[11px] text-primary/70">${(mockStats.baseline.cost - mockStats.cortex.cost).toFixed(4)} saved per query</p>
+            <p className="text-[11px] text-primary/70">${(mockStats.baseline.cost - mockStats.hydradb.cost).toFixed(4)} saved per query</p>
           </div>
           <div className="rounded-xl border border-border bg-card p-4 space-y-1">
             <p className="text-[11px] text-muted-foreground font-medium">Time Saved</p>
@@ -361,24 +361,24 @@ function ComparisonResults() {
               <tr className="border-b border-border">
                 <th className="text-left py-2 text-muted-foreground font-medium text-xs">Metric</th>
                 <th className="text-right py-2 text-muted-foreground font-medium text-xs">Baseline</th>
-                <th className="text-right py-2 text-muted-foreground font-medium text-xs">With Cortex</th>
+                <th className="text-right py-2 text-muted-foreground font-medium text-xs">With HydraDB</th>
               </tr>
             </thead>
             <tbody className="font-mono text-xs">
               <tr className="border-b border-border/50">
                 <td className="py-2.5 text-foreground">Input tokens</td>
                 <td className="py-2.5 text-right text-red-500">{mockEconomics.baseline.input.toLocaleString()}</td>
-                <td className="py-2.5 text-right text-primary">{mockEconomics.cortex.input.toLocaleString()}</td>
+                <td className="py-2.5 text-right text-primary">{mockEconomics.hydradb.input.toLocaleString()}</td>
               </tr>
               <tr className="border-b border-border/50">
                 <td className="py-2.5 text-foreground">Total tokens</td>
                 <td className="py-2.5 text-right text-red-500">{mockEconomics.baseline.total.toLocaleString()}</td>
-                <td className="py-2.5 text-right text-primary">{mockEconomics.cortex.total.toLocaleString()}</td>
+                <td className="py-2.5 text-right text-primary">{mockEconomics.hydradb.total.toLocaleString()}</td>
               </tr>
               <tr>
                 <td className="py-2.5 text-foreground font-medium">Estimated cost</td>
                 <td className="py-2.5 text-right text-red-500 font-medium">{mockEconomics.baseline.cost}</td>
-                <td className="py-2.5 text-right text-primary font-medium">{mockEconomics.cortex.cost}</td>
+                <td className="py-2.5 text-right text-primary font-medium">{mockEconomics.hydradb.cost}</td>
               </tr>
             </tbody>
           </table>
@@ -421,7 +421,7 @@ function ComparisonResults() {
           </div>
         </div>
 
-        {/* Cortex Column - highlighted */}
+        {/* HydraDB Column - highlighted */}
         <div className="space-y-4 rounded-2xl border-2 border-primary/40 bg-primary/[0.03] p-4 relative overflow-hidden">
           {/* Glow accent */}
           <div className="absolute -top-20 -right-20 w-40 h-40 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
@@ -429,14 +429,14 @@ function ComparisonResults() {
             <span className="flex items-center justify-center w-5 h-5 rounded-md bg-primary/20">
               <Zap size={12} className="text-primary" />
             </span>
-            <h3 className="font-display font-semibold text-primary text-sm">Cortex</h3>
+            <h3 className="font-display font-semibold text-primary text-sm">HydraDB</h3>
             <span className="ml-auto text-[10px] font-mono px-2 py-0.5 rounded-full bg-primary/15 text-primary border border-primary/20">Top-{5} · Graph ON</span>
           </div>
 
-          {/* Cortex Answer */}
+          {/* HydraDB Answer */}
           <div className="rounded-xl border border-border bg-card p-4 space-y-2">
             <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-1.5">
-              <Zap size={12} /> Cortex Answer
+              <Zap size={12} /> HydraDB Answer
             </h4>
             <p className="text-sm text-muted-foreground italic">
               Graph-augmented retrieval with knowledge graph traversal for enriched context.
@@ -444,26 +444,26 @@ function ComparisonResults() {
           </div>
 
           {/* Generated Context String */}
-          <CortexContextSection />
+          <HydraDBContextSection />
 
           {/* Graph Evidence */}
-          <CortexGraphEvidence />
+          <HydraDBGraphEvidence />
 
           {/* Chain Relations */}
-          <CortexChainRelations />
+          <HydraDBChainRelations />
 
           {/* Retrieved Chunks */}
-          <CortexRetrievedChunks />
+          <HydraDBRetrievedChunks />
         </div>
       </div>
     </div>
   );
 }
 
-function CortexContextSection() {
+function HydraDBContextSection() {
   const [copied, setCopied] = useState(false);
   const handleCopy = () => {
-    navigator.clipboard.writeText(mockCortexContext);
+    navigator.clipboard.writeText(mockHydraDBContext);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -480,13 +480,13 @@ function CortexContextSection() {
         </button>
       </div>
       <pre className="text-[11px] text-muted-foreground whitespace-pre-wrap font-mono leading-relaxed max-h-48 overflow-y-auto">
-        {mockCortexContext}
+        {mockHydraDBContext}
       </pre>
     </div>
   );
 }
 
-function CortexGraphEvidence() {
+function HydraDBGraphEvidence() {
   return (
     <div className="rounded-xl border border-border bg-card p-4 space-y-3">
       <div className="flex items-center justify-between">
@@ -514,7 +514,7 @@ function CortexGraphEvidence() {
   );
 }
 
-function CortexChainRelations() {
+function HydraDBChainRelations() {
   return (
     <div className="rounded-xl border border-border bg-card p-4 space-y-3">
       <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-1.5">
@@ -536,13 +536,13 @@ function CortexChainRelations() {
   );
 }
 
-function CortexRetrievedChunks() {
+function HydraDBRetrievedChunks() {
   return (
     <div className="rounded-xl border border-border bg-card p-4 space-y-3">
       <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-1.5">
-        <Layers size={12} /> Retrieved Chunks (Cortex)
+        <Layers size={12} /> Retrieved Chunks (HydraDB)
       </h4>
-      {mockCortexChunks.map((chunk) => (
+      {mockHydraDBChunks.map((chunk) => (
         <div key={chunk.id} className="rounded-lg border border-border/60 bg-muted/30 p-3 space-y-1.5">
           <div className="flex items-center justify-between">
             <span className="text-[11px] text-muted-foreground">Chunk</span>
@@ -562,7 +562,7 @@ const scopeItems = [
   "All knowledge",
   "foundationcapital.com_context-graphs-ais-trillion-dollar-opportunity_.2026-02-26T01_48_37.859Z.md",
   "www.ibm.com_think_topics_knowledge-graph.2026-02-26T01_34_53.127Z.md",
-  "cortex.pdf",
+  "hydradb.pdf",
   "lost-in-middle-how-llms-use-long-context.pdf",
   "1706.03762v7.pdf",
   "research.trychroma.com_context-rot.2026-02-24T06_00_11.160Z.md",
