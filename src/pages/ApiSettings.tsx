@@ -68,7 +68,7 @@ const ApiSettings = () => {
                   type={showKey ? "text" : "password"}
                   value={localKey}
                   onChange={(e) => { setLocalKey(e.target.value); setSaved(false); }}
-                  placeholder="sk-cortex-..."
+                  placeholder="sk-hydradb-..."
                   className="bg-muted/50 border-border pr-10 font-mono text-sm"
                 />
                 <button
