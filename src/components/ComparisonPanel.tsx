@@ -54,25 +54,20 @@ const mockHydraDBContext = `>>> ENTITY PATHS >>>
 
 const mockGraphEvidence = {
   nodes: [
-    { id: "cortex", label: "cortex", type: "primary" as const },
+    { id: "hydradb", label: "hydradb", type: "primary" as const },
     { id: "vectorstore", label: "vectorstore", type: "secondary" as const },
     { id: "eval", label: "evaluation area", type: "secondary" as const },
-    { id: "cross", label: "cross-model evaluations", type: "secondary" as const },
-    { id: "schema", label: "multi-field hybrid schema", type: "secondary" as const },
-    { id: "knowledge", label: "knowledge update tasks", type: "secondary" as const },
-    { id: "pipeline", label: "multi-stage pipeline", type: "secondary" as const },
-    { id: "snowflake", label: "snowflake", type: "secondary" as const },
-    { id: "longretrieval", label: "long-horizon retrieval", type: "secondary" as const },
+...
   ],
   edges: [
-    { source: "cortex", target: "knowledge", label: "RELATED_TO" },
-    { source: "cortex", target: "eval", label: "MAINTAINS" },
-    { source: "cortex", target: "pipeline", label: "USES_TOOL" },
-    { source: "cortex", target: "vectorstore", label: "RELATED_TO" },
-    { source: "cortex", target: "cross", label: "RELATED_TO" },
+    { source: "hydradb", target: "knowledge", label: "RELATED_TO" },
+    { source: "hydradb", target: "eval", label: "MAINTAINS" },
+    { source: "hydradb", target: "pipeline", label: "USES_TOOL" },
+    { source: "hydradb", target: "vectorstore", label: "RELATED_TO" },
+    { source: "hydradb", target: "cross", label: "RELATED_TO" },
     { source: "pipeline", target: "schema", label: "INCLUDES" },
     { source: "pipeline", target: "snowflake", label: "INCLUDES" },
-    { source: "cortex", target: "longretrieval", label: "RELATED_TO" },
+    { source: "hydradb", target: "longretrieval", label: "RELATED_TO" },
   ],
 };
 
