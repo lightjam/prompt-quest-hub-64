@@ -1,4 +1,4 @@
-import { Search, BarChart3, BookOpen, Upload, Users, Settings, ChevronLeft, ChevronRight } from "lucide-react";
+import { BarChart3, BookOpen, Upload, Users, Settings, ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
