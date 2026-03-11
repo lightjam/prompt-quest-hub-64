@@ -153,7 +153,7 @@ export function ComparisonPanel() {
   };
 
   return (
-    <div className="flex-1 flex flex-col h-screen overflow-hidden">
+    <div className="flex-1 flex flex-col min-h-screen">
       {/* Collapsed config bar - shows when config is collapsed after compare */}
       {hasCompared && !configExpanded && (
         <div className="border-b border-border bg-card/80 backdrop-blur-sm sticky top-0 z-20 animate-fade-in">
@@ -200,24 +200,24 @@ export function ComparisonPanel() {
 
       {/* Main content area */}
       <div className={cn(
-        "flex-1 animate-fade-in transition-all duration-500 overflow-auto",
+        "flex-1 animate-fade-in transition-all duration-500",
         hasCompared && !configExpanded ? "pt-2" : ""
       )}>
         {/* Config + Prompt area (expandable) */}
         {configExpanded && (
           <div className={cn(
             "w-full",
-            !hasCompared ? "h-full flex items-center" : ""
+            !hasCompared ? "min-h-screen flex items-center" : ""
           )}>
-            <div className="w-full max-w-7xl mx-auto px-6 py-4">
+            <div className="w-full max-w-7xl mx-auto px-6 py-8">
               {/* Header */}
               {!hasCompared && (
-                <div className="text-center space-y-1 mb-4">
-                  <h1 className="font-display text-2xl font-bold tracking-tight text-foreground">
+                <div className="text-center space-y-2 mb-8">
+                  <h1 className="font-display text-3xl font-bold tracking-tight text-foreground">
                     HydraDB vs Traditional Retrieval
                   </h1>
-                  <p className="text-muted-foreground text-sm max-w-xl mx-auto">
-                    Compare HydraDB's graph-augmented smart retrieval against full-context baselines.
+                  <p className="text-muted-foreground text-base max-w-xl mx-auto">
+                    Compare HydraDB's graph-augmented smart retrieval against full-context baselines. See the difference in cost, tokens, and quality.
                   </p>
                 </div>
               )}
@@ -243,7 +243,7 @@ export function ComparisonPanel() {
                   </div>
 
                   {/* All config sections in one card */}
-                  <div className="rounded-2xl border border-border p-5 space-y-5">
+                  <div className="rounded-2xl border border-border bg-card p-5 space-y-5">
                     {/* Baseline Config */}
                     <div className="space-y-2">
                       <h3 className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">Baseline Configuration</h3>
