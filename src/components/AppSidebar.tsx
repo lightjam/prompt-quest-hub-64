@@ -33,7 +33,7 @@ export function AppSidebar() {
       <div className="flex items-center justify-between px-4 h-14 border-b border-sidebar-border">
         {!collapsed && (
           <span className="font-display font-bold text-sidebar-primary-foreground text-base tracking-tight">
-            Cortex Workbench
+            HydraDB Workbench
           </span>
         )}
         <button

@@ -88,7 +88,7 @@ const graphEdges = [
 
 const BrowseKnowledge = () => {
   const [isDark, setIsDark] = useState(true);
-  const [tenantId, setTenantId] = useState("cortexai-workbench");
+  const [tenantId, setTenantId] = useState("hydradb-workbench");
   const [subTenantId, setSubTenantId] = useState("workbench-st-1");
   const [kind, setKind] = useState("knowledge");
   const [loaded, setLoaded] = useState(false);

@@ -104,8 +104,8 @@ const UploadDocs = () => {
             <section className="space-y-3">
               <h2 className="text-lg font-display font-semibold text-foreground">Example (cURL)</h2>
               <pre className="bg-muted/50 border border-border rounded-lg px-4 py-3 text-sm font-mono text-foreground/80 overflow-x-auto whitespace-pre-wrap leading-relaxed">
-{`curl -X POST https://api.usecortex.ai/v1/knowledge/upload \\
-  -H "Authorization: Bearer sk-cortex-xxx" \\
+{`curl -X POST https://api.usehydradb.ai/v1/knowledge/upload \\
+  -H "Authorization: Bearer sk-hydradb-xxx" \\
   -F "file=@document.pdf" \\
   -F "tenant_id=acme-corp" \\
   -F "sub_tenant_id=team-alpha" \\

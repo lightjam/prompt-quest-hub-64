@@ -110,8 +110,8 @@ const ApiSettings = () => {
           <div className="mt-6 rounded-xl border border-border bg-card p-6 space-y-3">
             <h3 className="text-sm font-display font-semibold text-foreground">Quick Links</h3>
             <div className="space-y-2">
-              <a href="https://usecortex.ai" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
-                <ExternalLink size={13} /> Cortex Dashboard
+              <a href="https://usehydradb.ai" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
+                <ExternalLink size={13} /> HydraDB Dashboard
               </a>
               <a href="#" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
                 <ExternalLink size={13} /> API Documentation

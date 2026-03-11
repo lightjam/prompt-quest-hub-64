@@ -102,7 +102,7 @@ const UploadKnowledge = () => {
                     <AlertTriangle size={16} className="text-amber-500 shrink-0 mt-0.5" />
                     <p className="text-sm text-foreground/80">
                       You need to add your own API key to upload new knowledge. Please visit{" "}
-                      <a href="https://usecortex.ai" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
+                      <a href="https://usehydradb.ai" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
                         usehydradb.ai
                       </a>{" "}
                       to get your API keys.
