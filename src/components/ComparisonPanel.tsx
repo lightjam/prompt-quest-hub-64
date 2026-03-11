@@ -475,7 +475,7 @@ function HydraDBContextSection() {
         </button>
       </div>
       <pre className="text-[11px] text-muted-foreground whitespace-pre-wrap font-mono leading-relaxed max-h-48 overflow-y-auto">
-        {mockCortexContext}
+        {mockHydraDBContext}
       </pre>
     </div>
   );
