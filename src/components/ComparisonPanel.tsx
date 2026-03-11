@@ -223,9 +223,9 @@ export function ComparisonPanel() {
               )}
 
               {/* Two-panel layout: Config left, Prompt right */}
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                {/* Left: Configuration Panel */}
-                <div className="lg:col-span-4 space-y-4">
+              <div className="flex flex-col lg:flex-row gap-6">
+                {/* Left: Configuration Panel - 40% */}
+                <div className="w-full lg:w-[40%] space-y-4">
                   <div className="flex items-center justify-between">
                     <h2 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-1.5">
                       <Settings2 size={12} />
@@ -242,104 +242,131 @@ export function ComparisonPanel() {
                     )}
                   </div>
 
-                  {/* Baseline Config */}
-                  <div className="rounded-xl border border-border bg-card p-4 space-y-3">
-                    <h3 className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">Baseline Configuration</h3>
-                    <div className="space-y-1.5">
-                      <label className="text-[11px] text-muted-foreground">Baseline method</label>
-                      <ChipSelect value={baselineMethod} options={["Full Context LLM", "Naive RAG", "Keyword Search"]} onChange={setBaselineMethod} />
-                    </div>
-                  </div>
-
-                  {/* Source / Scope */}
-                  <div className="rounded-xl border border-border bg-card p-4 space-y-3">
-                    <h3 className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">Source / Memory Scope</h3>
+                  {/* All config sections in one card */}
+                  <div className="rounded-2xl border border-border bg-card p-5 space-y-5">
+                    {/* Baseline Config */}
                     <div className="space-y-2">
-                      <div className="space-y-1">
-                        <label className="text-[11px] text-muted-foreground">Scope type</label>
-                        <div className="flex gap-1.5">
-                          {["Knowledge", "Memories"].map((t) => (
-                            <button key={t} onClick={() => setSearchType(t)} className={cn("px-2.5 py-1 rounded-lg text-[11px] font-medium border transition-all", t === searchType ? "bg-accent text-accent-foreground border-primary/30" : "bg-chip text-muted-foreground border-chip-border hover:bg-chip-hover")}>
-                              {t}
-                            </button>
-                          ))}
+                      <h3 className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">Baseline Configuration</h3>
+                      <div className="space-y-1.5">
+                        <label className="text-[11px] text-muted-foreground">Baseline method</label>
+                        <ChipSelect value={baselineMethod} options={["Full Context LLM", "Naive RAG", "Keyword Search"]} onChange={setBaselineMethod} />
+                      </div>
+                    </div>
+
+                    <div className="border-t border-border" />
+
+                    {/* Source / Scope */}
+                    <div className="space-y-2">
+                      <h3 className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">Source / Memory Scope</h3>
+                      <div className="space-y-2">
+                        <div className="space-y-1">
+                          <label className="text-[11px] text-muted-foreground">Scope type</label>
+                          <div className="flex gap-1.5">
+                            {["Knowledge", "Memories"].map((t) => (
+                              <button key={t} onClick={() => setSearchType(t)} className={cn("px-2.5 py-1 rounded-lg text-[11px] font-medium border transition-all", t === searchType ? "bg-accent text-accent-foreground border-primary/30" : "bg-chip text-muted-foreground border-chip-border hover:bg-chip-hover")}>
+                                {t}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-[11px] text-muted-foreground">Scope</label>
+                          <ScopeDropdown value={scope} onChange={setScope} />
                         </div>
                       </div>
-                      <div className="space-y-1">
-                        <label className="text-[11px] text-muted-foreground">Scope</label>
-                        <ScopeDropdown value={scope} onChange={setScope} />
-                      </div>
                     </div>
-                  </div>
 
-                  {/* HydraDB Config */}
-                  <div className="rounded-xl border border-border bg-card p-4 space-y-3">
-                    <h3 className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">HydraDB Configuration</h3>
+                    <div className="border-t border-border" />
+
+                    {/* HydraDB Config */}
                     <div className="space-y-2">
-                      <div className="space-y-1">
-                        <label className="text-[11px] text-muted-foreground">Top-N chunks</label>
-                        <div className="flex items-center gap-3">
-                          <input
-                            type="range"
-                            min={1}
-                            max={20}
-                            value={topN}
-                            onChange={(e) => setTopN(parseInt(e.target.value))}
-                            className="flex-1 h-1.5 accent-primary rounded-full"
-                          />
-                          <span className="text-sm font-mono text-foreground w-6 text-right">{topN}</span>
+                      <h3 className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">HydraDB Configuration</h3>
+                      <div className="space-y-2">
+                        <div className="space-y-1">
+                          <label className="text-[11px] text-muted-foreground">Top-N chunks</label>
+                          <div className="flex items-center gap-3">
+                            <input
+                              type="range"
+                              min={1}
+                              max={20}
+                              value={topN}
+                              onChange={(e) => setTopN(parseInt(e.target.value))}
+                              className="flex-1 h-1.5 accent-primary rounded-full"
+                            />
+                            <span className="text-sm font-mono text-foreground w-6 text-right">{topN}</span>
+                          </div>
                         </div>
+                        <button
+                          onClick={() => setGraphContext(!graphContext)}
+                          className={cn(
+                            "flex items-center gap-2 w-full px-3 py-2 rounded-lg text-xs font-medium border transition-all",
+                            graphContext ? "bg-accent text-accent-foreground border-primary/30" : "bg-chip text-muted-foreground border-chip-border hover:bg-chip-hover"
+                          )}
+                        >
+                          <Network size={12} />
+                          Graph Context
+                          <span className={cn("ml-auto text-[10px] font-bold uppercase", graphContext ? "text-primary" : "text-muted-foreground/60")}>
+                            {graphContext ? "ON" : "OFF"}
+                          </span>
+                        </button>
                       </div>
-                      <button
-                        onClick={() => setGraphContext(!graphContext)}
-                        className={cn(
-                          "flex items-center gap-2 w-full px-3 py-2 rounded-lg text-xs font-medium border transition-all",
-                          graphContext ? "bg-accent text-accent-foreground border-primary/30" : "bg-chip text-muted-foreground border-chip-border hover:bg-chip-hover"
-                        )}
-                      >
-                        <Network size={12} />
-                        Graph Context
-                        <span className={cn("ml-auto text-[10px] font-bold uppercase", graphContext ? "text-primary" : "text-muted-foreground/60")}>
-                          {graphContext ? "ON" : "OFF"}
-                        </span>
-                      </button>
                     </div>
-                  </div>
 
-                  {/* Tenant IDs */}
-                  <div className="rounded-xl border border-border bg-card p-4 space-y-3">
-                    <h3 className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">Tenant Settings</h3>
+                    <div className="border-t border-border" />
+
+                    {/* Tenant IDs */}
                     <div className="space-y-2">
-                      <div className="space-y-1">
-                        <label className="text-[11px] text-muted-foreground">Tenant ID</label>
-                        <input type="text" value={tenantId} onChange={(e) => setTenantId(e.target.value)} className="w-full rounded-lg border border-border bg-surface-elevated px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring/30" />
-                      </div>
-                      <div className="space-y-1">
-                        <label className="text-[11px] text-muted-foreground">Sub-Tenant ID <span className="text-muted-foreground/60">(Optional)</span></label>
-                        <input type="text" value={subTenantId} onChange={(e) => setSubTenantId(e.target.value)} className="w-full rounded-lg border border-border bg-surface-elevated px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring/30" />
+                      <h3 className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">Tenant Settings</h3>
+                      <div className="space-y-2">
+                        <div className="space-y-1">
+                          <label className="text-[11px] text-muted-foreground">Tenant ID</label>
+                          <input type="text" value={tenantId} onChange={(e) => setTenantId(e.target.value)} className="w-full rounded-lg border border-border bg-surface-elevated px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring/30" />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-[11px] text-muted-foreground">Sub-Tenant ID <span className="text-muted-foreground/60">(Optional)</span></label>
+                          <input type="text" value={subTenantId} onChange={(e) => setSubTenantId(e.target.value)} className="w-full rounded-lg border border-border bg-surface-elevated px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring/30" />
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                {/* Right: Prompt Area */}
-                <div className="lg:col-span-8 flex flex-col">
+                {/* Right: Prompt Area - 60% */}
+                <div className="w-full lg:w-[60%] flex flex-col">
                   <div className="flex-1 flex flex-col justify-center">
-                    {/* Compare Bar */}
-                    <div className="search-glow rounded-2xl bg-search-bg overflow-hidden">
-                      <textarea
-                        value={query}
-                        onChange={(e) => setQuery(e.target.value)}
-                        onKeyDown={handleKeyDown}
-                        placeholder="Enter a query to compare retrieval methods..."
-                        rows={4}
-                        className="w-full resize-none bg-transparent px-5 pt-5 pb-2 text-foreground placeholder:text-search-placeholder focus:outline-none text-base"
-                      />
-                      <div className="flex items-center justify-between px-4 pb-3">
-                        <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                          <span className="px-2 py-1 rounded-md bg-muted font-mono">{baselineMethod}</span>
-                          <span>vs</span>
-                          <span className="px-2 py-1 rounded-md bg-accent text-accent-foreground font-medium">HydraDB (Top-{topN}, Graph: {graphContext ? "ON" : "OFF"})</span>
+                    {/* Compare Box */}
+                    <div className="rounded-2xl border border-border bg-card p-5 space-y-4">
+                      <div className="rounded-xl border border-border bg-surface-elevated overflow-hidden">
+                        <div className="px-4 py-2.5 border-b border-border flex items-center justify-between">
+                          <span className="text-xs font-medium text-muted-foreground">System Prompt</span>
+                          <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                            <span className="px-2 py-0.5 rounded-md bg-muted font-mono">{baselineMethod}</span>
+                            <span>vs</span>
+                            <span className="px-2 py-0.5 rounded-md bg-accent text-accent-foreground font-medium">HydraDB</span>
+                          </div>
+                        </div>
+                        <div className="px-4 py-2 text-[11px] text-muted-foreground">
+                          Compare retrieval methods side-by-side with Top-{topN} chunks, Graph {graphContext ? "ON" : "OFF"}
+                        </div>
+                      </div>
+
+                      <div className="rounded-xl border border-border bg-surface-elevated overflow-hidden">
+                        <div className="px-4 py-2.5 border-b border-border">
+                          <span className="text-xs font-medium text-muted-foreground">User Query</span>
+                        </div>
+                        <textarea
+                          value={query}
+                          onChange={(e) => setQuery(e.target.value)}
+                          onKeyDown={handleKeyDown}
+                          placeholder="Enter a query to compare retrieval methods..."
+                          rows={4}
+                          className="w-full resize-none bg-transparent px-4 py-3 text-foreground placeholder:text-search-placeholder focus:outline-none text-sm"
+                        />
+                      </div>
+
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2 text-[11px] text-muted-foreground">
+                          <span>Press Enter to compare</span>
                         </div>
                         <button
                           onClick={handleCompare}
