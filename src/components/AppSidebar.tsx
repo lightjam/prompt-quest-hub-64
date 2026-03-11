@@ -1,4 +1,4 @@
-import { Search, BarChart3, BookOpen, Upload, Users, Settings, ChevronLeft, ChevronRight } from "lucide-react";
+import { BarChart3, BookOpen, Upload, Users, Settings, ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -10,7 +10,6 @@ interface SidebarItem {
 }
 
 const items: SidebarItem[] = [
-  { icon: Search, label: "Search", path: "/" },
   { icon: BarChart3, label: "Comparison", path: "/comparison" },
   { icon: BookOpen, label: "Browse Knowledge", path: "/browse" },
   { icon: Upload, label: "Upload Knowledge", path: "/upload" },
