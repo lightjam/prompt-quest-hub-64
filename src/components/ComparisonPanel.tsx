@@ -428,7 +428,7 @@ function ComparisonResults() {
             <span className="ml-auto text-[10px] font-mono px-2 py-0.5 rounded-full bg-primary/15 text-primary border border-primary/20">Top-{5} · Graph ON</span>
           </div>
 
-          {/* Cortex Answer */}
+          {/* HydraDB Answer */}
           <div className="rounded-xl border border-border bg-card p-4 space-y-2">
             <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-1.5">
               <Zap size={12} /> Cortex Answer
