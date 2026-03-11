@@ -61,8 +61,8 @@ const mockGraphEvidence = {
     { id: "pipeline", label: "multi-stage pipeline", type: "secondary" as const },
     { id: "cross", label: "cross-document reasoning", type: "secondary" as const },
     { id: "longretrieval", label: "long-horizon retrieval", type: "secondary" as const },
-    { id: "schema", label: "schema-driven query", type: "tertiary" as const },
-    { id: "snowflake", label: "snowflake cortex", type: "tertiary" as const },
+    { id: "schema", label: "schema-driven query", type: "secondary" as const },
+    { id: "snowflake", label: "snowflake", type: "secondary" as const },
   ],
   edges: [
     { source: "hydradb", target: "knowledge", label: "RELATED_TO" },
