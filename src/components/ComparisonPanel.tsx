@@ -315,7 +315,7 @@ function ComparisonResults() {
                 <p className="text-[11px] text-primary font-semibold">HydraDB</p>
               </div>
               <div className="flex items-baseline gap-2">
-                <p className="text-2xl font-display font-bold text-primary">{mockStats.cortex.tokens.toLocaleString()}</p>
+                <p className="text-2xl font-display font-bold text-primary">{mockStats.hydradb.tokens.toLocaleString()}</p>
                 <span className="text-[10px] text-muted-foreground">tokens</span>
               </div>
               <p className="text-[11px] text-primary/80">${mockStats.cortex.cost.toFixed(4)}</p>
