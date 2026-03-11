@@ -557,7 +557,7 @@ const scopeItems = [
   "All knowledge",
   "foundationcapital.com_context-graphs-ais-trillion-dollar-opportunity_.2026-02-26T01_48_37.859Z.md",
   "www.ibm.com_think_topics_knowledge-graph.2026-02-26T01_34_53.127Z.md",
-  "cortex.pdf",
+  "hydradb.pdf",
   "lost-in-middle-how-llms-use-long-context.pdf",
   "1706.03762v7.pdf",
   "research.trychroma.com_context-rot.2026-02-24T06_00_11.160Z.md",
