@@ -371,16 +371,16 @@ export function ComparisonPanel() {
                         rows={4}
                         className="w-full resize-none bg-transparent px-4 py-3 text-foreground placeholder:text-search-placeholder focus:outline-none text-sm" />
                       
-                        
-
-
-
-
-
-
-
-
-                      
+                        <div className="px-4 py-3 border-t border-border flex items-center justify-end">
+                          <button
+                          onClick={handleCompare}
+                          className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-primary-foreground font-medium text-sm hover:opacity-90 transition-opacity disabled:opacity-40"
+                          disabled={!query.trim()}>
+                          
+                            Compare
+                            <ArrowUp size={16} />
+                          </button>
+                        </div>
                       </div>
 
                       {/* Example Prompts */}
