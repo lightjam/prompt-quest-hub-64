@@ -164,9 +164,9 @@ const Content = () => {
             <h1 className="text-2xl font-display font-bold text-foreground mb-2">Content</h1>
 
             <Tabs defaultValue="upload" className="w-full">
-              <TabsList>
-                <TabsTrigger value="upload">Upload Knowledge</TabsTrigger>
-                <TabsTrigger value="browse">Browse Knowledge</TabsTrigger>
+              <TabsList className="bg-card border border-border p-1 rounded-xl shadow-md">
+                <TabsTrigger value="upload" className="px-5 py-2.5 text-sm font-semibold rounded-lg data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg transition-all">Upload Knowledge</TabsTrigger>
+                <TabsTrigger value="browse" className="px-5 py-2.5 text-sm font-semibold rounded-lg data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg transition-all">Browse Knowledge</TabsTrigger>
               </TabsList>
 
               {/* ─── Upload Knowledge Tab ─── */}
