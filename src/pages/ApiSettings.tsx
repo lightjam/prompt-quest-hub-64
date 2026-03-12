@@ -55,8 +55,8 @@ const ApiSettings = () => {
 
             <p className="text-sm text-muted-foreground">
               To use your own custom knowledge base, you must log into{" "}
-              <a href="https://usehydradb.ai" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
-                usehydradb.ai
+              <a target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium" href="https://hydradb.com/">
+                hydradb.com
               </a>{" "}
               to get your API Key.
             </p>
@@ -65,16 +65,16 @@ const ApiSettings = () => {
               <label className="text-xs text-muted-foreground mb-1.5 block">API Key</label>
               <div className="relative">
                 <Input
-                  type={showKey ? "text" : "password"}
-                  value={localKey}
-                  onChange={(e) => { setLocalKey(e.target.value); setSaved(false); }}
-                  placeholder="sk-hydradb-..."
-                  className="bg-muted/50 border-border pr-10 font-mono text-sm"
-                />
+                    type={showKey ? "text" : "password"}
+                    value={localKey}
+                    onChange={(e) => {setLocalKey(e.target.value);setSaved(false);}}
+                    placeholder="sk-hydradb-..."
+                    className="bg-muted/50 border-border pr-10 font-mono text-sm" />
+                  
                 <button
-                  onClick={() => setShowKey(!showKey)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
-                >
+                    onClick={() => setShowKey(!showKey)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors">
+                    
                   {showKey ? <EyeOff size={16} /> : <Eye size={16} />}
                 </button>
               </div>
@@ -82,28 +82,28 @@ const ApiSettings = () => {
 
             <div className="flex items-center gap-3">
               <Button
-                className="gap-1.5"
-                onClick={handleSave}
-                disabled={!localKey.trim()}
-              >
+                  className="gap-1.5"
+                  onClick={handleSave}
+                  disabled={!localKey.trim()}>
+                  
                 <Save size={14} />
                 Save
               </Button>
               <Button
-                variant="destructive"
-                className="gap-1.5"
-                onClick={handleReset}
-              >
+                  variant="destructive"
+                  className="gap-1.5"
+                  onClick={handleReset}>
+                  
                 <RotateCcw size={14} />
                 Reset
               </Button>
             </div>
 
-            {saved && (
+            {saved &&
               <div className="text-sm text-primary bg-primary/5 border border-primary/20 rounded-lg px-4 py-2.5">
                 ✓ API key saved successfully. Tenants and Upload Knowledge are now unlocked.
               </div>
-            )}
+              }
           </div>
 
           {/* Quick links */}
@@ -124,8 +124,8 @@ const ApiSettings = () => {
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>);
+
 };
 
 export default ApiSettings;
