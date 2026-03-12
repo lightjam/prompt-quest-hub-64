@@ -163,7 +163,7 @@ const Tenants = () => {
                                 <Layers size={18} className="text-muted-foreground" />
                                 <h3 className="text-sm font-display font-semibold text-foreground">Infrastructure Details</h3>
                               </div>
-                              <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 border border-primary/20 px-2.5 py-0.5 text-xs font-semibold text-primary">
+                              <span className="inline-flex items-center gap-1.5 rounded-full bg-green-500/10 border border-green-500/20 px-2.5 py-0.5 text-xs font-semibold text-green-500">
                                 <CheckCircle2 size={12} />
                                 Ready
                               </span>
