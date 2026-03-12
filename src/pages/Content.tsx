@@ -21,75 +21,75 @@ interface KnowledgeItem {
 }
 
 const mockItems: KnowledgeItem[] = [
-  {
-    id: "1",
+{
+  id: "1",
+  filename: "foundationcapital.com_context-graphs-ais-trillion-dollar-opportunity_2026-02-26T01_48_37.859Z.md",
+  contentType: "text/markdown",
+  date: "2/26/2026",
+  metadata: {
+    bucket_name: "sandbox-user-id",
+    content_type: "text/markdown",
     filename: "foundationcapital.com_context-graphs-ais-trillion-dollar-opportunity_2026-02-26T01_48_37.859Z.md",
-    contentType: "text/markdown",
-    date: "2/26/2026",
-    metadata: {
-      bucket_name: "sandbox-user-id",
-      content_type: "text/markdown",
-      filename: "foundationcapital.com_context-graphs-ais-trillion-dollar-opportunity_2026-02-26T01_48_37.859Z.md",
-      tenant_id: "q77rmslzar",
-      sub_tenant_id: "workbench-st-1",
-      bucket: "sandbox-user-id",
-      size_bytes: 21464,
-      status: "queued",
-      uploaded_at: "2026-02-26T01:48:53.637957+00:00",
-      is_memory: false,
-    },
-  },
-  {
-    id: "2",
-    filename: "www.ibm.com_think_topics_knowledge-graph.2026-02-26T01_34_53.127Z.md",
-    contentType: "text/markdown",
-    date: "2/26/2026",
-    metadata: { content_type: "text/markdown", size_bytes: 15230, status: "processed", is_memory: false },
-  },
-  {
-    id: "3",
-    filename: "cortex.pdf",
-    contentType: "application/pdf",
-    date: "2/24/2026",
-    metadata: { content_type: "application/pdf", size_bytes: 84210, status: "processed", is_memory: false },
-  },
-  {
-    id: "4",
-    filename: "lost-in-middle-how-llms-use-long-context.pdf",
-    contentType: "application/pdf",
-    date: "2/24/2026",
-    metadata: { content_type: "application/pdf", size_bytes: 120400, status: "processed", is_memory: false },
-  },
-  {
-    id: "5",
-    filename: "1706.03762v7.pdf",
-    contentType: "application/pdf",
-    date: "2/24/2026",
-    metadata: { content_type: "application/pdf", size_bytes: 95300, status: "processed", is_memory: false },
-  },
-  {
-    id: "6",
-    filename: "research.trychroma.com_context-rot.2026-02-24T06_00_11.160Z.md",
-    contentType: "text/markdown",
-    date: "2/24/2026",
-    metadata: { content_type: "text/markdown", size_bytes: 18700, status: "processed", is_memory: false },
-  },
-];
+    tenant_id: "q77rmslzar",
+    sub_tenant_id: "workbench-st-1",
+    bucket: "sandbox-user-id",
+    size_bytes: 21464,
+    status: "queued",
+    uploaded_at: "2026-02-26T01:48:53.637957+00:00",
+    is_memory: false
+  }
+},
+{
+  id: "2",
+  filename: "www.ibm.com_think_topics_knowledge-graph.2026-02-26T01_34_53.127Z.md",
+  contentType: "text/markdown",
+  date: "2/26/2026",
+  metadata: { content_type: "text/markdown", size_bytes: 15230, status: "processed", is_memory: false }
+},
+{
+  id: "3",
+  filename: "cortex.pdf",
+  contentType: "application/pdf",
+  date: "2/24/2026",
+  metadata: { content_type: "application/pdf", size_bytes: 84210, status: "processed", is_memory: false }
+},
+{
+  id: "4",
+  filename: "lost-in-middle-how-llms-use-long-context.pdf",
+  contentType: "application/pdf",
+  date: "2/24/2026",
+  metadata: { content_type: "application/pdf", size_bytes: 120400, status: "processed", is_memory: false }
+},
+{
+  id: "5",
+  filename: "1706.03762v7.pdf",
+  contentType: "application/pdf",
+  date: "2/24/2026",
+  metadata: { content_type: "application/pdf", size_bytes: 95300, status: "processed", is_memory: false }
+},
+{
+  id: "6",
+  filename: "research.trychroma.com_context-rot.2026-02-24T06_00_11.160Z.md",
+  contentType: "text/markdown",
+  date: "2/24/2026",
+  metadata: { content_type: "text/markdown", size_bytes: 18700, status: "processed", is_memory: false }
+}];
+
 
 const graphNodes = [
-  { id: "doc", label: "Document", type: "primary" as const },
-  { id: "topic1", label: "Knowledge Graphs", type: "secondary" as const },
-  { id: "topic2", label: "RAG", type: "secondary" as const },
-  { id: "topic3", label: "LLM Context", type: "secondary" as const },
-  { id: "topic4", label: "Vector Search", type: "secondary" as const },
-];
+{ id: "doc", label: "Document", type: "primary" as const },
+{ id: "topic1", label: "Knowledge Graphs", type: "secondary" as const },
+{ id: "topic2", label: "RAG", type: "secondary" as const },
+{ id: "topic3", label: "LLM Context", type: "secondary" as const },
+{ id: "topic4", label: "Vector Search", type: "secondary" as const }];
+
 
 const graphEdges = [
-  { source: "doc", target: "topic1", label: "COVERS" },
-  { source: "doc", target: "topic2", label: "REFERENCES" },
-  { source: "topic1", target: "topic3", label: "IMPROVES" },
-  { source: "topic2", target: "topic4", label: "USES" },
-];
+{ source: "doc", target: "topic1", label: "COVERS" },
+{ source: "doc", target: "topic2", label: "REFERENCES" },
+{ source: "topic1", target: "topic3", label: "IMPROVES" },
+{ source: "topic2", target: "topic4", label: "USES" }];
+
 
 const Content = () => {
   const [isDark, setIsDark] = useState(true);
@@ -136,7 +136,7 @@ const Content = () => {
   };
 
   const filteredItems = mockItems.filter((item) =>
-    item.filename.toLowerCase().includes(filterText.toLowerCase())
+  item.filename.toLowerCase().includes(filterText.toLowerCase())
   );
 
   const getTypeLabel = (ct: string) => {
@@ -171,8 +171,8 @@ const Content = () => {
 
               {/* ─── Upload Knowledge Tab ─── */}
               <TabsContent value="upload" className="space-y-6 relative">
-                {!hasApiKey && (
-                  <div className="absolute inset-0 z-20 bg-background/60 backdrop-blur-md flex items-center justify-center rounded-xl">
+                {!hasApiKey &&
+                <div className="absolute inset-0 z-20 bg-background/60 backdrop-blur-md flex items-center justify-center rounded-xl">
                     <div className="flex flex-col items-center gap-4 text-center p-10 rounded-2xl border border-border bg-card/80 backdrop-blur-xl shadow-2xl max-w-sm">
                       <div className="w-12 h-12 rounded-full bg-muted flex items-center justify-center">
                         <Lock size={20} className="text-muted-foreground" />
@@ -186,10 +186,10 @@ const Content = () => {
                       </Button>
                     </div>
                   </div>
-                )}
+                }
 
                 <div className={!hasApiKey ? "pointer-events-none select-none" : ""}>
-                  <div className="grid grid-cols-2 gap-3 mb-6">
+                  <div className="grid grid-cols-2 gap-3 mb-6 mt-[32px]">
                     <div>
                       <label className="text-xs text-muted-foreground mb-1 block">Tenant ID</label>
                       <Input value={uploadTenantId} onChange={(e) => setUploadTenantId(e.target.value)} className="bg-card border-border" />
@@ -226,14 +226,14 @@ const Content = () => {
                       </div>
 
                       <div
-                        onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}
+                        onDragOver={(e) => {e.preventDefault();setDragOver(true);}}
                         onDragLeave={() => setDragOver(false)}
                         onDrop={handleDrop}
                         onClick={() => fileRef.current?.click()}
                         className={`border-2 border-dashed rounded-xl p-12 flex flex-col items-center justify-center gap-3 cursor-pointer transition-all ${
-                          dragOver ? "border-primary bg-primary/5" : "border-border hover:border-muted-foreground/40 bg-card/50"
-                        }`}
-                      >
+                        dragOver ? "border-primary bg-primary/5" : "border-border hover:border-muted-foreground/40 bg-card/50"}`
+                        }>
+                        
                         <CloudUpload size={36} className="text-muted-foreground" />
                         <p className="text-sm text-muted-foreground">Drag & drop files here, or click to browse</p>
                         <Button variant="outline" size="sm" className="mt-1">Choose Files</Button>
@@ -242,10 +242,10 @@ const Content = () => {
                         }} />
                       </div>
 
-                      {files.length > 0 && (
-                        <div className="space-y-2">
-                          {files.map((f, i) => (
-                            <div key={i} className="flex items-center justify-between px-4 py-2.5 rounded-lg bg-muted/50 border border-border">
+                      {files.length > 0 &&
+                      <div className="space-y-2">
+                          {files.map((f, i) =>
+                        <div key={i} className="flex items-center justify-between px-4 py-2.5 rounded-lg bg-muted/50 border border-border">
                               <div className="flex items-center gap-2 min-w-0">
                                 <FileText size={14} className="text-primary shrink-0" />
                                 <span className="text-sm text-foreground truncate">{f.name}</span>
@@ -255,13 +255,13 @@ const Content = () => {
                                 <X size={14} />
                               </button>
                             </div>
-                          ))}
+                        )}
                           <Button className="w-full mt-2 gap-2">
                             <Upload size={14} />
                             Upload {files.length} file{files.length > 1 ? "s" : ""}
                           </Button>
                         </div>
-                      )}
+                      }
                     </TabsContent>
 
                     <TabsContent value="memory" className="space-y-4">
@@ -276,8 +276,8 @@ const Content = () => {
                           onChange={(e) => setMemoryText(e.target.value)}
                           placeholder="Enter memory content..."
                           rows={6}
-                          className="bg-card border-border resize-none"
-                        />
+                          className="bg-card border-border resize-none" />
+                        
                       </div>
                       <Button className="gap-2">
                         <Upload size={14} />
@@ -316,29 +316,29 @@ const Content = () => {
                   </div>
                 </div>
 
-                {loaded && (
-                  <>
+                {loaded &&
+                <>
                     <div className="flex items-center justify-between">
                       <span className="text-sm text-muted-foreground">{filteredItems.length} items</span>
                       <div className="relative w-64">
                         <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                         <Input
-                          value={filterText}
-                          onChange={(e) => setFilterText(e.target.value)}
-                          placeholder="Filter by filename..."
-                          className="pl-9 h-9 bg-card border-border text-sm"
-                        />
+                        value={filterText}
+                        onChange={(e) => setFilterText(e.target.value)}
+                        placeholder="Filter by filename..."
+                        className="pl-9 h-9 bg-card border-border text-sm" />
+                      
                       </div>
                     </div>
 
                     <div className="space-y-3">
                       {filteredItems.map((item) => {
-                        const isExpanded = expandedId === item.id;
-                        const showGraph = graphId === item.id;
-                        const isPdf = item.contentType.includes("pdf");
+                      const isExpanded = expandedId === item.id;
+                      const showGraph = graphId === item.id;
+                      const isPdf = item.contentType.includes("pdf");
 
-                        return (
-                          <div key={item.id} className="rounded-xl border border-border bg-card overflow-hidden transition-all">
+                      return (
+                        <div key={item.id} className="rounded-xl border border-border bg-card overflow-hidden transition-all">
                             <div className="flex items-center justify-between px-5 py-4">
                               <div className="flex items-center gap-3 min-w-0">
                                 {isPdf ? <File size={18} className="text-primary shrink-0" /> : <FileText size={18} className="text-primary shrink-0" />}
@@ -362,8 +362,8 @@ const Content = () => {
                               </div>
                             </div>
 
-                            {isExpanded && (
-                              <div className="border-t border-border px-5 py-4 space-y-3">
+                            {isExpanded &&
+                          <div className="border-t border-border px-5 py-4 space-y-3">
                                 <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Document Metadata</p>
                                 <pre className="text-xs text-foreground/80 bg-muted/50 rounded-lg p-4 overflow-x-auto font-mono leading-relaxed">
                                   {JSON.stringify(item.metadata, null, 2)}
@@ -373,27 +373,27 @@ const Content = () => {
                                   Download Content
                                 </a>
                               </div>
-                            )}
+                          }
 
-                            {showGraph && (
-                              <div className="border-t border-border px-5 py-4">
+                            {showGraph &&
+                          <div className="border-t border-border px-5 py-4">
                                 <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-3">Knowledge Graph</p>
                                 <RelationGraph nodes={graphNodes} edges={graphEdges} />
                               </div>
-                            )}
-                          </div>
-                        );
-                      })}
+                          }
+                          </div>);
+
+                    })}
                     </div>
                   </>
-                )}
+                }
               </TabsContent>
             </Tabs>
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>);
+
 };
 
 export default Content;
