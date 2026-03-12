@@ -281,8 +281,8 @@ export function ComparisonPanel() {
                     {/* HydraDB Config */}
                     <div className="space-y-2">
                       <h3 className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">HydraDB Configuration</h3>
-                      <div className="space-y-2">
-                        <div className="space-y-1">
+                      <div className="flex items-center gap-3">
+                        <div className="flex-1 space-y-1">
                           <label className="text-[11px] text-muted-foreground">Top-N chunks</label>
                           <div className="flex items-center gap-3">
                             <input
@@ -292,23 +292,24 @@ export function ComparisonPanel() {
                             value={topN}
                             onChange={(e) => setTopN(parseInt(e.target.value))}
                             className="flex-1 h-1.5 accent-primary rounded-full" />
-                          
                             <span className="text-sm font-mono text-foreground w-6 text-right">{topN}</span>
                           </div>
                         </div>
-                        <button
-                        onClick={() => setGraphContext(!graphContext)}
-                        className={cn(
-                          "flex items-center gap-2 w-full px-3 py-2 rounded-lg text-xs font-medium border transition-all",
-                          graphContext ? "bg-accent text-accent-foreground border-primary/30" : "bg-chip text-muted-foreground border-chip-border hover:bg-chip-hover"
-                        )}>
-                        
-                          <Network size={12} />
-                          Graph Context
-                          <span className={cn("ml-auto text-[10px] font-bold uppercase", graphContext ? "text-primary" : "text-muted-foreground/60")}>
-                            {graphContext ? "ON" : "OFF"}
-                          </span>
-                        </button>
+                        <div className="space-y-1">
+                          <label className="text-[11px] text-muted-foreground">&nbsp;</label>
+                          <button
+                          onClick={() => setGraphContext(!graphContext)}
+                          className={cn(
+                            "flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-medium border transition-all whitespace-nowrap",
+                            graphContext ? "bg-accent text-accent-foreground border-primary/30" : "bg-chip text-muted-foreground border-chip-border hover:bg-chip-hover"
+                          )}>
+                            <Network size={12} />
+                            Graph Context
+                            <span className={cn("text-[10px] font-bold uppercase", graphContext ? "text-primary" : "text-muted-foreground/60")}>
+                              {graphContext ? "ON" : "OFF"}
+                            </span>
+                          </button>
+                        </div>
                       </div>
                     </div>
 
