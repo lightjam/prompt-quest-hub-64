@@ -156,17 +156,17 @@ export function ComparisonPanel() {
     <div className="flex-1 flex flex-col min-h-screen">
       {/* Collapsed config bar - shows when config is collapsed after compare */}
       {hasCompared && !configExpanded &&
-      <div className="border-b border-border bg-card/80 backdrop-blur-sm sticky top-0 z-20 animate-fade-in">
+      <div
+          onClick={() => setConfigExpanded(true)}
+          className="border-b border-primary/20 bg-accent/60 backdrop-blur-sm sticky top-0 z-20 animate-fade-in cursor-pointer hover:bg-accent/80 transition-colors"
+        >
           <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between gap-4">
             <div className="flex items-center gap-3 flex-1 min-w-0">
-              <button
-              onClick={() => setConfigExpanded(true)}
-              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium border border-border bg-surface-elevated hover:bg-muted transition-colors shrink-0">
-              
+              <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium border border-primary/30 bg-surface-elevated shrink-0">
                 <Settings2 size={12} />
                 Config
                 <ChevronDown size={10} />
-              </button>
+              </div>
               <div className="flex items-center gap-2 text-[11px] text-muted-foreground overflow-hidden">
                 <span className="px-2 py-0.5 rounded-md bg-muted font-mono shrink-0">{baselineMethod}</span>
                 <span className="shrink-0">vs</span>
@@ -175,7 +175,7 @@ export function ComparisonPanel() {
                 <span className="truncate">{scope}</span>
               </div>
             </div>
-            <div className="flex items-center gap-2 shrink-0">
+            <div className="flex items-center gap-2 shrink-0" onClick={(e) => e.stopPropagation()}>
               <div className="search-glow rounded-xl bg-search-bg flex items-center max-w-md">
                 <input
                 value={query}
