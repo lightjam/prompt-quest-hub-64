@@ -290,7 +290,7 @@ const Content = () => {
 
               {/* ─── Browse Knowledge Tab ─── */}
               <TabsContent value="browse" className="space-y-6">
-                <div className="grid grid-cols-[1fr_1fr_180px_auto] gap-3">
+                <div className="grid grid-cols-[1fr_1fr_180px_auto] gap-3 mt-[32px]">
                   <div>
                     <label className="text-xs text-muted-foreground mb-1 block">Tenant ID</label>
                     <Input value={browseTenantId} onChange={(e) => setBrowseTenantId(e.target.value)} className="bg-card border-border" />
