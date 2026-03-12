@@ -4,47 +4,47 @@ import { cn } from "@/lib/utils";
 import { RelationGraph } from "./RelationGraph";
 
 const examplePrompts = [
-  "What is overall accuracy of HydraDB",
-  "What is context rot",
-  "What is self-attention and how is it related to noam shazeer",
-];
+"What is overall accuracy of HydraDB",
+"What is context rot",
+"What is self-attention and how is it related to noam shazeer"];
+
 
 // Mock comparison data
 const mockStats = {
   baseline: { tokens: 64855, cost: 0.0325 },
   hydradb: { tokens: 6907, cost: 0.0036 },
   savings: 89.4,
-  fullContextChars: 259151,
+  fullContextChars: 259151
 };
 
 const mockEconomics = {
   baseline: { input: 64809, total: 64855, cost: "$0.0325" },
-  hydradb: { input: 6861, total: 6907, cost: "$0.0036" },
+  hydradb: { input: 6861, total: 6907, cost: "$0.0036" }
 };
 
 const mockBaselineChunks = [
-  {
-    id: "b1",
-    source: "foundationcapital.com",
-    title: "Context graphs: six trillion dollar opportunity",
-    url: "https://foundationcapital.com/context-graphs",
-    snippet: "Full context baseline re-sends complete source documents every query. Context graphs represent a six trillion dollar opportunity in enterprise AI...",
-  },
-  {
-    id: "b2",
-    source: "www.ibm.com",
-    title: "First testing knowledge graph 2026",
-    url: "https://www.ibm.com/knowledge-graph",
-    snippet: "Enterprise knowledge management through structured graph representations enables more accurate information retrieval across distributed systems...",
-  },
-  {
-    id: "b3",
-    source: "hydradb.pdf",
-    title: "Beyond Context Windows: Long Term Agentic Memory",
-    url: "#",
-    snippet: "HydraDB extends beyond traditional context windows by implementing persistent agentic memory systems that maintain coherence across sessions...",
-  },
-];
+{
+  id: "b1",
+  source: "foundationcapital.com",
+  title: "Context graphs: six trillion dollar opportunity",
+  url: "https://foundationcapital.com/context-graphs",
+  snippet: "Full context baseline re-sends complete source documents every query. Context graphs represent a six trillion dollar opportunity in enterprise AI..."
+},
+{
+  id: "b2",
+  source: "www.ibm.com",
+  title: "First testing knowledge graph 2026",
+  url: "https://www.ibm.com/knowledge-graph",
+  snippet: "Enterprise knowledge management through structured graph representations enables more accurate information retrieval across distributed systems..."
+},
+{
+  id: "b3",
+  source: "hydradb.pdf",
+  title: "Beyond Context Windows: Long Term Agentic Memory",
+  url: "#",
+  snippet: "HydraDB extends beyond traditional context windows by implementing persistent agentic memory systems that maintain coherence across sessions..."
+}];
+
 
 const mockHydraDBContext = `>>> ENTITY PATHS >>>
 [hydradb] → RELATED_TO → [knowledge management tasks]. HydraDB achieves 97.4% accuracy, demonstrating robust handling of contradictory or evolving user information.
@@ -54,71 +54,71 @@ const mockHydraDBContext = `>>> ENTITY PATHS >>>
 
 const mockGraphEvidence = {
   nodes: [
-    { id: "hydradb", label: "hydradb", type: "primary" as const },
-    { id: "vectorstore", label: "vectorstore", type: "secondary" as const },
-    { id: "eval", label: "evaluation area", type: "secondary" as const },
-    { id: "knowledge", label: "knowledge management", type: "secondary" as const },
-    { id: "pipeline", label: "multi-stage pipeline", type: "secondary" as const },
-    { id: "cross", label: "cross-document reasoning", type: "secondary" as const },
-    { id: "longretrieval", label: "long-horizon retrieval", type: "secondary" as const },
-    { id: "schema", label: "schema-driven query", type: "secondary" as const },
-    { id: "snowflake", label: "snowflake", type: "secondary" as const },
-  ],
+  { id: "hydradb", label: "hydradb", type: "primary" as const },
+  { id: "vectorstore", label: "vectorstore", type: "secondary" as const },
+  { id: "eval", label: "evaluation area", type: "secondary" as const },
+  { id: "knowledge", label: "knowledge management", type: "secondary" as const },
+  { id: "pipeline", label: "multi-stage pipeline", type: "secondary" as const },
+  { id: "cross", label: "cross-document reasoning", type: "secondary" as const },
+  { id: "longretrieval", label: "long-horizon retrieval", type: "secondary" as const },
+  { id: "schema", label: "schema-driven query", type: "secondary" as const },
+  { id: "snowflake", label: "snowflake", type: "secondary" as const }],
+
   edges: [
-    { source: "hydradb", target: "knowledge", label: "RELATED_TO" },
-    { source: "hydradb", target: "eval", label: "MAINTAINS" },
-    { source: "hydradb", target: "pipeline", label: "USES_TOOL" },
-    { source: "hydradb", target: "vectorstore", label: "RELATED_TO" },
-    { source: "hydradb", target: "cross", label: "RELATED_TO" },
-    { source: "pipeline", target: "schema", label: "INCLUDES" },
-    { source: "pipeline", target: "snowflake", label: "INCLUDES" },
-    { source: "hydradb", target: "longretrieval", label: "RELATED_TO" },
-  ],
+  { source: "hydradb", target: "knowledge", label: "RELATED_TO" },
+  { source: "hydradb", target: "eval", label: "MAINTAINS" },
+  { source: "hydradb", target: "pipeline", label: "USES_TOOL" },
+  { source: "hydradb", target: "vectorstore", label: "RELATED_TO" },
+  { source: "hydradb", target: "cross", label: "RELATED_TO" },
+  { source: "pipeline", target: "schema", label: "INCLUDES" },
+  { source: "pipeline", target: "snowflake", label: "INCLUDES" },
+  { source: "hydradb", target: "longretrieval", label: "RELATED_TO" }]
+
 };
 
 const mockDirectRelations = [
-  { source: "hydradb", relation: "RELATED_TO", target: "knowledge update tasks" },
-  { source: "hydradb", relation: "RELATED_TO", target: "knowledge update tasks" },
-  { source: "hydradb", relation: "MAINTAINS", target: "evaluation area" },
-  { source: "hydradb", relation: "USES_TOOL", target: "multi-stage pipeline" },
-];
+{ source: "hydradb", relation: "RELATED_TO", target: "knowledge update tasks" },
+{ source: "hydradb", relation: "RELATED_TO", target: "knowledge update tasks" },
+{ source: "hydradb", relation: "MAINTAINS", target: "evaluation area" },
+{ source: "hydradb", relation: "USES_TOOL", target: "multi-stage pipeline" }];
+
 
 const mockChainNodes = [
-  { id: "hydradb2", label: "hydradb", type: "primary" as const },
-  { id: "accuracy", label: "overall accuracy", type: "secondary" as const },
-  { id: "longret", label: "long-horizon retrieval", type: "secondary" as const },
-  { id: "prefext", label: "preference extraction", type: "secondary" as const },
-  { id: "tempstate", label: "temporal state tracking", type: "secondary" as const },
-  { id: "evalarea", label: "evaluation area", type: "secondary" as const },
-  { id: "benchground", label: "benchground", type: "secondary" as const },
-  { id: "asstrecall", label: "assistant recall", type: "secondary" as const },
-];
+{ id: "hydradb2", label: "hydradb", type: "primary" as const },
+{ id: "accuracy", label: "overall accuracy", type: "secondary" as const },
+{ id: "longret", label: "long-horizon retrieval", type: "secondary" as const },
+{ id: "prefext", label: "preference extraction", type: "secondary" as const },
+{ id: "tempstate", label: "temporal state tracking", type: "secondary" as const },
+{ id: "evalarea", label: "evaluation area", type: "secondary" as const },
+{ id: "benchground", label: "benchground", type: "secondary" as const },
+{ id: "asstrecall", label: "assistant recall", type: "secondary" as const }];
+
 
 const mockChainEdges = [
-  { source: "hydradb2", target: "accuracy", label: "RELATED_TO" },
-  { source: "hydradb2", target: "evalarea", label: "MAINTAINS" },
-  { source: "hydradb2", target: "benchground", label: "RELATED_TO" },
-  { source: "accuracy", target: "longret", label: "RELATED_TO" },
-  { source: "accuracy", target: "prefext", label: "RELATED_TO" },
-  { source: "accuracy", target: "tempstate", label: "RELATED_TO" },
-  { source: "evalarea", target: "asstrecall", label: "INCLUDES" },
-];
+{ source: "hydradb2", target: "accuracy", label: "RELATED_TO" },
+{ source: "hydradb2", target: "evalarea", label: "MAINTAINS" },
+{ source: "hydradb2", target: "benchground", label: "RELATED_TO" },
+{ source: "accuracy", target: "longret", label: "RELATED_TO" },
+{ source: "accuracy", target: "prefext", label: "RELATED_TO" },
+{ source: "accuracy", target: "tempstate", label: "RELATED_TO" },
+{ source: "evalarea", target: "asstrecall", label: "INCLUDES" }];
+
 
 const mockChainRelations = [
-  { source: "hydradb", relation: "RELATED_TO", target: "benchground" },
-  { source: "cross-model evaluations", relation: "RELATED_TO", target: "hydradb" },
-  { source: "hydradb", relation: "RELATED_TO", target: "benchground" },
-  { source: "hydradb", relation: "MAINTAINS", target: "evaluation area" },
-  { source: "hydradb", relation: "RELATED_TO", target: "benchground" },
-];
+{ source: "hydradb", relation: "RELATED_TO", target: "benchground" },
+{ source: "cross-model evaluations", relation: "RELATED_TO", target: "hydradb" },
+{ source: "hydradb", relation: "RELATED_TO", target: "benchground" },
+{ source: "hydradb", relation: "MAINTAINS", target: "evaluation area" },
+{ source: "hydradb", relation: "RELATED_TO", target: "benchground" }];
+
 
 const mockHydraDBChunks = [
-  {
-    id: "cc1",
-    score: 0.827,
-    content: "This analysis tests a central architectural hypothesis: that effective memory system design should reduce dependence on raw model capacity by ensuring the properly structured context and skill modules are available. We emphasize that it was crucial to show clearly if HydraDB exceeds downstream models rather than a competitive model comparison. API Reference Configuration: Current 0.2 Pro, As mentioned in Section 3.2.1, HydraDB achieves 0.9797 accuracy...",
-  },
-];
+{
+  id: "cc1",
+  score: 0.827,
+  content: "This analysis tests a central architectural hypothesis: that effective memory system design should reduce dependence on raw model capacity by ensuring the properly structured context and skill modules are available. We emphasize that it was crucial to show clearly if HydraDB exceeds downstream models rather than a competitive model comparison. API Reference Configuration: Current 0.2 Pro, As mentioned in Section 3.2.1, HydraDB achieves 0.9797 accuracy..."
+}];
+
 
 export function ComparisonPanel() {
   const [query, setQuery] = useState("");
@@ -155,14 +155,14 @@ export function ComparisonPanel() {
   return (
     <div className="flex-1 flex flex-col min-h-screen">
       {/* Collapsed config bar - shows when config is collapsed after compare */}
-      {hasCompared && !configExpanded && (
-        <div className="border-b border-border bg-card/80 backdrop-blur-sm sticky top-0 z-20 animate-fade-in">
+      {hasCompared && !configExpanded &&
+      <div className="border-b border-border bg-card/80 backdrop-blur-sm sticky top-0 z-20 animate-fade-in">
           <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between gap-4">
             <div className="flex items-center gap-3 flex-1 min-w-0">
               <button
-                onClick={() => setConfigExpanded(true)}
-                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium border border-border bg-surface-elevated hover:bg-muted transition-colors shrink-0"
-              >
+              onClick={() => setConfigExpanded(true)}
+              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium border border-border bg-surface-elevated hover:bg-muted transition-colors shrink-0">
+              
                 <Settings2 size={12} />
                 Config
                 <ChevronDown size={10} />
@@ -178,17 +178,17 @@ export function ComparisonPanel() {
             <div className="flex items-center gap-2 shrink-0">
               <div className="search-glow rounded-xl bg-search-bg flex items-center max-w-md">
                 <input
-                  value={query}
-                  onChange={(e) => setQuery(e.target.value)}
-                  onKeyDown={handleKeyDown}
-                  placeholder="Enter query..."
-                  className="flex-1 bg-transparent px-3 py-2 text-sm text-foreground placeholder:text-search-placeholder focus:outline-none min-w-[200px]"
-                />
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                onKeyDown={handleKeyDown}
+                placeholder="Enter query..."
+                className="flex-1 bg-transparent px-3 py-2 text-sm text-foreground placeholder:text-search-placeholder focus:outline-none min-w-[200px]" />
+              
                 <button
-                  onClick={handleCompare}
-                  className="flex items-center gap-1.5 px-3 py-1.5 mr-1 rounded-lg bg-primary text-primary-foreground font-medium text-xs hover:opacity-90 transition-opacity disabled:opacity-40"
-                  disabled={!query.trim()}
-                >
+                onClick={handleCompare}
+                className="flex items-center gap-1.5 px-3 py-1.5 mr-1 rounded-lg bg-primary text-primary-foreground font-medium text-xs hover:opacity-90 transition-opacity disabled:opacity-40"
+                disabled={!query.trim()}>
+                
                   Compare
                   <ArrowUp size={12} />
                 </button>
@@ -196,7 +196,7 @@ export function ComparisonPanel() {
             </div>
           </div>
         </div>
-      )}
+      }
 
       {/* Main content area */}
       <div className={cn(
@@ -204,15 +204,15 @@ export function ComparisonPanel() {
         hasCompared && !configExpanded ? "pt-2" : ""
       )}>
         {/* Config + Prompt area (expandable) */}
-        {configExpanded && (
-          <div className={cn(
-            "w-full",
-            !hasCompared ? "min-h-screen flex items-center" : ""
-          )}>
+        {configExpanded &&
+        <div className={cn(
+          "w-full",
+          !hasCompared ? "min-h-screen flex items-center" : ""
+        )}>
             <div className="w-full max-w-7xl mx-auto px-6 py-8">
               {/* Header */}
-              {!hasCompared && (
-                <div className="text-center space-y-2 mb-8">
+              {!hasCompared &&
+            <div className="text-center space-y-2 mb-8">
                   <h1 className="font-display text-3xl font-bold tracking-tight text-foreground">
                     HydraDB vs Traditional Retrieval
                   </h1>
@@ -220,7 +220,7 @@ export function ComparisonPanel() {
                     Compare HydraDB's graph-augmented smart retrieval against full-context baselines. See the difference in cost, tokens, and quality.
                   </p>
                 </div>
-              )}
+            }
 
               {/* Two-panel layout: Config left, Prompt right */}
               <div className="flex flex-col lg:flex-row gap-6">
@@ -231,15 +231,15 @@ export function ComparisonPanel() {
                       <Settings2 size={12} />
                       Configuration
                     </h2>
-                    {hasCompared && (
-                      <button
-                        onClick={() => setConfigExpanded(false)}
-                        className="flex items-center gap-1 px-2 py-1 rounded-md text-[10px] text-muted-foreground hover:text-foreground border border-border hover:bg-muted transition-colors"
-                      >
+                    {hasCompared &&
+                  <button
+                    onClick={() => setConfigExpanded(false)}
+                    className="flex items-center gap-1 px-2 py-1 rounded-md text-[10px] text-muted-foreground hover:text-foreground border border-border hover:bg-muted transition-colors">
+                    
                         Collapse
                         <ChevronUp size={10} />
                       </button>
-                    )}
+                  }
                   </div>
 
                   {/* All config sections in one card */}
@@ -262,11 +262,11 @@ export function ComparisonPanel() {
                         <div className="space-y-1">
                           <label className="text-[11px] text-muted-foreground">Scope type</label>
                           <div className="flex gap-1.5">
-                            {["Knowledge", "Memories"].map((t) => (
-                              <button key={t} onClick={() => setSearchType(t)} className={cn("px-2.5 py-1 rounded-lg text-[11px] font-medium border transition-all", t === searchType ? "bg-accent text-accent-foreground border-primary/30" : "bg-chip text-muted-foreground border-chip-border hover:bg-chip-hover")}>
+                            {["Knowledge", "Memories"].map((t) =>
+                          <button key={t} onClick={() => setSearchType(t)} className={cn("px-2.5 py-1 rounded-lg text-[11px] font-medium border transition-all", t === searchType ? "bg-accent text-accent-foreground border-primary/30" : "bg-chip text-muted-foreground border-chip-border hover:bg-chip-hover")}>
                                 {t}
                               </button>
-                            ))}
+                          )}
                           </div>
                         </div>
                         <div className="space-y-1">
@@ -286,23 +286,23 @@ export function ComparisonPanel() {
                           <label className="text-[11px] text-muted-foreground">Top-N chunks</label>
                           <div className="flex items-center gap-3">
                             <input
-                              type="range"
-                              min={1}
-                              max={20}
-                              value={topN}
-                              onChange={(e) => setTopN(parseInt(e.target.value))}
-                              className="flex-1 h-1.5 accent-primary rounded-full"
-                            />
+                            type="range"
+                            min={1}
+                            max={20}
+                            value={topN}
+                            onChange={(e) => setTopN(parseInt(e.target.value))}
+                            className="flex-1 h-1.5 accent-primary rounded-full" />
+                          
                             <span className="text-sm font-mono text-foreground w-6 text-right">{topN}</span>
                           </div>
                         </div>
                         <button
-                          onClick={() => setGraphContext(!graphContext)}
-                          className={cn(
-                            "flex items-center gap-2 w-full px-3 py-2 rounded-lg text-xs font-medium border transition-all",
-                            graphContext ? "bg-accent text-accent-foreground border-primary/30" : "bg-chip text-muted-foreground border-chip-border hover:bg-chip-hover"
-                          )}
-                        >
+                        onClick={() => setGraphContext(!graphContext)}
+                        className={cn(
+                          "flex items-center gap-2 w-full px-3 py-2 rounded-lg text-xs font-medium border transition-all",
+                          graphContext ? "bg-accent text-accent-foreground border-primary/30" : "bg-chip text-muted-foreground border-chip-border hover:bg-chip-hover"
+                        )}>
+                        
                           <Network size={12} />
                           Graph Context
                           <span className={cn("ml-auto text-[10px] font-bold uppercase", graphContext ? "text-primary" : "text-muted-foreground/60")}>
@@ -341,7 +341,7 @@ export function ComparisonPanel() {
                   </div>
 
                   <div className="flex flex-col flex-1">
-                    <div className="flex-1 flex flex-col items-center justify-center space-y-4">
+                    <div className="flex-1 flex-col space-y-4 flex items-center justify-start">
                       {/* System Prompt Info */}
                       <div className="w-full rounded-xl border border-border bg-surface-elevated overflow-hidden">
                         <div className="px-4 py-2.5 border-b border-border flex items-center justify-between">
@@ -364,19 +364,19 @@ export function ComparisonPanel() {
                           <span className="text-[10px] text-muted-foreground/60">Press Enter to compare</span>
                         </div>
                         <textarea
-                          value={query}
-                          onChange={(e) => setQuery(e.target.value)}
-                          onKeyDown={handleKeyDown}
-                          placeholder="Enter a query to compare retrieval methods..."
-                          rows={4}
-                          className="w-full resize-none bg-transparent px-4 py-3 text-foreground placeholder:text-search-placeholder focus:outline-none text-sm"
-                        />
+                        value={query}
+                        onChange={(e) => setQuery(e.target.value)}
+                        onKeyDown={handleKeyDown}
+                        placeholder="Enter a query to compare retrieval methods..."
+                        rows={4}
+                        className="w-full resize-none bg-transparent px-4 py-3 text-foreground placeholder:text-search-placeholder focus:outline-none text-sm" />
+                      
                         <div className="px-4 py-3 border-t border-border flex items-center justify-end">
                           <button
-                            onClick={handleCompare}
-                            className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-primary-foreground font-medium text-sm hover:opacity-90 transition-opacity disabled:opacity-40"
-                            disabled={!query.trim()}
-                          >
+                          onClick={handleCompare}
+                          className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-primary-foreground font-medium text-sm hover:opacity-90 transition-opacity disabled:opacity-40"
+                          disabled={!query.trim()}>
+                          
                             Compare
                             <ArrowUp size={16} />
                           </button>
@@ -384,39 +384,39 @@ export function ComparisonPanel() {
                       </div>
 
                       {/* Example Prompts */}
-                      {!hasCompared && (
-                        <div className="w-full pt-2">
+                      {!hasCompared &&
+                    <div className="w-full pt-2">
                           <p className="text-[11px] text-muted-foreground mb-2">Try an example</p>
                           <div className="flex flex-wrap gap-2">
-                            {examplePrompts.map((p) => (
-                              <button key={p} onClick={() => handleExampleClick(p)} className="group flex items-center gap-1.5 px-4 py-2 rounded-xl border border-chip-border bg-chip text-sm text-muted-foreground hover:bg-chip-hover hover:text-foreground hover:border-primary/30 transition-all duration-200">
+                            {examplePrompts.map((p) =>
+                        <button key={p} onClick={() => handleExampleClick(p)} className="group flex items-center gap-1.5 px-4 py-2 rounded-xl border border-chip-border bg-chip text-sm text-muted-foreground hover:bg-chip-hover hover:text-foreground hover:border-primary/30 transition-all duration-200">
                                 {p}
                               </button>
-                            ))}
+                        )}
                           </div>
                         </div>
-                      )}
+                    }
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        )}
+        }
 
         {/* Results */}
-        {hasCompared && (
-          <div className="max-w-7xl mx-auto px-6 pb-8">
+        {hasCompared &&
+        <div className="max-w-7xl mx-auto px-6 pb-8">
             <ComparisonResults topN={topN} graphContext={graphContext} baselineMethod={baselineMethod} />
           </div>
-        )}
+        }
       </div>
-    </div>
-  );
+    </div>);
+
 }
 
 // ─── Results ───
-function ComparisonResults({ topN, graphContext, baselineMethod }: { topN: number; graphContext: boolean; baselineMethod: string }) {
+function ComparisonResults({ topN, graphContext, baselineMethod }: {topN: number;graphContext: boolean;baselineMethod: string;}) {
   return (
     <div className="space-y-6 animate-fade-in">
       {/* Unified Comparison Stats */}
@@ -531,15 +531,15 @@ function ComparisonResults({ topN, graphContext, baselineMethod }: { topN: numbe
             <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-1.5">
               <Layers size={12} /> Returned chunks / snippets
             </h4>
-            {mockBaselineChunks.map((chunk) => (
-              <div key={chunk.id} className="rounded-lg border border-border/60 bg-muted/30 p-3 space-y-1.5">
+            {mockBaselineChunks.map((chunk) =>
+            <div key={chunk.id} className="rounded-lg border border-border/60 bg-muted/30 p-3 space-y-1.5">
                 <div className="flex items-center gap-2">
                   <span className="text-[11px] font-medium text-primary truncate">{chunk.source}</span>
                 </div>
                 <p className="text-xs font-medium text-foreground">{chunk.title}</p>
                 <p className="text-[11px] text-muted-foreground leading-relaxed line-clamp-3">{chunk.snippet}</p>
               </div>
-            ))}
+            )}
           </div>
         </div>
 
@@ -569,8 +569,8 @@ function ComparisonResults({ topN, graphContext, baselineMethod }: { topN: numbe
           <HydraDBRetrievedChunks />
         </div>
       </div>
-    </div>
-  );
+    </div>);
+
 }
 
 function HydraDBContextSection() {
@@ -595,8 +595,8 @@ function HydraDBContextSection() {
       <pre className="text-[11px] text-muted-foreground whitespace-pre-wrap font-mono leading-relaxed max-h-48 overflow-y-auto">
         {mockHydraDBContext}
       </pre>
-    </div>
-  );
+    </div>);
+
 }
 
 function HydraDBGraphEvidence() {
@@ -613,18 +613,18 @@ function HydraDBGraphEvidence() {
       </div>
       <RelationGraph nodes={mockGraphEvidence.nodes} edges={mockGraphEvidence.edges} />
       <div className="space-y-1.5">
-        {mockDirectRelations.map((rel, i) => (
-          <div key={i} className="flex items-center gap-2 text-[11px]">
+        {mockDirectRelations.map((rel, i) =>
+        <div key={i} className="flex items-center gap-2 text-[11px]">
             <span className="px-2 py-0.5 rounded-md bg-primary/10 text-primary font-medium">{rel.source}</span>
             <span className="text-muted-foreground font-mono">—</span>
             <span className="px-1.5 py-0.5 rounded-md bg-muted text-muted-foreground font-mono text-[10px]">{rel.relation}</span>
             <span className="text-muted-foreground font-mono">—</span>
             <span className="text-foreground font-medium">{rel.target}</span>
           </div>
-        ))}
+        )}
       </div>
-    </div>
-  );
+    </div>);
+
 }
 
 function HydraDBChainRelations() {
@@ -635,18 +635,18 @@ function HydraDBChainRelations() {
       </h4>
       <RelationGraph nodes={mockChainNodes} edges={mockChainEdges} />
       <div className="space-y-1.5">
-        {mockChainRelations.map((rel, i) => (
-          <div key={i} className="flex items-center gap-2 text-[11px]">
+        {mockChainRelations.map((rel, i) =>
+        <div key={i} className="flex items-center gap-2 text-[11px]">
             <span className="px-2 py-0.5 rounded-md bg-primary/10 text-primary font-medium">{rel.source}</span>
             <span className="text-muted-foreground font-mono">—</span>
             <span className="px-1.5 py-0.5 rounded-md bg-muted text-muted-foreground font-mono text-[10px]">{rel.relation}</span>
             <span className="text-muted-foreground font-mono">—</span>
             <span className="text-foreground font-medium">{rel.target}</span>
           </div>
-        ))}
+        )}
       </div>
-    </div>
-  );
+    </div>);
+
 }
 
 function HydraDBRetrievedChunks() {
@@ -655,8 +655,8 @@ function HydraDBRetrievedChunks() {
       <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-1.5">
         <Layers size={12} /> Retrieved Chunks (HydraDB)
       </h4>
-      {mockHydraDBChunks.map((chunk) => (
-        <div key={chunk.id} className="rounded-lg border border-border/60 bg-muted/30 p-3 space-y-1.5">
+      {mockHydraDBChunks.map((chunk) =>
+      <div key={chunk.id} className="rounded-lg border border-border/60 bg-muted/30 p-3 space-y-1.5">
           <div className="flex items-center justify-between">
             <span className="text-[11px] text-muted-foreground">Chunk</span>
             <span className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-primary/10 text-primary font-semibold">
@@ -665,23 +665,23 @@ function HydraDBRetrievedChunks() {
           </div>
           <p className="text-[11px] text-muted-foreground leading-relaxed">{chunk.content}</p>
         </div>
-      ))}
-    </div>
-  );
+      )}
+    </div>);
+
 }
 
 // Scope dropdown with document-like items
 const scopeItems = [
-  "All knowledge",
-  "foundationcapital.com_context-graphs-ais-trillion-dollar-opportunity_.2026-02-26T01_48_37.859Z.md",
-  "www.ibm.com_think_topics_knowledge-graph.2026-02-26T01_34_53.127Z.md",
-  "hydradb.pdf",
-  "lost-in-middle-how-llms-use-long-context.pdf",
-  "1706.03762v7.pdf",
-  "research.trychroma.com_context-rot.2026-02-24T06_00_11.160Z.md",
-];
+"All knowledge",
+"foundationcapital.com_context-graphs-ais-trillion-dollar-opportunity_.2026-02-26T01_48_37.859Z.md",
+"www.ibm.com_think_topics_knowledge-graph.2026-02-26T01_34_53.127Z.md",
+"hydradb.pdf",
+"lost-in-middle-how-llms-use-long-context.pdf",
+"1706.03762v7.pdf",
+"research.trychroma.com_context-rot.2026-02-24T06_00_11.160Z.md"];
 
-function ScopeDropdown({ value, onChange }: { value: string; onChange: (v: string) => void }) {
+
+function ScopeDropdown({ value, onChange }: {value: string;onChange: (v: string) => void;}) {
   const [open, setOpen] = useState(false);
   return (
     <div className="relative">
@@ -689,22 +689,22 @@ function ScopeDropdown({ value, onChange }: { value: string; onChange: (v: strin
         <span className="truncate">{value}</span>
         <ChevronDown size={12} className={cn("transition-transform shrink-0", open && "rotate-180")} />
       </button>
-      {open && (
-        <div className="absolute top-full left-0 mt-1 bg-surface-elevated border border-border rounded-lg shadow-lg py-1 z-50 w-[420px] max-h-64 overflow-y-auto animate-fade-in">
+      {open &&
+      <div className="absolute top-full left-0 mt-1 bg-surface-elevated border border-border rounded-lg shadow-lg py-1 z-50 w-[420px] max-h-64 overflow-y-auto animate-fade-in">
           <p className="px-3 py-1.5 text-[10px] text-muted-foreground uppercase tracking-wider font-medium">Talk to specific item</p>
-          {scopeItems.map((opt) => (
-            <button key={opt} onClick={() => { onChange(opt); setOpen(false); }} className={cn("flex items-center justify-between w-full text-left px-3 py-2 text-xs transition-colors", opt === value ? "text-primary font-medium bg-accent" : "text-foreground hover:bg-muted")}>
+          {scopeItems.map((opt) =>
+        <button key={opt} onClick={() => {onChange(opt);setOpen(false);}} className={cn("flex items-center justify-between w-full text-left px-3 py-2 text-xs transition-colors", opt === value ? "text-primary font-medium bg-accent" : "text-foreground hover:bg-muted")}>
               <span className="truncate">{opt}</span>
               {opt === value && <Check size={14} className="text-primary shrink-0 ml-2" />}
             </button>
-          ))}
+        )}
         </div>
-      )}
-    </div>
-  );
+      }
+    </div>);
+
 }
 
-function ChipSelect({ value, options, onChange }: { value: string; options: string[]; onChange: (v: string) => void }) {
+function ChipSelect({ value, options, onChange }: {value: string;options: string[];onChange: (v: string) => void;}) {
   const [open, setOpen] = useState(false);
   return (
     <div className="relative">
@@ -712,15 +712,15 @@ function ChipSelect({ value, options, onChange }: { value: string; options: stri
         {value}
         <ChevronDown size={12} className={cn("transition-transform", open && "rotate-180")} />
       </button>
-      {open && (
-        <div className="absolute top-full left-0 mt-1 bg-surface-elevated border border-border rounded-lg shadow-lg py-1 z-50 w-full animate-fade-in">
-          {options.map((opt) => (
-            <button key={opt} onClick={() => { onChange(opt); setOpen(false); }} className={cn("block w-full text-left px-3 py-1.5 text-xs transition-colors", opt === value ? "text-primary font-medium bg-accent" : "text-foreground hover:bg-muted")}>
+      {open &&
+      <div className="absolute top-full left-0 mt-1 bg-surface-elevated border border-border rounded-lg shadow-lg py-1 z-50 w-full animate-fade-in">
+          {options.map((opt) =>
+        <button key={opt} onClick={() => {onChange(opt);setOpen(false);}} className={cn("block w-full text-left px-3 py-1.5 text-xs transition-colors", opt === value ? "text-primary font-medium bg-accent" : "text-foreground hover:bg-muted")}>
               {opt}
             </button>
-          ))}
+        )}
         </div>
-      )}
-    </div>
-  );
+      }
+    </div>);
+
 }
