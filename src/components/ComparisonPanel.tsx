@@ -343,26 +343,26 @@ export function ComparisonPanel() {
                   <div className="flex flex-col flex-1">
                     <div className="flex-1 flex-col space-y-4 flex items-center justify-start">
                       {/* System Prompt Info */}
-                      
-
-
-
-
-
-
-
-
-
-
-
-                    
+                      <div className="w-full rounded-xl border border-border bg-surface-elevated overflow-hidden">
+                        <div className="px-4 py-2.5 border-b border-border flex items-center justify-between">
+                          <span className="text-xs font-medium text-muted-foreground">System Prompt</span>
+                          <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                            <span className="px-2 py-0.5 rounded-md bg-muted font-mono">{baselineMethod}</span>
+                            <span>vs</span>
+                            <span className="px-2 py-0.5 rounded-md bg-accent text-accent-foreground font-medium">HydraDB</span>
+                          </div>
+                        </div>
+                        <div className="px-4 py-2 text-[11px] text-muted-foreground">
+                          Compare retrieval methods side-by-side with Top-{topN} chunks, Graph {graphContext ? "ON" : "OFF"}
+                        </div>
+                      </div>
 
                       {/* User Query with Compare button inside */}
                       <div className="w-full rounded-xl border-2 border-primary/40 bg-surface-elevated overflow-hidden shadow-[0_0_15px_-3px_hsl(var(--primary)/0.15)]">
-                        
-
-
-                      
+                        <div className="px-4 py-2.5 border-b border-border flex items-center justify-between">
+                          <span className="text-xs font-medium text-muted-foreground">User Query</span>
+                          <span className="text-[10px] text-muted-foreground/60">Press Enter to compare</span>
+                        </div>
                         <textarea
                         value={query}
                         onChange={(e) => setQuery(e.target.value)}
@@ -371,16 +371,16 @@ export function ComparisonPanel() {
                         rows={4}
                         className="w-full resize-none bg-transparent px-4 py-3 text-foreground placeholder:text-search-placeholder focus:outline-none text-sm" />
                       
-                        
-
-
-
-
-
-
-
-
-                      
+                        <div className="px-4 py-3 border-t border-border flex items-center justify-end">
+                          <button
+                          onClick={handleCompare}
+                          className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-primary-foreground font-medium text-sm hover:opacity-90 transition-opacity disabled:opacity-40"
+                          disabled={!query.trim()}>
+                          
+                            Compare
+                            <ArrowUp size={16} />
+                          </button>
+                        </div>
                       </div>
 
                       {/* Example Prompts */}
