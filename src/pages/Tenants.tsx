@@ -6,11 +6,12 @@ import { Button } from "@/components/ui/button";
 import { useApiKey } from "@/context/ApiKeyContext";
 import { useNavigate } from "react-router-dom";
 
-interface TenantStatus {
-  tenantId: string;
-  status: "provisioning" | "ready";
-  components: { name: string; status: string }[];
-}
+const INFRA_COMPONENTS = [
+  { name: "Task Scheduler", status: "Provisioned" },
+  { name: "Graph Database", status: "Provisioned" },
+  { name: "Context Store", status: "Provisioned" },
+  { name: "Memory Store", status: "Provisioned" },
+];
 
 const Tenants = () => {
   const [isDark, setIsDark] = useState(true);
@@ -18,7 +19,7 @@ const Tenants = () => {
   const navigate = useNavigate();
   const [newTenantId, setNewTenantId] = useState("");
   const [tenants, setTenants] = useState<string[]>([]);
-  const [activeTenantStatus, setActiveTenantStatus] = useState<TenantStatus | null>(null);
+  const [expandedTenants, setExpandedTenants] = useState<Set<string>>(new Set());
 
   const toggleTheme = () => {
     setIsDark(!isDark);
