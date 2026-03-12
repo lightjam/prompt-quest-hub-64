@@ -219,10 +219,10 @@ const Content = () => {
                       
 
                       <div className="flex justify-end">
-                        <a href="/upload-docs" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-xs text-primary hover:underline">
-                          <ExternalLink size={12} />
-                          API Reference: Upload Knowledge
-                        </a>
+                        
+
+
+                        
                       </div>
 
                       <div
