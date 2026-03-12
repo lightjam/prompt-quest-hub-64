@@ -203,7 +203,7 @@ const Content = () => {
                   <Tabs value={uploadTab} onValueChange={setUploadTab} className="mb-6">
                     <TabsList>
                       <TabsTrigger value="upload">Upload Knowledge</TabsTrigger>
-                      <TabsTrigger value="memory">Add Memory</TabsTrigger>
+                      <TabsTrigger value="memory">Upload Memory</TabsTrigger>
                     </TabsList>
 
                     <TabsContent value="upload" className="space-y-4">
