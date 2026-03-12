@@ -216,9 +216,9 @@ export function ComparisonPanel() {
                   <h1 className="font-display text-3xl font-bold tracking-tight text-foreground">
                     HydraDB vs Traditional Retrieval
                   </h1>
-                  <p className="text-muted-foreground text-base max-w-xl mx-auto">
-                    Compare HydraDB's graph-augmented smart retrieval against full-context baselines. See the difference in cost, tokens, and quality.
-                  </p>
+                  
+
+              
                 </div>
             }
 
