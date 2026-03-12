@@ -277,7 +277,8 @@ export function ComparisonPanel() {
                       </div>
                     </div>
 
-                    <div className="border-t border-border" />
+
+
 
                     {/* HydraDB Config */}
                     <div className="space-y-2">
