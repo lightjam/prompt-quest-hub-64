@@ -253,12 +253,13 @@ export function ComparisonPanel() {
                       </div>
                     </div>
 
-                    <div className="border-t border-border" />
+
+
 
                     {/* Source / Scope */}
                     <div className="space-y-2">
                       <h3 className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">Source / Memory Scope</h3>
-                      <div className="space-y-2">
+                      <div className="flex items-start gap-4">
                         <div className="space-y-1">
                           <label className="text-[11px] text-muted-foreground">Scope type</label>
                           <div className="flex gap-1.5">
@@ -269,14 +270,15 @@ export function ComparisonPanel() {
                           )}
                           </div>
                         </div>
-                        <div className="space-y-1">
+                        <div className="flex-1 space-y-1">
                           <label className="text-[11px] text-muted-foreground">Scope</label>
                           <ScopeDropdown value={scope} onChange={setScope} />
                         </div>
                       </div>
                     </div>
 
-                    <div className="border-t border-border" />
+
+
 
                     {/* HydraDB Config */}
                     <div className="space-y-2">
@@ -313,7 +315,7 @@ export function ComparisonPanel() {
                       </div>
                     </div>
 
-                    <div className="border-t border-border" />
+                    
 
                     {/* Tenant IDs */}
                     <div className="space-y-2">
