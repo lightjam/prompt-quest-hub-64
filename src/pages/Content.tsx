@@ -207,16 +207,16 @@ const Content = () => {
                     </TabsList>
 
                     <TabsContent value="upload" className="space-y-4">
-                      <div className="flex items-start gap-3 p-4 rounded-lg border border-amber-500/30 bg-amber-500/5">
-                        <AlertTriangle size={16} className="text-amber-500 shrink-0 mt-0.5" />
-                        <p className="text-sm text-foreground/80">
-                          You need to add your own API key to upload new knowledge. Please visit{" "}
-                          <a href="https://usehydradb.ai" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
-                            usehydradb.ai
-                          </a>{" "}
-                          to get your API keys.
-                        </p>
-                      </div>
+                      
+
+
+
+
+
+
+
+
+                      
 
                       <div className="flex justify-end">
                         <a href="/upload-docs" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-xs text-primary hover:underline">
