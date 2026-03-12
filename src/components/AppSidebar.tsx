@@ -11,7 +11,7 @@ interface SidebarItem {
 
 const items: SidebarItem[] = [
   { icon: BarChart3, label: "Comparison", path: "/comparison" },
-  { icon: BookOpen, label: "Content", path: "/content" },
+  { icon: BookOpen, label: "Context", path: "/content" },
   { icon: Users, label: "Tenants", path: "/tenants" },
   { icon: Settings, label: "API Settings", path: "/settings" },
 ];

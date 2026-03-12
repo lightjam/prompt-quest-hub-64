@@ -161,7 +161,7 @@ const Content = () => {
 
         <div className="flex-1 flex flex-col items-center px-6 py-8 min-h-screen">
           <div className="w-full max-w-5xl space-y-6 animate-fade-in">
-            <h1 className="text-2xl font-display font-bold text-foreground mb-2">Content</h1>
+            <h1 className="text-2xl font-display font-bold text-foreground mb-2">Context</h1>
 
             <Tabs defaultValue="upload" className="w-full">
               <TabsList className="bg-card border border-border p-1 rounded-xl shadow-md">
