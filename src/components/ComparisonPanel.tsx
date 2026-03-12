@@ -343,7 +343,7 @@ export function ComparisonPanel() {
                   <div className="flex flex-col flex-1">
                     <div className="flex-1 flex-col space-y-4 flex items-center justify-start">
                       {/* User Query with Compare button inside */}
-                      <div className="w-full rounded-xl border-2 border-primary/40 bg-surface-elevated overflow-hidden shadow-[0_0_15px_-3px_hsl(var(--primary)/0.15)]">
+                      <div className="w-full rounded-xl border-2 border-[hsl(217,91%,60%)] bg-transparent overflow-hidden shadow-[0_0_20px_-3px_hsl(217,91%,60%,0.25)]">
                         <div className="px-4 py-2.5 border-b border-border flex items-center justify-between">
                           <span className="text-xs font-medium text-muted-foreground">User Query</span>
                           <span className="text-[10px] text-muted-foreground/60">Press Enter to compare</span>
