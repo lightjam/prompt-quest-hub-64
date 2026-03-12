@@ -6,8 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ApiKeyProvider } from "@/context/ApiKeyContext";
 import Index from "./pages/Index";
 import Comparison from "./pages/Comparison";
-import BrowseKnowledge from "./pages/BrowseKnowledge";
-import UploadKnowledge from "./pages/UploadKnowledge";
+import Content from "./pages/Content";
 import Tenants from "./pages/Tenants";
 import ApiSettings from "./pages/ApiSettings";
 import UploadDocs from "./pages/UploadDocs";
@@ -25,8 +24,9 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Comparison />} />
             <Route path="/comparison" element={<Comparison />} />
-            <Route path="/browse" element={<BrowseKnowledge />} />
-            <Route path="/upload" element={<UploadKnowledge />} />
+            <Route path="/content" element={<Content />} />
+            <Route path="/browse" element={<Content />} />
+            <Route path="/upload" element={<Content />} />
             <Route path="/upload-docs" element={<UploadDocs />} />
             <Route path="/tenants" element={<Tenants />} />
             <Route path="/settings" element={<ApiSettings />} />
