@@ -1,7 +1,8 @@
-import { BarChart3, BookOpen, Users, Settings, ChevronLeft, ChevronRight } from "lucide-react";
+import { BarChart3, BookOpen, Users, Settings } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import hydraLogo from "@/assets/hydradb-logo.png";
 
 interface SidebarItem {
   icon: React.ElementType;
@@ -33,6 +34,7 @@ export function AppSidebar() {
       )}
     >
       <div className="flex items-center gap-3 px-4 h-14 border-b border-sidebar-border overflow-hidden whitespace-nowrap">
+        <img src={hydraLogo} alt="HydraDB" className="w-8 h-8 shrink-0" />
         {expanded && (
           <span className="font-display font-bold text-sidebar-primary-foreground text-base tracking-tight">
             HydraDB Workbench
