@@ -253,7 +253,8 @@ export function ComparisonPanel() {
                       </div>
                     </div>
 
-                    <div className="border-t border-border" />
+
+
 
                     {/* Source / Scope */}
                     <div className="space-y-2">
