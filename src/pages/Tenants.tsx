@@ -39,23 +39,24 @@ const Tenants = () => {
   };
 
   const handleCheckStatus = (tenantId: string) => {
-    setActiveTenantStatus({
-      tenantId,
-      status: "ready",
-      components: [
-        { name: "Task Scheduler", status: "Provisioned" },
-        { name: "Graph Database", status: "Provisioned" },
-        { name: "Context Store", status: "Provisioned" },
-        { name: "Memory Store", status: "Provisioned" },
-      ],
+    setExpandedTenants((prev) => {
+      const next = new Set(prev);
+      if (next.has(tenantId)) {
+        next.delete(tenantId);
+      } else {
+        next.add(tenantId);
+      }
+      return next;
     });
   };
 
   const handleDeleteTenant = (tenantId: string) => {
     setTenants((prev) => prev.filter((t) => t !== tenantId));
-    if (activeTenantStatus?.tenantId === tenantId) {
-      setActiveTenantStatus(null);
-    }
+    setExpandedTenants((prev) => {
+      const next = new Set(prev);
+      next.delete(tenantId);
+      return next;
+    });
   };
 
   return (
