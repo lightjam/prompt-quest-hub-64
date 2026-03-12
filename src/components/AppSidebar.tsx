@@ -17,30 +17,27 @@ const items: SidebarItem[] = [
 ];
 
 export function AppSidebar() {
-  const [collapsed, setCollapsed] = useState(false);
+  const [hovered, setHovered] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  
+
+  const expanded = hovered;
 
   return (
     <aside
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
       className={cn(
-        "flex flex-col bg-sidebar border-r border-sidebar-border transition-all duration-300 ease-in-out h-screen sticky top-0",
-        collapsed ? "w-16" : "w-60"
+        "flex flex-col bg-sidebar border-r border-sidebar-border transition-all duration-300 ease-in-out h-screen sticky top-0 overflow-hidden",
+        expanded ? "w-60" : "w-16"
       )}
     >
-      <div className="flex items-center justify-between px-4 h-14 border-b border-sidebar-border">
-        {!collapsed && (
+      <div className="flex items-center gap-3 px-4 h-14 border-b border-sidebar-border overflow-hidden whitespace-nowrap">
+        {expanded && (
           <span className="font-display font-bold text-sidebar-primary-foreground text-base tracking-tight">
             HydraDB Workbench
           </span>
         )}
-        <button
-          onClick={() => setCollapsed(!collapsed)}
-          className="p-1.5 rounded-md text-sidebar-foreground hover:bg-sidebar-accent transition-colors"
-        >
-          {collapsed ? <ChevronRight size={16} /> : <ChevronLeft size={16} />}
-        </button>
       </div>
 
       <nav className="flex-1 py-3 px-2 space-y-1">
@@ -52,14 +49,14 @@ export function AppSidebar() {
               key={item.label}
               onClick={() => navigate(item.path)}
               className={cn(
-                "flex items-center gap-3 w-full rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200",
+                "flex items-center gap-3 w-full rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200 whitespace-nowrap overflow-hidden",
                 isActive
                   ? "bg-sidebar-accent text-sidebar-accent-foreground"
                   : "text-sidebar-foreground hover:bg-sidebar-accent/50 hover:text-sidebar-accent-foreground"
               )}
             >
               <item.icon size={18} className="shrink-0" />
-              {!collapsed && <span>{item.label}</span>}
+              {expanded && <span>{item.label}</span>}
             </button>
           );
         })}
