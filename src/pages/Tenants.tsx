@@ -131,64 +131,59 @@ const Tenants = () => {
                     {tenants.map((tenantId) => (
                       <div
                         key={tenantId}
-                        className="flex items-center justify-between rounded-lg border border-border bg-muted/30 px-4 py-3"
+                        className="rounded-lg border border-border bg-muted/30 overflow-hidden"
                       >
-                        <span className="text-sm font-medium text-foreground">{tenantId}</span>
-                        <div className="flex items-center gap-2">
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            className="gap-1.5"
-                            onClick={() => handleCheckStatus(tenantId)}
-                          >
-                            <RefreshCw size={14} />
-                            Check Status
-                          </Button>
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            className="text-destructive hover:text-destructive"
-                            onClick={() => handleDeleteTenant(tenantId)}
-                          >
-                            <Trash2 size={14} />
-                          </Button>
+                        <div className="flex items-center justify-between px-4 py-3">
+                          <span className="text-sm font-medium text-foreground">{tenantId}</span>
+                          <div className="flex items-center gap-2">
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              className="gap-1.5"
+                              onClick={() => handleCheckStatus(tenantId)}
+                            >
+                              <RefreshCw size={14} />
+                              Check Status
+                            </Button>
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              className="text-destructive hover:text-destructive"
+                              onClick={() => handleDeleteTenant(tenantId)}
+                            >
+                              <Trash2 size={14} />
+                            </Button>
+                          </div>
                         </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
 
-              {/* Infrastructure Details */}
-              {activeTenantStatus && (
-                <div className="mt-6 rounded-xl border border-border bg-card p-6 space-y-5 animate-fade-in">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <Layers size={20} className="text-muted-foreground" />
-                      <div>
-                        <h2 className="text-base font-display font-semibold text-foreground">Infrastructure Details</h2>
-                        <p className="text-sm text-muted-foreground">
-                          Tenant ID: <span className="font-medium text-foreground">{activeTenantStatus.tenantId}</span>
-                        </p>
-                      </div>
-                    </div>
-                    <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 border border-primary/20 px-3 py-1 text-sm font-semibold text-primary">
-                      <CheckCircle2 size={14} />
-                      Ready
-                    </span>
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-                    {activeTenantStatus.components.map((comp) => (
-                      <div
-                        key={comp.name}
-                        className="rounded-lg border border-primary/20 bg-primary/5 p-4 space-y-1"
-                      >
-                        <p className="text-sm font-semibold text-foreground">{comp.name}</p>
-                        <p className="flex items-center gap-1.5 text-xs text-primary">
-                          <CheckCircle2 size={12} />
-                          {comp.status}
-                        </p>
+                        {expandedTenants.has(tenantId) && (
+                          <div className="border-t border-border px-4 py-4 space-y-4 animate-fade-in">
+                            <div className="flex items-center justify-between">
+                              <div className="flex items-center gap-3">
+                                <Layers size={18} className="text-muted-foreground" />
+                                <h3 className="text-sm font-display font-semibold text-foreground">Infrastructure Details</h3>
+                              </div>
+                              <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 border border-primary/20 px-2.5 py-0.5 text-xs font-semibold text-primary">
+                                <CheckCircle2 size={12} />
+                                Ready
+                              </span>
+                            </div>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                              {INFRA_COMPONENTS.map((comp) => (
+                                <div
+                                  key={comp.name}
+                                  className="rounded-lg border border-primary/20 bg-primary/5 p-3 space-y-1"
+                                >
+                                  <p className="text-sm font-semibold text-foreground">{comp.name}</p>
+                                  <p className="flex items-center gap-1.5 text-xs text-primary">
+                                    <CheckCircle2 size={12} />
+                                    {comp.status}
+                                  </p>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
                       </div>
                     ))}
                   </div>
