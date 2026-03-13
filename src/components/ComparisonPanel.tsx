@@ -418,7 +418,7 @@ function ComparisonResults({ topN, graphContext, baselineMethod }: {topN: number
             <div className="flex-1 space-y-1.5">
               <p className="text-[11px] text-muted-foreground">Baseline</p>
               <div className="flex items-baseline gap-2">
-                <p className="text-xl font-display font-bold text-red-500 line-through decoration-red-500/40">{mockStats.baseline.tokens.toLocaleString()}</p>
+                <p className="text-xl font-display font-bold text-red-500">{mockStats.baseline.tokens.toLocaleString()}</p>
                 <span className="text-[10px] text-muted-foreground">tokens</span>
               </div>
               <p className="text-muted-foreground text-base">${mockStats.baseline.cost.toFixed(4)}</p>
