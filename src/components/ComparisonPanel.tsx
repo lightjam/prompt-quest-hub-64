@@ -362,7 +362,7 @@ export function ComparisonPanel() {
         onClick={() => setConfigExpanded(true)}
         className="border-t border-primary/20 bg-[hsl(0,0%,0%)] backdrop-blur-sm sticky bottom-0 z-20 animate-fade-in cursor-pointer hover:bg-[hsl(0,0%,8%)] transition-colors">
         
-          <div className="px-6 flex items-center justify-between gap-4 py-[18px]">
+          <div className="px-6 flex items-center justify-between gap-4 py-[14px]">
             <div className="flex items-center gap-3 flex-1 min-w-0">
               <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium border border-primary/30 bg-[hsl(220,16%,13%)] text-[hsl(0,0%,100%)] shrink-0">
                 <Settings2 size={12} />
