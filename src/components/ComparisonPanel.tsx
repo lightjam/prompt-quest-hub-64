@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ArrowUp, Zap, Network, ChevronDown, Copy, Check, FileText, GitBranch, Layers, Hash, ChevronRight, ChevronUp, Settings2 } from "lucide-react";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { cn } from "@/lib/utils";
 import { RelationGraph } from "./RelationGraph";
 
