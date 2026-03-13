@@ -467,40 +467,45 @@ function ComparisonResults({ topN, graphContext, baselineMethod }: {topN: number
       </div>
 
       {/* Request Economics */}
-      <div className="rounded-xl border border-border bg-card p-5">
-        <h3 className="font-display font-semibold text-foreground text-sm mb-4 flex items-center gap-2">
-          <Hash size={14} className="text-muted-foreground" />
-          Request Economics
-        </h3>
-        <div className="overflow-x-auto">
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="border-b border-border">
-                <th className="text-left py-2 text-muted-foreground font-medium text-xs">Metric</th>
-                <th className="text-right py-2 text-muted-foreground font-medium text-xs">Baseline</th>
-                <th className="text-right py-2 text-muted-foreground font-medium text-xs">With HydraDB</th>
-              </tr>
-            </thead>
-            <tbody className="font-mono text-xs">
-              <tr className="border-b border-border/50">
-                <td className="py-2.5 text-foreground">Input tokens</td>
-                <td className="py-2.5 text-right text-red-500">{mockEconomics.baseline.input.toLocaleString()}</td>
-                <td className="py-2.5 text-right text-primary">{mockEconomics.hydradb.input.toLocaleString()}</td>
-              </tr>
-              <tr className="border-b border-border/50">
-                <td className="py-2.5 text-foreground">Total tokens</td>
-                <td className="py-2.5 text-right text-red-500">{mockEconomics.baseline.total.toLocaleString()}</td>
-                <td className="py-2.5 text-right text-primary">{mockEconomics.hydradb.total.toLocaleString()}</td>
-              </tr>
-              <tr>
-                <td className="py-2.5 text-foreground font-medium">Estimated cost</td>
-                <td className="py-2.5 text-right text-red-500 font-medium">{mockEconomics.baseline.cost}</td>
-                <td className="py-2.5 text-right text-primary font-medium">{mockEconomics.hydradb.cost}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+      <Collapsible defaultOpen={false} className="rounded-xl border border-border bg-card">
+        <CollapsibleTrigger className="w-full p-5 flex items-center justify-between hover:bg-muted/50 transition-colors rounded-xl">
+          <h3 className="font-display font-semibold text-foreground text-sm flex items-center gap-2">
+            <Hash size={14} className="text-muted-foreground" />
+            Request Economics
+          </h3>
+          <ChevronDown size={14} className="text-muted-foreground transition-transform duration-200 [[data-state=open]>&]:rotate-180" />
+        </CollapsibleTrigger>
+        <CollapsibleContent>
+          <div className="px-5 pb-5 overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-border">
+                  <th className="text-left py-2 text-muted-foreground font-medium text-xs">Metric</th>
+                  <th className="text-right py-2 text-muted-foreground font-medium text-xs">Baseline</th>
+                  <th className="text-right py-2 text-muted-foreground font-medium text-xs">With HydraDB</th>
+                </tr>
+              </thead>
+              <tbody className="font-mono text-xs">
+                <tr className="border-b border-border/50">
+                  <td className="py-2.5 text-foreground">Input tokens</td>
+                  <td className="py-2.5 text-right text-red-500">{mockEconomics.baseline.input.toLocaleString()}</td>
+                  <td className="py-2.5 text-right text-primary">{mockEconomics.hydradb.input.toLocaleString()}</td>
+                </tr>
+                <tr className="border-b border-border/50">
+                  <td className="py-2.5 text-foreground">Total tokens</td>
+                  <td className="py-2.5 text-right text-red-500">{mockEconomics.baseline.total.toLocaleString()}</td>
+                  <td className="py-2.5 text-right text-primary">{mockEconomics.hydradb.total.toLocaleString()}</td>
+                </tr>
+                <tr>
+                  <td className="py-2.5 text-foreground font-medium">Estimated cost</td>
+                  <td className="py-2.5 text-right text-red-500 font-medium">{mockEconomics.baseline.cost}</td>
+                  <td className="py-2.5 text-right text-primary font-medium">{mockEconomics.hydradb.cost}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </CollapsibleContent>
+      </Collapsible>
 
       {/* Side by side comparison */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
