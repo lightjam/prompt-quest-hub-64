@@ -154,35 +154,35 @@ export function ComparisonPanel() {
 
   return (
     <div className="flex-1 flex flex-col min-h-screen">
-      {/* Collapsed config bar - shows when config is collapsed after compare */}
+      {/* Collapsed config bar - shows at bottom when config is collapsed after compare */}
       {hasCompared && !configExpanded &&
       <div
           onClick={() => setConfigExpanded(true)}
-          className="border-b border-primary/20 bg-accent/60 backdrop-blur-sm sticky top-0 z-20 animate-fade-in cursor-pointer hover:bg-accent/80 transition-colors"
+          className="border-t border-primary/20 bg-[hsl(0,0%,0%)] backdrop-blur-sm fixed bottom-0 left-0 right-0 z-20 animate-fade-in cursor-pointer hover:bg-[hsl(0,0%,8%)] transition-colors"
         >
           <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between gap-4">
             <div className="flex items-center gap-3 flex-1 min-w-0">
-              <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium border border-primary/30 bg-surface-elevated shrink-0">
+              <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium border border-primary/30 bg-[hsl(220,16%,13%)] text-[hsl(0,0%,100%)] shrink-0">
                 <Settings2 size={12} />
                 Config
-                <ChevronDown size={10} />
+                <ChevronUp size={10} />
               </div>
-              <div className="flex items-center gap-2 text-[11px] text-muted-foreground overflow-hidden">
-                <span className="px-2 py-0.5 rounded-md bg-muted font-mono shrink-0">{baselineMethod}</span>
+              <div className="flex items-center gap-2 text-[11px] text-[hsl(220,10%,65%)] overflow-hidden">
+                <span className="px-2 py-0.5 rounded-md bg-[hsl(220,14%,16%)] font-mono shrink-0">{baselineMethod}</span>
                 <span className="shrink-0">vs</span>
-                <span className="px-2 py-0.5 rounded-md bg-accent text-accent-foreground font-medium shrink-0">HydraDB (Top-{topN}, Graph: {graphContext ? "ON" : "OFF"})</span>
-                <span className="text-border shrink-0">|</span>
+                <span className="px-2 py-0.5 rounded-md bg-[hsl(220,20%,18%)] text-[hsl(220,50%,75%)] font-medium shrink-0">HydraDB (Top-{topN}, Graph: {graphContext ? "ON" : "OFF"})</span>
+                <span className="text-[hsl(220,14%,25%)] shrink-0">|</span>
                 <span className="truncate">{scope}</span>
               </div>
             </div>
             <div className="flex items-center gap-2 shrink-0" onClick={(e) => e.stopPropagation()}>
-              <div className="search-glow rounded-xl bg-search-bg flex items-center max-w-md">
+              <div className="search-glow rounded-xl bg-[hsl(220,16%,12%)] flex items-center max-w-md">
                 <input
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 onKeyDown={handleKeyDown}
                 placeholder="Enter query..."
-                className="flex-1 bg-transparent px-3 py-2 text-sm text-foreground placeholder:text-search-placeholder focus:outline-none min-w-[200px]" />
+                className="flex-1 bg-transparent px-3 py-2 text-sm text-[hsl(0,0%,100%)] placeholder:text-[hsl(220,10%,45%)] focus:outline-none min-w-[200px]" />
               
                 <button
                 onClick={handleCompare}
