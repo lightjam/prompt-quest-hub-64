@@ -158,7 +158,7 @@ export function ComparisonPanel() {
       {hasCompared && !configExpanded &&
       <div
           onClick={() => setConfigExpanded(true)}
-          className="border-t border-primary/20 bg-[hsl(0,0%,0%)] backdrop-blur-sm fixed bottom-0 left-0 right-0 z-20 animate-fade-in cursor-pointer hover:bg-[hsl(0,0%,8%)] transition-colors"
+          className="border-t border-primary/20 bg-[hsl(0,0%,0%)] backdrop-blur-sm sticky bottom-0 z-20 animate-fade-in cursor-pointer hover:bg-[hsl(0,0%,8%)] transition-colors mt-auto"
         >
           <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between gap-4">
             <div className="flex items-center gap-3 flex-1 min-w-0">
