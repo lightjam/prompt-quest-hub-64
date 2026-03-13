@@ -443,12 +443,23 @@ function ComparisonResults({ topN, graphContext, baselineMethod }: {topN: number
                 <div className="h-full rounded-full bg-primary" style={{ width: `${100 - mockStats.savings}%` }} />
               </div>
             </div>
+            <div className="flex flex-col items-center pb-6">
+              <ChevronRight size={20} className="text-primary" />
+            </div>
             {/* Savings */}
-            <div className="shrink-0 rounded-xl border border-primary/30 bg-primary/5 p-4 space-y-1">
-              <p className="text-[11px] text-primary font-semibold uppercase tracking-wider flex items-center gap-1"><Zap size={10} /> Savings</p>
-              <p className="text-3xl font-display font-bold text-primary tracking-tight">{mockStats.savings}%</p>
-              <p className="text-[10px] text-primary/70">tokens saved</p>
-              <p className="text-[10px] text-primary/70">${(mockStats.baseline.cost - mockStats.hydradb.cost).toFixed(4)} / query</p>
+            <div className="flex-1 space-y-1.5">
+              <div className="flex items-center gap-1.5">
+                <Zap size={10} className="text-green-500" />
+                <p className="text-[11px] text-green-500 font-semibold">Savings</p>
+              </div>
+              <div className="flex items-baseline gap-2">
+                <p className="text-2xl font-display font-bold text-green-500">{mockStats.savings}%</p>
+                <span className="text-[10px] text-muted-foreground">tokens saved</span>
+              </div>
+              <p className="text-[11px] text-green-500/80">${(mockStats.baseline.cost - mockStats.hydradb.cost).toFixed(4)} / query</p>
+              <div className="h-2 rounded-full bg-green-500/20 w-full">
+                <div className="h-full rounded-full bg-green-500" style={{ width: `${mockStats.savings}%` }} />
+              </div>
             </div>
           </div>
         </div>
