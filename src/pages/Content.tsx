@@ -163,10 +163,10 @@ const Content = () => {
           <div className="w-full max-w-5xl space-y-6 animate-fade-in">
             <h1 className="text-2xl font-display font-bold text-foreground mb-2">Context</h1>
 
-            <Tabs defaultValue="upload" className="w-full">
+            <Tabs defaultValue="browse" className="w-full">
               <TabsList className="bg-card border border-border p-1 rounded-xl shadow-md">
-                <TabsTrigger value="upload" className="px-5 py-2.5 text-sm font-semibold rounded-lg data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg transition-all">Upload Knowledge</TabsTrigger>
                 <TabsTrigger value="browse" className="px-5 py-2.5 text-sm font-semibold rounded-lg data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg transition-all">Browse Knowledge</TabsTrigger>
+                <TabsTrigger value="upload" className="px-5 py-2.5 text-sm font-semibold rounded-lg data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg transition-all">Upload Knowledge</TabsTrigger>
               </TabsList>
 
               {/* ─── Upload Knowledge Tab ─── */}
