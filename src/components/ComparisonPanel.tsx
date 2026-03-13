@@ -351,7 +351,7 @@ export function ComparisonPanel() {
 
         {/* Results */}
         {hasCompared &&
-        <div className="max-w-7xl mx-auto px-6 pb-8">
+        <div className="max-w-7xl mx-auto px-6 pb-8 pt-[24px]">
             <ComparisonResults topN={topN} graphContext={graphContext} baselineMethod={baselineMethod} />
           </div>
         }
