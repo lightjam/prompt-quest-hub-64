@@ -408,9 +408,9 @@ function ComparisonResults({ topN, graphContext, baselineMethod }: {topN: number
   return (
     <div className="space-y-6 animate-fade-in">
       {/* Unified Comparison Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-        {/* Token Comparison - merged */}
-        <div className="rounded-xl border border-border bg-card p-5 space-y-3 md:col-span-2">
+      <div className="grid grid-cols-1 gap-3">
+        {/* Token Comparison with Savings merged */}
+        <div className="rounded-xl border border-border bg-card p-5 space-y-3">
           <h4 className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">Token Comparison</h4>
           <div className="flex items-end gap-6">
             {/* Baseline */}
@@ -443,20 +443,13 @@ function ComparisonResults({ topN, graphContext, baselineMethod }: {topN: number
                 <div className="h-full rounded-full bg-primary" style={{ width: `${100 - mockStats.savings}%` }} />
               </div>
             </div>
-          </div>
-        </div>
-
-        {/* Savings + Context */}
-        <div className="space-y-3">
-          <div className="rounded-xl border border-primary/30 bg-primary/5 p-4 space-y-1">
-            <p className="text-[11px] text-primary font-semibold uppercase tracking-wider flex items-center gap-1"><Zap size={10} /> Savings</p>
-            <p className="text-3xl font-display font-bold text-primary tracking-tight">{mockStats.savings}% tokens</p>
-            <p className="text-[11px] text-primary/70">${(mockStats.baseline.cost - mockStats.hydradb.cost).toFixed(4)} saved per query</p>
-          </div>
-          <div className="rounded-xl border border-border bg-card p-4 space-y-1">
-            <p className="text-[11px] text-muted-foreground font-medium">Time Saved</p>
-            <p className="text-lg font-display font-bold text-foreground">~3.2s</p>
-            <p className="text-[11px] text-muted-foreground">vs baseline latency of ~4.1s</p>
+            {/* Savings */}
+            <div className="shrink-0 rounded-xl border border-primary/30 bg-primary/5 p-4 space-y-1">
+              <p className="text-[11px] text-primary font-semibold uppercase tracking-wider flex items-center gap-1"><Zap size={10} /> Savings</p>
+              <p className="text-3xl font-display font-bold text-primary tracking-tight">{mockStats.savings}%</p>
+              <p className="text-[10px] text-primary/70">tokens saved</p>
+              <p className="text-[10px] text-primary/70">${(mockStats.baseline.cost - mockStats.hydradb.cost).toFixed(4)} / query</p>
+            </div>
           </div>
         </div>
       </div>
