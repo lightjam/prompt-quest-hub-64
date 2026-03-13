@@ -359,9 +359,9 @@ export function ComparisonPanel() {
       {/* Collapsed config bar - sticky at bottom of comparison panel */}
       {hasCompared && !configExpanded &&
       <div
-          onClick={() => setConfigExpanded(true)}
-          className="border-t border-primary/20 bg-[hsl(0,0%,0%)] backdrop-blur-sm sticky bottom-0 z-20 animate-fade-in cursor-pointer hover:bg-[hsl(0,0%,8%)] transition-colors"
-        >
+        onClick={() => setConfigExpanded(true)}
+        className="border-t border-primary/20 bg-[hsl(0,0%,0%)] backdrop-blur-sm sticky bottom-0 z-20 animate-fade-in cursor-pointer hover:bg-[hsl(0,0%,8%)] transition-colors">
+        
           <div className="px-6 py-3 flex items-center justify-between gap-4">
             <div className="flex items-center gap-3 flex-1 min-w-0">
               <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium border border-primary/30 bg-[hsl(220,16%,13%)] text-[hsl(0,0%,100%)] shrink-0">
@@ -420,7 +420,7 @@ function ComparisonResults({ topN, graphContext, baselineMethod }: {topN: number
                 <p className="text-xl font-display font-bold text-red-500 line-through decoration-red-500/40">{mockStats.baseline.tokens.toLocaleString()}</p>
                 <span className="text-[10px] text-muted-foreground">tokens</span>
               </div>
-              <p className="text-[11px] text-muted-foreground">${mockStats.baseline.cost.toFixed(4)}</p>
+              <p className="text-muted-foreground text-base">${mockStats.baseline.cost.toFixed(4)}</p>
               <div className="h-2 rounded-full bg-red-500/20 w-full">
                 <div className="h-full rounded-full bg-red-500 w-full" />
               </div>
@@ -438,7 +438,7 @@ function ComparisonResults({ topN, graphContext, baselineMethod }: {topN: number
                 <p className="text-2xl font-display font-bold text-primary">{mockStats.hydradb.tokens.toLocaleString()}</p>
                 <span className="text-[10px] text-muted-foreground">tokens</span>
               </div>
-              <p className="text-[11px] text-primary/80">${mockStats.hydradb.cost.toFixed(4)}</p>
+              <p className="text-primary/80 text-base">${mockStats.hydradb.cost.toFixed(4)}</p>
               <div className="h-2 rounded-full bg-primary/20 w-full">
                 <div className="h-full rounded-full bg-primary" style={{ width: `${100 - mockStats.savings}%` }} />
               </div>
@@ -456,7 +456,7 @@ function ComparisonResults({ topN, graphContext, baselineMethod }: {topN: number
                 <p className="text-2xl font-display font-bold text-green-500">{mockStats.savings}%</p>
                 <span className="text-[10px] text-muted-foreground">tokens saved</span>
               </div>
-              <p className="text-[11px] text-green-500/80">$289,000 / 10M query</p>
+              <p className="text-green-500/80 text-base">$289,000 / 10M query</p>
               <div className="h-2 rounded-full bg-green-500/20 w-full">
                 <div className="h-full rounded-full bg-green-500" style={{ width: `${mockStats.savings}%` }} />
               </div>
