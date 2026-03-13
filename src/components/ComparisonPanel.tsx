@@ -456,7 +456,7 @@ function ComparisonResults({ topN, graphContext, baselineMethod }: {topN: number
                 <p className="text-2xl font-display font-bold text-green-500">{mockStats.savings}%</p>
                 <span className="text-[10px] text-muted-foreground">tokens saved</span>
               </div>
-              <p className="text-[11px] text-green-500/80">${(mockStats.baseline.cost - mockStats.hydradb.cost).toFixed(4)} / query</p>
+              <p className="text-[11px] text-green-500/80">$289,000 / 10M query</p>
               <div className="h-2 rounded-full bg-green-500/20 w-full">
                 <div className="h-full rounded-full bg-green-500" style={{ width: `${mockStats.savings}%` }} />
               </div>
